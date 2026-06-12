@@ -71,7 +71,7 @@
     border: #e9e9e9 solid 5px;
     border-radius: 15px;
     animation: float 3s ease-in-out infinite;
-    box-shadow:0 11px 5px rgba(75, 48, 48, 0.3);
+    box-shadow:0 11px 5px gba(75, 48, 48, 0.3);
 }
 
 @keyframes float {
