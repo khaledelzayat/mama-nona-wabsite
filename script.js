@@ -194,6 +194,45 @@ document.addEventListener("DOMContentLoaded", function() {
   setLang('ar');
 });
 
+/* ================= ABOUT SECTION TRANSLATIONS ================= */
+
+// أضف هذه الترجمات إلى كائن translations الموجود:
+
+// في translations.ar أضف:
+translations.ar.about_title = "طعام منزلي معمول بحب";
+translations.ar.about_desc = "نحن نقدم أطباقاً مصرية أصيلة معدة بحب من مكونات طازجة يومياً. كل طبق يعكس تراثنا وشغفنا بالطعام الحقيقي.";
+translations.ar.about_btn = "اطلب الآن";
+
+// في translations.en أضف:
+translations.en.about_title = "Homemade Food, Made With Love";
+translations.en.about_desc = "We offer authentic Egyptian dishes prepared with love from fresh ingredients daily. Every dish reflects our heritage and passion for real food.";
+translations.en.about_btn = "Order Now";
+
+/* ================= ABOUT SECTION INTERSECTION OBSERVER ================= */
+
+// للتحكم بالـ Animations عند الوصول للـ Section
+
+const aboutSection = document.getElementById("about");
+
+if (aboutSection) {
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(aboutSection);
+}
+
+
 /* ================= FLOATING OFFERS WIDGET ================= */
 
 const offersData = [
