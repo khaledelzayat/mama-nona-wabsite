@@ -193,3 +193,168 @@ window.addEventListener("resize", () => {
 document.addEventListener("DOMContentLoaded", function() {
   setLang('ar');
 });
+
+/* ================= FLOATING OFFERS WIDGET ================= */
+
+const offersData = [
+  {
+    id: 1,
+    name: "كشري",
+    image: "assets/images/koshary.jpg",
+    oldPrice: 70,
+    newPrice: 50,
+    discount: 28,
+    tag: "Today Offer"
+  },
+  {
+    id: 2,
+    name: "ملوخية",
+    image: "assets/images/molokhia.jpg",
+    oldPrice: 65,
+    newPrice: 45,
+    discount: 30,
+    tag: "Weekly Deal"
+  },
+  {
+    id: 3,
+    name: "فراخ مشوية",
+    image: "assets/images/grilled.jpg",
+    oldPrice: 150,
+    newPrice: 120,
+    discount: 20,
+    tag: "Limited Offer"
+  },
+  {
+    id: 4,
+    name: "مكرونة بشاميل",
+    image: "assets/images/pasta.jpg",
+    oldPrice: 85,
+    newPrice: 65,
+    discount: 23,
+    tag: "Flash Sale"
+  },
+  {
+    id: 5,
+    name: "شاورما فراخ",
+    image: "assets/images/shawarma.jpg",
+    oldPrice: 120,
+    newPrice: 90,
+    discount: 25,
+    tag: "Today Offer"
+  }
+];
+
+let currentOfferIndex = 0;
+let offersAutoTimer = null;
+let isOffersHovered = false;
+
+const offersWidget = document.getElementById("offersWidget");
+const offersContent = offersWidget?.querySelector(".offers-content");
+const offersDots = offersWidget?.querySelector(".offers-dots");
+const closeOffersBtn = document.getElementById("closeOffersBtn");
+
+// ---- Render Offers ----
+function renderOffers() {
+  if (!offersContent || !offersDots) return;
+
+  offersContent.innerHTML = "";
+  offersDots.innerHTML = "";
+
+  offersData.forEach((offer, index) => {
+    // Offer Item
+    const offerItem = document.createElement("div");
+    offerItem.className = `offer-item ${index === 0 ? "active" : ""}`;
+    offerItem.innerHTML = `
+      <span class="offer-badge">${offer.tag}</span>
+      <img src="${offer.image}" class="offer-img" alt="${offer.name}">
+      <h5 class="offer-name">${offer.name}</h5>
+      <div class="offer-prices">
+        <span class="offer-old-price">${offer.oldPrice} EGP</span>
+        <span class="offer-new-price">${offer.newPrice} EGP</span>
+        <span class="offer-discount">-${offer.discount}%</span>
+      </div>
+      <button class="offer-btn" onclick="orderOffer(${offer.id})">Order Now</button>
+    `;
+    offersContent.appendChild(offerItem);
+
+    // Dot
+    const dot = document.createElement("div");
+    dot.className = `dot ${index === 0 ? "active" : ""}`;
+    dot.onclick = () => goToOffer(index);
+    offersDots.appendChild(dot);
+  });
+}
+
+// ---- Change Offer ----
+function goToOffer(index) {
+  currentOfferIndex = index;
+  
+  const items = offersContent?.querySelectorAll(".offer-item");
+  const dots = offersDots?.querySelectorAll(".dot");
+
+  items?.forEach((item, i) => {
+    item.classList.toggle("active", i === index);
+  });
+
+  dots?.forEach((dot, i) => {
+    dot.classList.toggle("active", i === index);
+  });
+}
+
+// ---- Auto Change Offers ----
+function startOffersAutoSlide() {
+  offersAutoTimer = setInterval(() => {
+    currentOfferIndex = (currentOfferIndex + 1) % offersData.length;
+    goToOffer(currentOfferIndex);
+  }, 4000);
+}
+
+// ---- Pause on Hover ----
+offersWidget?.addEventListener("mouseenter", () => {
+  isOffersHovered = true;
+  if (offersAutoTimer) clearInterval(offersAutoTimer);
+});
+
+offersWidget?.addEventListener("mouseleave", () => {
+  isOffersHovered = false;
+  startOffersAutoSlide();
+});
+
+// ---- Close Button ----
+closeOffersBtn?.addEventListener("click", () => {
+  if (offersWidget) {
+    offersWidget.classList.add("hidden");
+    if (offersAutoTimer) clearInterval(offersAutoTimer);
+  }
+});
+
+// ---- Order Function ----
+function orderOffer(offerId) {
+  const offer = offersData.find(o => o.id === offerId);
+  if (offer) {
+    // يمكن تغيير هذا للفتح في واتساب أو إضافة للسلة
+    alert(`تم اختيار: ${offer.name}\nالسعر: ${offer.newPrice} EGP`);
+    // مثال: window.open(`https://wa.me/...?text=أريد ${offer.name}` );
+  }
+}
+
+// ---- Hide Widget When Scroll Past Hero ----
+window.addEventListener("scroll", () => {
+  const heroSection = document.getElementById("hero");
+  if (!heroSection || !offersWidget) return;
+
+  const heroBottom = heroSection.offsetHeight;
+  if (window.scrollY > heroBottom) {
+    offersWidget.style.opacity = "0.3";
+    offersWidget.style.pointerEvents = "none";
+  } else {
+    offersWidget.style.opacity = "1";
+    offersWidget.style.pointerEvents = "auto";
+  }
+});
+
+// ---- Initialize ----
+document.addEventListener("DOMContentLoaded", () => {
+  renderOffers();
+  startOffersAutoSlide();
+});

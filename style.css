@@ -263,3 +263,256 @@ body {
         min-width: 100%;
     }
 }
+
+/* ================= FLOATING OFFERS WIDGET ================= */
+
+.offers-widget {
+    position: fixed;
+    left: 20px;
+    top: 150px;
+    width: 300px;
+    background: rgba(96, 1, 0, 0.50);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(234, 138, 42, 0.3);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    animation: slideInLeft 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.offers-widget.hidden {
+    display: none;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.offers-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background: rgba(234, 138, 42, 0.8);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offers-close-btn:hover {
+    background: #ea8a2a;
+    transform: scale(1.1);
+}
+
+/* ================= OFFER CONTENT ================= */
+
+.offers-content {
+    text-align: center;
+    padding-top: 8px;
+    
+}
+
+.offer-item {
+    display: none;
+    animation: fadeIn 0.4s ease;
+    
+}
+
+.offer-item.active {
+    display: block;
+    
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ---- Offer Image ---- */
+
+.offer-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+/* ---- Offer Badge ---- */
+
+.offer-badge {
+    display: inline-block;
+    background: #ea8a2a;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* ---- Offer Name ---- */
+
+.offer-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color:var(--bg-light);
+    margin-bottom: 8px;
+}
+
+/* ---- Offer Price ---- */
+
+.offer-prices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.336);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    
+}
+
+.offer-old-price {
+    font-size: 0.8rem;
+    color: #ffffff;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: line-through;
+    padding: 2px 6px;
+    background: rgb(255, 0, 0);
+}
+
+.offer-new-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.offer-discount {
+    font-size: 0.75rem;
+    background: #ea8a2a;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* ---- Order Button ---- */
+
+.offer-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ea8a2a, #600100);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 8px;
+}
+
+.offer-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(234, 138, 42, 0.4);
+}
+
+/* ================= DOTS INDICATOR ================= */
+
+.offers-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(96, 1, 0, 0.3);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: #ea8a2a;
+    width: 20px;
+    border-radius: 3px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .offers-widget {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        top: 120px;
+    }
+
+    .offer-img {
+        height: 120px;
+    }
+
+    .offer-name {
+        font-size: 0.9rem;
+    }
+
+    .offer-new-price {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .offers-widget {
+        left: 8px;
+        right: 8px;
+        top: 100px;
+        max-width: 50%;
+        padding: 12px;
+    }
+
+    .offers-close-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+
+    .offer-img {
+        height: 100px;
+    }
+
+    .offer-name {
+        font-size: 0.8rem;
+    }
+
+    .offer-prices {
+        font-size: 0.85rem;
+    }
+}
