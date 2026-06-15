@@ -11,7 +11,14 @@ const translations = {
     hero_title: "أكل لذيذ معمول بحب 🍽️",
     hero_desc: "استمتع بأفضل طعم مع ماما نونا",
     hero_btn: "اطلب الآن",
-    footer: "© 2026 ماما نونا. جميع الحقوق محفوظة"
+    footer: "© 2026 ماما نونا. جميع الحقوق محفوظة",
+    why_badge: "لماذا اختيارنا",
+    why_title: "لماذا تختار ماما نونا؟",
+    why_subtitle: "نحن ملتزمون بتقديم أفضل تجربة طعام بجودة وطعم وحب.",
+    offers_title: "عروض اليوم الخاصة",
+    offers_subtitle: "اكتشف أحدث الخصومات والعروض الحصرية.",
+    daily_offers: "عروض اليوم",
+    weekly_offers: "عروض الأسبوع"
   },
   en: {
     home: "Home",
@@ -23,7 +30,14 @@ const translations = {
     hero_title: "Delicious Food Made With Love 🍽️",
     hero_desc: "Experience the best taste with Mama Nona",
     hero_btn: "Order Now",
-    footer: "© 2026 Mama Nona. All Rights Reserved"
+    footer: "© 2026 Mama Nona. All Rights Reserved",
+    why_badge: "WHY CHOOSE US",
+    why_title: "Why Choose Mama Nona?",
+    why_subtitle: "We're committed to delivering the best food experience with quality, taste, and care.",
+    offers_title: "Today's Special Offers",
+    offers_subtitle: "Discover our latest discounts and exclusive deals.",
+    daily_offers: "Daily Offers",
+    weekly_offers: "Weekly Offers"
   }
 };
 
@@ -194,48 +208,9 @@ document.addEventListener("DOMContentLoaded", function() {
   setLang('ar');
 });
 
-/* ================= ABOUT SECTION TRANSLATIONS ================= */
-
-// أضف هذه الترجمات إلى كائن translations الموجود:
-
-// في translations.ar أضف:
-translations.ar.about_title = "طعام منزلي معمول بحب";
-translations.ar.about_desc = "نحن نقدم أطباقاً مصرية أصيلة معدة بحب من مكونات طازجة يومياً. كل طبق يعكس تراثنا وشغفنا بالطعام الحقيقي.";
-translations.ar.about_btn = "اطلب الآن";
-
-// في translations.en أضف:
-translations.en.about_title = "Homemade Food, Made With Love";
-translations.en.about_desc = "We offer authentic Egyptian dishes prepared with love from fresh ingredients daily. Every dish reflects our heritage and passion for real food.";
-translations.en.about_btn = "Order Now";
-
-/* ================= ABOUT SECTION INTERSECTION OBSERVER ================= */
-
-// للتحكم بالـ Animations عند الوصول للـ Section
-
-const aboutSection = document.getElementById("about");
-
-if (aboutSection) {
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("in-view");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    observer.observe(aboutSection);
-}
-
-
 /* ================= FLOATING OFFERS WIDGET ================= */
 
-const offersData = [
+const floatingOffersData = [
   {
     id: 1,
     name: "كشري",
@@ -283,23 +258,22 @@ const offersData = [
   }
 ];
 
-let currentOfferIndex = 0;
-let offersAutoTimer = null;
-let isOffersHovered = false;
+let currentFloatingOfferIndex = 0;
+let floatingOffersAutoTimer = null;
 
 const offersWidget = document.getElementById("offersWidget");
 const offersContent = offersWidget?.querySelector(".offers-content");
 const offersDots = offersWidget?.querySelector(".offers-dots");
 const closeOffersBtn = document.getElementById("closeOffersBtn");
 
-// ---- Render Offers ----
-function renderOffers() {
+// ---- Render Floating Offers ----
+function renderFloatingOffers() {
   if (!offersContent || !offersDots) return;
 
   offersContent.innerHTML = "";
   offersDots.innerHTML = "";
 
-  offersData.forEach((offer, index) => {
+  floatingOffersData.forEach((offer, index) => {
     // Offer Item
     const offerItem = document.createElement("div");
     offerItem.className = `offer-item ${index === 0 ? "active" : ""}`;
@@ -312,21 +286,21 @@ function renderOffers() {
         <span class="offer-new-price">${offer.newPrice} EGP</span>
         <span class="offer-discount">-${offer.discount}%</span>
       </div>
-      <button class="offer-btn" onclick="orderOffer(${offer.id})">Order Now</button>
+      <button class="offer-btn" onclick="orderFloatingOffer(${offer.id})">Order Now</button>
     `;
     offersContent.appendChild(offerItem);
 
     // Dot
     const dot = document.createElement("div");
     dot.className = `dot ${index === 0 ? "active" : ""}`;
-    dot.onclick = () => goToOffer(index);
+    dot.onclick = () => goToFloatingOffer(index);
     offersDots.appendChild(dot);
   });
 }
 
-// ---- Change Offer ----
-function goToOffer(index) {
-  currentOfferIndex = index;
+// ---- Change Floating Offer ----
+function goToFloatingOffer(index) {
+  currentFloatingOfferIndex = index;
   
   const items = offersContent?.querySelectorAll(".offer-item");
   const dots = offersDots?.querySelectorAll(".dot");
@@ -340,40 +314,36 @@ function goToOffer(index) {
   });
 }
 
-// ---- Auto Change Offers ----
-function startOffersAutoSlide() {
-  offersAutoTimer = setInterval(() => {
-    currentOfferIndex = (currentOfferIndex + 1) % offersData.length;
-    goToOffer(currentOfferIndex);
+// ---- Auto Change Floating Offers ----
+function startFloatingOffersAutoSlide() {
+  floatingOffersAutoTimer = setInterval(() => {
+    currentFloatingOfferIndex = (currentFloatingOfferIndex + 1) % floatingOffersData.length;
+    goToFloatingOffer(currentFloatingOfferIndex);
   }, 4000);
 }
 
 // ---- Pause on Hover ----
 offersWidget?.addEventListener("mouseenter", () => {
-  isOffersHovered = true;
-  if (offersAutoTimer) clearInterval(offersAutoTimer);
+  if (floatingOffersAutoTimer) clearInterval(floatingOffersAutoTimer);
 });
 
 offersWidget?.addEventListener("mouseleave", () => {
-  isOffersHovered = false;
-  startOffersAutoSlide();
+  startFloatingOffersAutoSlide();
 });
 
 // ---- Close Button ----
 closeOffersBtn?.addEventListener("click", () => {
   if (offersWidget) {
     offersWidget.classList.add("hidden");
-    if (offersAutoTimer) clearInterval(offersAutoTimer);
+    if (floatingOffersAutoTimer) clearInterval(floatingOffersAutoTimer);
   }
 });
 
 // ---- Order Function ----
-function orderOffer(offerId) {
-  const offer = offersData.find(o => o.id === offerId);
+function orderFloatingOffer(offerId) {
+  const offer = floatingOffersData.find(o => o.id === offerId);
   if (offer) {
-    // يمكن تغيير هذا للفتح في واتساب أو إضافة للسلة
     alert(`تم اختيار: ${offer.name}\nالسعر: ${offer.newPrice} EGP`);
-    // مثال: window.open(`https://wa.me/...?text=أريد ${offer.name}` );
   }
 }
 
@@ -392,8 +362,238 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ---- Initialize ----
+// ---- Initialize Floating Offers ----
 document.addEventListener("DOMContentLoaded", () => {
-  renderOffers();
-  startOffersAutoSlide();
+  renderFloatingOffers();
+  startFloatingOffersAutoSlide();
 });
+
+/* ================= WHY CHOOSE US INTERSECTION OBSERVER ================= */
+
+const whyChooseSection = document.getElementById("why-choose-us");
+
+if (whyChooseSection) {
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(whyChooseSection);
+}
+
+/* ================= CARD HOVER EFFECT ================= */
+
+document.querySelectorAll(".why-card").forEach(card => {
+    card.addEventListener("mouseenter", function() {
+        this.style.transform = "translateY(-8px)";
+    });
+
+    card.addEventListener("mouseleave", function() {
+        this.style.transform = "translateY(0)";
+    });
+});
+
+/* ================= OFFERS SECTION DATA ================= */
+
+const dailyOffers = [
+  {
+    id: 1,
+    name: "فراخ مشوية",
+    desc: "دجاج مشوي بتتبيلة خاصة",
+    image: "assets/images/grilled.jpg",
+    oldPrice: 220,
+    newPrice: 170,
+    discount: 23,
+    endsIn: 18000
+  },
+  {
+    id: 2,
+    name: "كشري",
+    desc: "طبق مصري شعبي غني بالنكهات",
+    image: "assets/images/koshary.jpg",
+    oldPrice: 70,
+    newPrice: 50,
+    discount: 28,
+    endsIn: 21600
+  },
+  {
+    id: 3,
+    name: "ملوخية",
+    desc: "ملوخية بيتية بطعم أصلي",
+    image: "assets/images/molokhia.jpg",
+    oldPrice: 65,
+    newPrice: 45,
+    discount: 30,
+    endsIn: 14400
+  }
+];
+
+const weeklyOffers = [
+  {
+    id: 101,
+    name: "Family Meal",
+    desc: "4 وجبات رئيسية + 4 مشروبات + 2 حلو",
+    image: "assets/images/family-meal.jpg",
+    oldPrice: 850,
+    newPrice: 649,
+    discount: 23,
+    endsIn: 604800,
+    isWeekly: true
+  },
+  {
+    id: 102,
+    name: "Couple Special",
+    desc: "وجبتان رئيسيتان + 2 مشروب + حلو",
+    image: "assets/images/couple-meal.jpg",
+    oldPrice: 450,
+    newPrice: 329,
+    discount: 26,
+    endsIn: 604800,
+    isWeekly: true
+  },
+  {
+    id: 103,
+    name: "Party Pack",
+    desc: "6 وجبات متنوعة + 6 مشروبات + 3 حلو",
+    image: "assets/images/party-pack.jpg",
+    oldPrice: 1200,
+    newPrice: 849,
+    discount: 29,
+    endsIn: 604800,
+    isWeekly: true
+  }
+];
+
+/* ================= RENDER OFFERS SECTION ================= */
+
+function renderOffersSection() {
+  const dailyGrid = document.getElementById("dailyOffersGrid");
+  const weeklyGrid = document.getElementById("weeklyOffersGrid");
+
+  if (dailyGrid) {
+    dailyGrid.innerHTML = "";
+    dailyOffers.forEach(offer => {
+      dailyGrid.appendChild(createOfferSectionCard(offer, false));
+    });
+  }
+
+  if (weeklyGrid) {
+    weeklyGrid.innerHTML = "";
+    weeklyOffers.forEach(offer => {
+      weeklyGrid.appendChild(createOfferSectionCard(offer, true));
+    });
+  }
+
+  startOfferCountdowns();
+}
+
+/* ================= CREATE OFFER SECTION CARD ================= */
+
+function createOfferSectionCard(offer, isWeekly = false) {
+  const card = document.createElement("div");
+  card.className = `offer-card ${isWeekly ? "weekly-offer" : ""}`;
+  card.id = `offer-${offer.id}`;
+
+  const discountText = isWeekly ? "BEST OFFER" : `-${offer.discount}%`;
+
+  card.innerHTML = `
+    <div class="offer-card-image">
+      <img src="${offer.image}" alt="${offer.name}">
+      <div class="discount-badge">${discountText}</div>
+    </div>
+    
+    <div class="offer-card-content">
+      <h5 class="offer-card-title">${offer.name}</h5>
+      <p class="offer-card-desc">${offer.desc}</p>
+      
+      <div class="offer-prices">
+        <span class="offer-old-price">${offer.oldPrice} EGP</span>
+        <span class="offer-new-price">${offer.newPrice} EGP</span>
+      </div>
+      
+      <div class="offer-countdown">
+        <div style="font-size: 0.8rem; margin-bottom: 4px;">Offer Ends In</div>
+        <div class="countdown-timer" data-offer-id="${offer.id}">00:00:00</div>
+      </div>
+      
+      <button class="offer-btn" onclick="orderOfferSection(${offer.id})">
+        Order Now
+      </button>
+    </div>
+  `;
+
+  return card;
+}
+
+/* ================= COUNTDOWN TIMER ================= */
+
+function startOfferCountdowns() {
+  const allOffers = [...dailyOffers, ...weeklyOffers];
+
+  setInterval(() => {
+    allOffers.forEach(offer => {
+      const timerEl = document.querySelector(`.countdown-timer[data-offer-id="${offer.id}"]`);
+      if (!timerEl) return;
+
+      if (offer.endsIn <= 0) {
+        timerEl.textContent = "EXPIRED";
+        timerEl.style.color = "#999";
+        return;
+      }
+
+      const hours = Math.floor(offer.endsIn / 3600);
+      const minutes = Math.floor((offer.endsIn % 3600) / 60);
+      const seconds = offer.endsIn % 60;
+
+      timerEl.textContent = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+      offer.endsIn--;
+    });
+  }, 1000);
+}
+
+/* ================= ORDER OFFER SECTION ================= */
+
+function orderOfferSection(offerId) {
+  const allOffers = [...dailyOffers, ...weeklyOffers];
+  const offer = allOffers.find(o => o.id === offerId);
+
+  if (offer) {
+    alert(`تم اختيار: ${offer.name}\nالسعر: ${offer.newPrice} EGP`);
+  }
+}
+
+/* ================= INITIALIZE OFFERS SECTION ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderOffersSection();
+});
+
+/* ================= FOOTER TRANSLATIONS ================= */
+
+// في translations.ar أضف:
+translations.ar.hungry_title = "جوعانة؟";
+translations.ar.hungry_desc = "اطلب وجبتك المفضلة الآن!";
+translations.ar.location = "الموقع";
+translations.ar.contact = "تواصل معنا";
+translations.ar.follow_us = "تابعنا";
+translations.ar.view_map = "عرض على الخريطة";
+translations.ar.footer_desc = "طعام منزلي معمول بحب وطعم أصيل.";
+
+// في translations.en أضف:
+translations.en.hungry_title = "Hungry?";
+translations.en.hungry_desc = "Order your favorite meal now!";
+translations.en.location = "Location";
+translations.en.contact = "Contact";
+translations.en.follow_us = "Follow Us";
+translations.en.view_map = "View on Map";
+translations.en.footer_desc = "Homemade food crafted with love and authentic flavors.";
