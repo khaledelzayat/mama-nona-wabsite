@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -46,10 +49,13 @@
 
       <div class="d-flex align-items-center gap-2">
 
-        <button class="btn btn-outline-light position-relative" id="cartBtn">
-          <i class="bi bi-cart3"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge bg-warning" id="cartCount">0</span>
-        </button>
+        <!-- Cart Badge - TASK 9 -->
+        <div class="cart-badge-container">
+          <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+            <i class="bi bi-cart3"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
 
         <a class="btn hero-btn" href="#menu" data-key="order">Order Now</a>
 
@@ -151,8 +157,6 @@
   </div>
 </div>
 
-</section>
-
 <!-- ================= WHY CHOOSE US ================= -->
 <section id="why-choose-us" class="why-choose-section">
   <div class="container">
@@ -216,8 +220,6 @@
   </div>
 </section>
 
-</section>
-
 <!-- ================= OFFERS SECTION ================= -->
 <section id="offers" class="offers-section">
   <div class="container">
@@ -248,7 +250,6 @@
     
   </div>
 </section>
-
 
   
 <!-- ================= FOOTER ================= -->
@@ -326,6 +327,91 @@
     </div>
   </div>
 </footer>
+
+<!-- ================= SHOPPING CART OFFCANVAS - TASK 9 ================= -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">سلتك 🛒</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <!-- Free Shipping Progress Bar -->
+    <div class="shipping-progress-section">
+      <div class="progress" style="height: 8px;">
+        <div class="progress-bar" id="shippingBar" role="progressbar" style="width: 0%"></div>
+      </div>
+      <p class="shipping-text" id="shippingText">فاضلك 300 جنيه للشحن المجاني</p>
+    </div>
+
+    <!-- Cart Items Container -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <p class="empty-cart-msg">السلة فارغة</p>
+    </div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>الإجمالي الفرعي:</span>
+        <span id="subtotal">0 EGP</span>
+      </div>
+      <div class="summary-row">
+        <span>الشحن:</span>
+        <span id="shipping">مجاني</span>
+      </div>
+      <div class="summary-row total">
+        <span>الإجمالي:</span>
+        <span id="total">0 EGP</span>
+      </div>
+
+      <!-- Minimum Order Warning -->
+      <div class="minimum-order-warning" id="minimumOrderWarning" style="display: none;">
+        <p>⚠️ الحد الأدنى للطلب 100 جنيه</p>
+      </div>
+
+      <!-- Checkout Button -->
+      <button class="checkout-btn" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled>
+        تأكيد الطلب
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= CHECKOUT MODAL - TASK 9 ================= -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">بيانات الطلب</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="checkoutForm">
+          <div class="mb-3">
+            <label class="form-label">الاسم</label>
+            <input type="text" class="form-control" id="customerName" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">العنوان</label>
+            <textarea class="form-control" id="customerAddress" rows="3" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">رقم الهاتف</label>
+            <input type="tel" class="form-control" id="customerPhone" required>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">إرسال عبر واتساب</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Scripts -->
 <script src="script.js"></script>

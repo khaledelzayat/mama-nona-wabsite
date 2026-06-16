@@ -597,3 +597,251 @@ translations.en.contact = "Contact";
 translations.en.follow_us = "Follow Us";
 translations.en.view_map = "View on Map";
 translations.en.footer_desc = "Homemade food crafted with love and authentic flavors.";
+
+/* ================= SHOPPING CART SYSTEM ================= */
+
+// Cart Data Structure
+let cart = [];
+const MINIMUM_ORDER = 100;
+const FREE_SHIPPING_THRESHOLD = 300;
+const RESTAURANT_PHONE = "201001234567"; // غيّر برقم المطعم
+
+// Load cart from localStorage
+function loadCart() {
+  const saved = localStorage.getItem("kitchen_cart");
+  cart = saved ? JSON.parse(saved) : [];
+  updateCartUI();
+}
+
+// Save cart to localStorage
+function saveCart() {
+  localStorage.setItem("kitchen_cart", JSON.stringify(cart));
+}
+
+// Add to cart
+function addToCart(productId, buttonElement) {
+  const card = buttonElement.closest(".food-card");
+  const product = products.find(p => p.id === productId);
+  
+  if (!product) return;
+
+  // Get selected size
+  const activeSize = card.querySelector(".size.active");
+  const selectedSize = activeSize?.textContent || "M";
+  const basePrice = parseFloat(activeSize?.dataset.price || product.sizes.M);
+
+  // Get addons
+  const addons = [];
+  let addonsPrice = 0;
+  card.querySelectorAll(".addon-checkbox:checked").forEach(checkbox => {
+    addons.push({
+      name: checkbox.dataset.addon,
+      price: parseFloat(checkbox.dataset.price)
+    });
+    addonsPrice += parseFloat(checkbox.dataset.price);
+  });
+
+  // Get notes
+  const notes = card.querySelector(".order-notes")?.value || "";
+
+  // Calculate total price
+  const totalPrice = basePrice + addonsPrice;
+
+  // Create cart item
+  const cartItem = {
+    id: Date.now(),
+    productId: product.id,
+    name: product.name,
+    size: selectedSize,
+    basePrice: basePrice,
+    addons: addons,
+    addonsPrice: addonsPrice,
+    totalPrice: totalPrice,
+    notes: notes,
+    quantity: 1
+  };
+
+  // Check if similar item exists
+  const existingItem = cart.find(item => 
+    item.productId === productId && 
+    item.size === selectedSize && 
+    JSON.stringify(item.addons) === JSON.stringify(addons) &&
+    item.notes === notes
+  );
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push(cartItem);
+  }
+
+  saveCart();
+  updateCartUI();
+
+  // Animation feedback
+  buttonElement.textContent = "✓ تمت الإضافة";
+  buttonElement.style.background = "var(--primary-green, #4caf50)";
+  setTimeout(() => {
+    buttonElement.textContent = "🛒 أضف للسلة";
+    buttonElement.style.background = "";
+  }, 1500);
+}
+
+// Remove from cart
+function removeFromCart(itemId) {
+  cart = cart.filter(item => item.id !== itemId);
+  saveCart();
+  updateCartUI();
+}
+
+// Update quantity
+function updateQuantity(itemId, change) {
+  const item = cart.find(item => item.id === itemId);
+  if (!item) return;
+
+  item.quantity += change;
+  if (item.quantity <= 0) {
+    removeFromCart(itemId);
+  } else {
+    saveCart();
+    updateCartUI();
+  }
+}
+
+// Calculate totals
+function calculateTotals() {
+  const subtotal = cart.reduce((sum, item) => sum + (item.totalPrice * item.quantity), 0);
+  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 50;
+  const total = subtotal + shipping;
+
+  return { subtotal, shipping, total };
+}
+
+// Update cart UI
+function updateCartUI() {
+  const cartCount = document.getElementById("cartCount");
+  const cartItemsContainer = document.getElementById("cartItemsContainer");
+  const subtotalEl = document.getElementById("subtotal");
+  const shippingEl = document.getElementById("shipping");
+  const totalEl = document.getElementById("total");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+  const minimumOrderWarning = document.getElementById("minimumOrderWarning");
+  const shippingBar = document.getElementById("shippingBar");
+  const shippingText = document.getElementById("shippingText");
+
+  // Update cart count
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = totalItems;
+
+  // Update cart items display
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = '<p class="empty-cart-msg">السلة فارغة</p>';
+  } else {
+    cartItemsContainer.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-header">
+          <span class="cart-item-name">${item.name}</span>
+          <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
+        </div>
+        <div class="cart-item-details">
+          الحجم: ${item.size} | السعر الأساسي: ${item.basePrice} EGP
+        </div>
+        ${item.addons.length > 0 ? `
+          <div class="cart-item-addons">
+            إضافات: ${item.addons.map(a => `${a.name} (+${a.price} EGP)`).join(", ")}
+          </div>
+        ` : ""}
+        ${item.notes ? `
+          <div class="cart-item-notes">
+            ملاحظات: "${item.notes}"
+          </div>
+        ` : ""}
+        <div class="cart-item-controls">
+          <div class="quantity-controls">
+            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+            <span class="qty-display">${item.quantity}</span>
+            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+          </div>
+          <span class="item-price">${(item.totalPrice * item.quantity).toFixed(2)} EGP</span>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Calculate and display totals
+  const { subtotal, shipping, total } = calculateTotals();
+  subtotalEl.textContent = subtotal.toFixed(2) + " EGP";
+  shippingEl.textContent = shipping === 0 ? "مجاني ✓" : shipping + " EGP";
+  totalEl.textContent = total.toFixed(2) + " EGP";
+
+  // Update shipping progress bar
+  const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+  const percentage = (subtotal / FREE_SHIPPING_THRESHOLD) * 100;
+  shippingBar.style.width = Math.min(percentage, 100) + "%";
+  
+  if (remaining <= 0) {
+    shippingText.textContent = "مبروك! حصلت على شحن مجاني 🎉";
+  } else {
+    shippingText.textContent = `فاضلك ${remaining.toFixed(2)} جنيه للشحن المجاني`;
+  }
+
+  // Check minimum order
+  const isMinimumMet = subtotal >= MINIMUM_ORDER;
+  checkoutBtn.disabled = !isMinimumMet;
+  minimumOrderWarning.style.display = isMinimumMet ? "none" : "block";
+}
+
+// Send order to WhatsApp
+function sendOrderToWhatsApp() {
+  const name = document.getElementById("customerName").value;
+  const address = document.getElementById("customerAddress").value;
+  const phone = document.getElementById("customerPhone").value;
+
+  if (!name || !address || !phone) {
+    alert("الرجاء ملء جميع البيانات");
+    return;
+  }
+
+  // Build order message
+  let message = `*طلب جديد من ماما نونا*\n\n`;
+  message += `*بيانات العميل:*\n`;
+  message += `الاسم: ${name}\n`;
+  message += `العنوان: ${address}\n`;
+  message += `الهاتف: ${phone}\n\n`;
+  message += `*الطلب:*\n`;
+
+  cart.forEach(item => {
+    message += `${item.name} (${item.size}) x${item.quantity}`;
+    if (item.addons.length > 0) {
+      message += ` + ${item.addons.map(a => a.name).join(", ")}`;
+    }
+    message += ` = ${(item.totalPrice * item.quantity).toFixed(2)} EGP\n`;
+    if (item.notes) {
+      message += `  ملاحظات: ${item.notes}\n`;
+    }
+  });
+
+  const { subtotal, shipping, total } = calculateTotals();
+  message += `\n*الإجمالي:*\n`;
+  message += `الفرعي: ${subtotal.toFixed(2)} EGP\n`;
+  message += `الشحن: ${shipping === 0 ? "مجاني" : shipping + " EGP"}\n`;
+  message += `الإجمالي: ${total.toFixed(2)} EGP`;
+
+  // Send to WhatsApp
+  const whatsappUrl = `https://wa.me/${RESTAURANT_PHONE}?text=${encodeURIComponent(message )}`;
+  window.open(whatsappUrl, "_blank");
+
+  // Clear cart
+  cart = [];
+  saveCart();
+  updateCartUI();
+  
+  // Close modal
+  const modal = bootstrap.Modal.getInstance(document.getElementById("checkoutModal"));
+  modal.hide();
+}
+
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadCart();
+});
