@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -49,7 +48,7 @@
 
       <div class="d-flex align-items-center gap-2">
 
-        <!-- Cart Badge - TASK 9 -->
+        <!-- Cart Badge - TASK 10 -->
         <div class="cart-badge-container">
           <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
             <i class="bi bi-cart3"></i>
@@ -118,7 +117,18 @@
   </div>
 </section>
 
-
+<!-- ================= FLOATING OFFERS WIDGET ================= -->
+<div id="offersWidget" class="offers-widget">
+  <button class="offers-close-btn" id="closeOffersBtn">✕</button>
+  
+  <div class="offers-content">
+    <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
+  </div>
+  
+  <div class="offers-dots">
+    <!-- يتم ملء النقاط تلقائياً من JavaScript -->
+  </div>
+</div>
 
 <!-- ================= MENU ================= -->
 <section id="menu" class="menu-section">
@@ -141,21 +151,6 @@
 
   </div>
 </section>
-
-</main>
-
-  <!-- ================= FLOATING OFFERS WIDGET ================= -->
-<div id="offersWidget" class="offers-widget">
-  <button class="offers-close-btn" id="closeOffersBtn">✕</button>
-  
-  <div class="offers-content">
-    <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
-  </div>
-  
-  <div class="offers-dots">
-    <!-- يتم ملء النقاط تلقائياً من JavaScript -->
-  </div>
-</div>
 
 <!-- ================= WHY CHOOSE US ================= -->
 <section id="why-choose-us" class="why-choose-section">
@@ -251,8 +246,8 @@
   </div>
 </section>
 
-  
-<!-- ================= FOOTER ================= -->
+</main>
+
 <!-- ================= CTA BEFORE FOOTER ================= -->
 <section class="cta-before-footer">
   <div class="container">
@@ -328,56 +323,97 @@
   </div>
 </footer>
 
-<!-- ================= SHOPPING CART OFFCANVAS - TASK 9 ================= -->
+<!-- ================= SHOPPING CART OFFCANVAS - TASK 10 ================= -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">سلتك 🛒</h5>
+    <h5 class="offcanvas-title">
+      <i class="bi bi-cart3"></i> 
+      <span data-key="cart_title">سلة الطلبات</span>
+    </h5>
+    <span class="cart-item-count">
+      <span id="cartItemCount">0</span> 
+      <span data-key="items">Items</span>
+    </span>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
 
-  <div class="offcanvas-body">
+  <div class="offcanvas-body d-flex flex-column">
+    
     <!-- Free Shipping Progress Bar -->
     <div class="shipping-progress-section">
       <div class="progress" style="height: 8px;">
         <div class="progress-bar" id="shippingBar" role="progressbar" style="width: 0%"></div>
       </div>
-      <p class="shipping-text" id="shippingText">فاضلك 300 جنيه للشحن المجاني</p>
+      <p class="shipping-text" id="shippingText" data-key="free_shipping">فاضلك 300 جنيه للشحن المجاني</p>
     </div>
 
     <!-- Cart Items Container -->
-    <div class="cart-items-container" id="cartItemsContainer">
-      <p class="empty-cart-msg">السلة فارغة</p>
+    <div class="cart-items-container flex-grow-1" id="cartItemsContainer">
+      <div class="empty-cart-state">
+        <div class="empty-cart-icon">🛒</div>
+        <p class="empty-cart-title" data-key="empty_cart">السلة فارغة</p>
+        <p class="empty-cart-desc" data-key="empty_cart_desc">ابدأ بإضافة وجبات لذيذة</p>
+        <button class="btn btn-primary btn-sm" data-bs-dismiss="offcanvas" data-key="browse_menu">تصفح القائمة</button>
+      </div>
+    </div>
+
+    <!-- Coupon Section -->
+    <div class="coupon-section">
+      <div class="input-group">
+        <input type="text" class="form-control" id="couponInput" placeholder="كود الخصم" data-key="coupon_placeholder">
+        <button class="btn btn-outline-primary" type="button" id="applyCouponBtn" data-key="apply">تطبيق</button>
+      </div>
+      <small class="coupon-message" id="couponMessage"></small>
+    </div>
+
+    <!-- Estimated Delivery -->
+    <div class="delivery-info">
+      <div class="delivery-time">
+        <i class="bi bi-clock"></i>
+        <span data-key="estimated_delivery">التوصيل المتوقع:</span>
+        <strong id="deliveryTime">25 - 35 دقيقة</strong>
+      </div>
     </div>
 
     <!-- Cart Summary -->
     <div class="cart-summary">
       <div class="summary-row">
-        <span>الإجمالي الفرعي:</span>
+        <span data-key="subtotal">الإجمالي الفرعي:</span>
         <span id="subtotal">0 EGP</span>
       </div>
       <div class="summary-row">
-        <span>الشحن:</span>
+        <span data-key="delivery">الشحن:</span>
         <span id="shipping">مجاني</span>
       </div>
+      <div class="summary-row">
+        <span data-key="tax">الضريبة:</span>
+        <span id="tax">0 EGP</span>
+      </div>
       <div class="summary-row total">
-        <span>الإجمالي:</span>
+        <span data-key="total">الإجمالي:</span>
         <span id="total">0 EGP</span>
       </div>
 
       <!-- Minimum Order Warning -->
       <div class="minimum-order-warning" id="minimumOrderWarning" style="display: none;">
-        <p>⚠️ الحد الأدنى للطلب 100 جنيه</p>
+        <p>⚠️ <span data-key="minimum_order">الحد الأدنى للطلب 100 جنيه</span></p>
       </div>
 
       <!-- Checkout Button -->
-      <button class="checkout-btn" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled>
+      <button class="checkout-btn" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled data-key="checkout">
         تأكيد الطلب
       </button>
+
+      <!-- Clear Cart Button -->
+      <button class="btn btn-outline-danger btn-sm w-100 mt-2" id="clearCartBtn" data-key="clear_cart">
+        <i class="bi bi-trash"></i> حذف السلة
+      </button>
     </div>
+
   </div>
 </div>
 
-<!-- ================= CHECKOUT MODAL - TASK 9 ================= -->
+<!-- ================= CHECKOUT MODAL - TASK 10 ================= -->
 <div class="modal fade" id="checkoutModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
