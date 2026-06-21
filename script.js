@@ -845,3 +845,295 @@ function sendOrderToWhatsApp() {
 document.addEventListener("DOMContentLoaded", () => {
   loadCart();
 });
+
+// ================= TASK 11: CHECKOUT FORM ================= //
+
+// Checkout Form Validation
+const checkoutForm = document.getElementById('checkoutForm');
+const customerNameInput = document.getElementById('customerName');
+const customerPhoneInput = document.getElementById('customerPhone');
+const customerAddressInput = document.getElementById('customerAddress');
+const customerCityInput = document.getElementById('customerCity');
+const customerNotesInput = document.getElementById('customerNotes');
+const deliveryMethodRadios = document.querySelectorAll('input[name="deliveryMethod"]');
+const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethod"]');
+const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+const checkoutModal = document.getElementById('checkoutModal');
+
+// Load saved customer data from localStorage
+function loadSavedCustomerData() {
+  const savedData = localStorage.getItem('customerData');
+  if (savedData) {
+    const data = JSON.parse(savedData);
+    if (customerNameInput) customerNameInput.value = data.name || '';
+    if (customerPhoneInput) customerPhoneInput.value = data.phone || '';
+    if (customerAddressInput) customerAddressInput.value = data.address || '';
+    if (customerCityInput) customerCityInput.value = data.city || '';
+  }
+}
+
+// Save customer data to localStorage
+function saveCustomerData() {
+  const data = {
+    name: customerNameInput.value,
+    phone: customerPhoneInput.value,
+    address: customerAddressInput.value,
+    city: customerCityInput.value
+  };
+  localStorage.setItem('customerData', JSON.stringify(data));
+}
+
+// Validate phone number (Egyptian format)
+function validatePhoneNumber(phone) {
+  const phoneRegex = /^(01|002201)[0-9]{9}$/;
+  return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Validate form
+function validateCheckoutForm() {
+  let isValid = true;
+  
+  // Clear previous errors
+  document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+  document.querySelectorAll('.form-control, .form-select').forEach(el => el.classList.remove('is-invalid'));
+
+  // Validate Name
+  if (!customerNameInput.value.trim()) {
+    document.getElementById('nameError').textContent = translations[currentLang].name_required || 'الاسم مطلوب';
+    customerNameInput.classList.add('is-invalid');
+    isValid = false;
+  }
+
+  // Validate Phone
+  if (!customerPhoneInput.value.trim()) {
+    document.getElementById('phoneError').textContent = translations[currentLang].phone_required || 'رقم الهاتف مطلوب';
+    customerPhoneInput.classList.add('is-invalid');
+    isValid = false;
+  } else if (!validatePhoneNumber(customerPhoneInput.value)) {
+    document.getElementById('phoneError').textContent = translations[currentLang].phone_invalid || 'رقم الهاتف غير صحيح';
+    customerPhoneInput.classList.add('is-invalid');
+    isValid = false;
+  }
+
+  // Validate Address
+  if (!customerAddressInput.value.trim()) {
+    document.getElementById('addressError').textContent = translations[currentLang].address_required || 'العنوان مطلوب';
+    customerAddressInput.classList.add('is-invalid');
+    isValid = false;
+  }
+
+  // Check minimum order
+  const cartTotal = parseFloat(document.getElementById('checkoutTotal').textContent);
+  if (cartTotal < 100) {
+    document.getElementById('minimumOrderAlert').style.display = 'flex';
+    isValid = false;
+  } else {
+    document.getElementById('minimumOrderAlert').style.display = 'none';
+  }
+
+  return isValid;
+}
+
+// Update order summary in checkout modal
+function updateCheckoutSummary() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const summaryContainer = document.getElementById('orderSummaryItems');
+  
+  if (!summaryContainer) return;
+
+  summaryContainer.innerHTML = '';
+  let subtotal = 0;
+
+  cartItems.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    subtotal += itemTotal;
+
+    const itemElement = document.createElement('div');
+    itemElement.className = 'order-item';
+    itemElement.innerHTML = `
+      <div>
+        <span class="order-item-name">${item.name}</span>
+        <span class="order-item-qty">×${item.quantity}</span>
+      </div>
+      <span class="order-item-price">${itemTotal} EGP</span>
+    `;
+    summaryContainer.appendChild(itemElement);
+  });
+
+  // Calculate totals
+  const deliveryFee = subtotal >= 300 ? 0 : 40;
+  const tax = Math.round(subtotal * 0.14);
+  const total = subtotal + deliveryFee + tax;
+
+  // Update summary
+  document.getElementById('checkoutSubtotal').textContent = `${subtotal} EGP`;
+  document.getElementById('checkoutDeliveryFee').textContent = deliveryFee === 0 ? 
+    (translations[currentLang].free || 'مجاني') : `${deliveryFee} EGP`;
+  document.getElementById('checkoutTax').textContent = `${tax} EGP`;
+  document.getElementById('checkoutTotal').textContent = `${total} EGP`;
+
+  // Update checkout button state
+  confirmOrderBtn.disabled = total < 100;
+}
+
+// Handle delivery method change
+deliveryMethodRadios.forEach(radio => {
+  radio.addEventListener('change', function() {
+    const addressField = customerAddressInput.closest('.mb-3');
+    if (this.value === 'pickup') {
+      addressField.style.display = 'none';
+      customerAddressInput.removeAttribute('required');
+    } else {
+      addressField.style.display = 'block';
+      customerAddressInput.setAttribute('required', 'required');
+    }
+  });
+});
+
+// Confirm Order Button
+confirmOrderBtn.addEventListener('click', function() {
+  if (!validateCheckoutForm()) {
+    return;
+  }
+
+  // Show loading state
+  const btnText = this.querySelector('.btn-text');
+  const btnLoader = this.querySelector('.btn-loader');
+  btnText.style.display = 'none';
+  btnLoader.style.display = 'flex';
+  this.disabled = true;
+
+  // Save customer data
+  saveCustomerData();
+
+  // Prepare order data
+  const orderData = {
+    customer: {
+      name: customerNameInput.value,
+      phone: customerPhoneInput.value,
+      address: customerAddressInput.value,
+      city: customerCityInput.value,
+      notes: customerNotesInput.value
+    },
+    delivery: {
+      method: document.querySelector('input[name="deliveryMethod"]:checked').value,
+      fee: document.getElementById('checkoutDeliveryFee').textContent
+    },
+    payment: {
+      method: document.querySelector('input[name="paymentMethod"]:checked').value
+    },
+    items: JSON.parse(localStorage.getItem('cartItems')) || [],
+    totals: {
+      subtotal: document.getElementById('checkoutSubtotal').textContent,
+      tax: document.getElementById('checkoutTax').textContent,
+      total: document.getElementById('checkoutTotal').textContent
+    }
+  };
+
+  // Store order data for Task 12
+  localStorage.setItem('orderData', JSON.stringify(orderData));
+
+  // Simulate processing
+  setTimeout(() => {
+    // Hide loading state
+    btnText.style.display = 'inline';
+    btnLoader.style.display = 'none';
+    this.disabled = false;
+
+    // Close modal and send to WhatsApp
+    const modal = bootstrap.Modal.getInstance(checkoutModal);
+    modal.hide();
+    
+    // Call Task 12 function
+    sendOrderToWhatsApp();
+  }, 1500);
+});
+
+// Update summary when modal opens
+checkoutModal.addEventListener('show.bs.modal', function() {
+  loadSavedCustomerData();
+  updateCheckoutSummary();
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadSavedCustomerData();
+});
+
+// Add translations for checkout form
+const checkoutTranslations = {
+  ar: {
+    checkout_title: 'تأكيد الطلب',
+    customer_info: 'بيانات العميل',
+    full_name: 'الاسم الكامل',
+    full_name_placeholder: 'أدخل اسمك',
+    phone_number: 'رقم الهاتف',
+    phone_placeholder: '01XXXXXXXXX',
+    delivery_address: 'عنوان التوصيل',
+    address_placeholder: 'الشارع - المبنى - الشقة',
+    city_area: 'المدينة / المنطقة',
+    select_city: 'اختر المدينة',
+    special_notes: 'ملاحظات خاصة (اختياري)',
+    notes_placeholder: 'مثال: بدون بصل، زيادة جبنة',
+    delivery_method: 'طريقة الاستلام',
+    delivery: 'التوصيل',
+    pickup: 'الاستلام من المطعم',
+    payment_method: 'طريقة الدفع',
+    cash_on_delivery: 'الدفع عند الاستلام',
+    online_payment: 'الدفع أونلاين (قريباً)',
+    order_summary: 'ملخص الطلب',
+    subtotal: 'الإجمالي الفرعي:',
+    delivery_fee: 'رسوم التوصيل:',
+    tax: 'الضريبة:',
+    total: 'الإجمالي النهائي:',
+    minimum_order_warning: 'الحد الأدنى للطلب 100 جنيه',
+    cancel: 'إلغاء',
+    confirm_order: 'تأكيد الطلب',
+    sending: 'جاري الإرسال...',
+    name_required: 'الاسم مطلوب',
+    phone_required: 'رقم الهاتف مطلوب',
+    phone_invalid: 'رقم الهاتف غير صحيح',
+    address_required: 'العنوان مطلوب',
+    free: 'مجاني'
+  },
+  en: {
+    checkout_title: 'Confirm Order',
+    customer_info: 'Customer Information',
+    full_name: 'Full Name',
+    full_name_placeholder: 'Enter your name',
+    phone_number: 'Phone Number',
+    phone_placeholder: '01XXXXXXXXX',
+    delivery_address: 'Delivery Address',
+    address_placeholder: 'Street - Building - Apartment',
+    city_area: 'City / Area',
+    select_city: 'Select City',
+    special_notes: 'Special Notes (Optional)',
+    notes_placeholder: 'Example: No onions, Extra cheese',
+    delivery_method: 'Delivery Method',
+    delivery: 'Delivery',
+    pickup: 'Pick Up',
+    payment_method: 'Payment Method',
+    cash_on_delivery: 'Cash on Delivery',
+    online_payment: 'Online Payment (Coming Soon)',
+    order_summary: 'Order Summary',
+    subtotal: 'Subtotal:',
+    delivery_fee: 'Delivery Fee:',
+    tax: 'Tax:',
+    total: 'Total:',
+    minimum_order_warning: 'Minimum order is 100 EGP',
+    cancel: 'Cancel',
+    confirm_order: 'Confirm Order',
+    sending: 'Sending...',
+    name_required: 'Name is required',
+    phone_required: 'Phone number is required',
+    phone_invalid: 'Invalid phone number',
+    address_required: 'Address is required',
+    free: 'Free'
+  }
+};
+
+// Merge with existing translations
+Object.keys(checkoutTranslations).forEach(lang => {
+  if (!translations[lang]) translations[lang] = {};
+  Object.assign(translations[lang], checkoutTranslations[lang]);
+});

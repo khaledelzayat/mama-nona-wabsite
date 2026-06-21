@@ -377,7 +377,7 @@
   </div>
 </div>
 
-<!-- ================= CHECKOUT MODAL - TASK 9 ================= -->
+<!-- ================= CHECKOUT MODAL - TASK 9 =================
 <div class="modal fade" id="checkoutModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -409,6 +409,173 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
         <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">إرسال عبر واتساب</button>
       </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- ================= CHECKOUT MODAL - TASK 11 ================= -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content checkout-modal">
+      
+      <!-- Header -->
+      <div class="modal-header checkout-header">
+        <h5 class="modal-title">
+          <i class="bi bi-bag-check"></i>
+          <span data-key="checkout_title">تأكيد الطلب</span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body checkout-body">
+        <form id="checkoutForm">
+          
+          <!-- Customer Information Section -->
+          <div class="form-section">
+            <h6 class="section-title" data-key="customer_info">بيانات العميل</h6>
+            
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label class="form-label" data-key="full_name">الاسم الكامل</label>
+              <input type="text" class="form-control" id="customerName" 
+                     placeholder="أدخل اسمك" data-key="full_name_placeholder" required>
+              <small class="error-message" id="nameError"></small>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+              <label class="form-label" data-key="phone_number">رقم الهاتف</label>
+              <input type="tel" class="form-control" id="customerPhone" 
+                     placeholder="01XXXXXXXXX" data-key="phone_placeholder" required>
+              <small class="error-message" id="phoneError"></small>
+            </div>
+
+            <!-- Delivery Address -->
+            <div class="mb-3">
+              <label class="form-label" data-key="delivery_address">عنوان التوصيل</label>
+              <textarea class="form-control" id="customerAddress" rows="3" 
+                        placeholder="الشارع - المبنى - الشقة" data-key="address_placeholder" required></textarea>
+              <small class="error-message" id="addressError"></small>
+            </div>
+
+            <!-- City/Area -->
+            <div class="mb-3">
+              <label class="form-label" data-key="city_area">المدينة / المنطقة</label>
+              <select class="form-select" id="customerCity" required>
+                <option value="" data-key="select_city">اختر المدينة</option>
+                <option value="cairo">القاهرة</option>
+                <option value="giza">الجيزة</option>
+                <option value="tanta">طنطا</option>
+                <option value="mahalla">المحلة</option>
+                <option value="other">أخرى</option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="mb-3">
+              <label class="form-label" data-key="special_notes">ملاحظات خاصة (اختياري)</label>
+              <textarea class="form-control" id="customerNotes" rows="2" 
+                        placeholder="مثال: بدون بصل، زيادة جبنة" data-key="notes_placeholder"></textarea>
+            </div>
+          </div>
+
+          <!-- Delivery Method Section -->
+          <div class="form-section">
+            <h6 class="section-title" data-key="delivery_method">طريقة الاستلام</h6>
+            
+            <div class="delivery-options">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="deliveryMethod" 
+                       id="delivery" value="delivery" checked>
+                <label class="form-check-label" for="delivery" data-key="delivery">
+                  التوصيل
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="deliveryMethod" 
+                       id="pickup" value="pickup">
+                <label class="form-check-label" for="pickup" data-key="pickup">
+                  الاستلام من المطعم
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Method Section -->
+          <div class="form-section">
+            <h6 class="section-title" data-key="payment_method">طريقة الدفع</h6>
+            
+            <div class="payment-options">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" 
+                       id="cash" value="cash" checked>
+                <label class="form-check-label" for="cash" data-key="cash_on_delivery">
+                  الدفع عند الاستلام
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" 
+                       id="online" value="online" disabled>
+                <label class="form-check-label" for="online" data-key="online_payment">
+                  الدفع أونلاين (قريباً)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary Section -->
+          <div class="form-section order-summary-section">
+            <h6 class="section-title" data-key="order_summary">ملخص الطلب</h6>
+            
+            <div id="orderSummaryItems" class="order-items">
+              <!-- Filled by JavaScript -->
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-row">
+              <span data-key="subtotal">الإجمالي الفرعي:</span>
+              <span id="checkoutSubtotal">0 EGP</span>
+            </div>
+
+            <div class="summary-row">
+              <span data-key="delivery_fee">رسوم التوصيل:</span>
+              <span id="checkoutDeliveryFee">مجاني</span>
+            </div>
+
+            <div class="summary-row">
+              <span data-key="tax">الضريبة:</span>
+              <span id="checkoutTax">0 EGP</span>
+            </div>
+
+            <div class="summary-row total-row">
+              <span data-key="total">الإجمالي النهائي:</span>
+              <span id="checkoutTotal">0 EGP</span>
+            </div>
+
+            <!-- Minimum Order Warning -->
+            <div class="minimum-order-alert" id="minimumOrderAlert" style="display: none;">
+              <i class="bi bi-exclamation-circle"></i>
+              <span data-key="minimum_order_warning">الحد الأدنى للطلب 100 جنيه</span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer checkout-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="cancel">إلغاء</button>
+        <button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn" data-key="confirm_order">
+          <span class="btn-text">تأكيد الطلب</span>
+          <span class="btn-loader" style="display: none;">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            <span data-key="sending">جاري الإرسال...</span>
+          </span>
+        </button>
+      </div>
+
     </div>
   </div>
 </div>
