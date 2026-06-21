@@ -2366,3 +2366,100 @@ body {
 [dir="rtl"] .minimum-order-alert {
   direction: rtl;
 }
+
+/* ================= TASK 12: WHATSAPP INTEGRATION ================= */
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  animation: slideInUp 0.3s ease;
+  max-width: 300px;
+}
+
+.toast-notification.toast-success {
+  border-left: 4px solid #28a745;
+  background: #f0fdf4;
+}
+
+.toast-notification.toast-success i {
+  color: #28a745;
+}
+
+.toast-notification.toast-error {
+  border-left: 4px solid #e11929;
+  background: #fef2f2;
+}
+
+.toast-notification.toast-error i {
+  color: #e11929;
+}
+
+.toast-notification.toast-info {
+  border-left: 4px solid #ea8a2a;
+  background: #fffbf0;
+}
+
+.toast-notification.toast-info i {
+  color: #ea8a2a;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.toast-notification i {
+  font-size: 18px;
+}
+
+.toast-notification.fade-out {
+  animation: slideOutDown 0.3s ease;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+/* RTL Support for Toast */
+[dir="rtl"] .toast-notification {
+  right: auto;
+  left: 20px;
+}
+
+[dir="rtl"] .toast-notification.toast-success,
+[dir="rtl"] .toast-notification.toast-error,
+[dir="rtl"] .toast-notification.toast-info {
+  border-left: none;
+  border-right: 4px solid;
+}
