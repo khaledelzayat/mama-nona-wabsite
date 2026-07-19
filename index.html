@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -65,8 +63,8 @@
             <span id="currentFlag">🇸🇦</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" onclick="setLang('ar')">عربي</a></li>
-            <li><a class="dropdown-item" href="#" onclick="setLang('en')">English</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setLang('ar'); return false;">عربي</a></li>
+            <li><a class="dropdown-item" href="#" onclick="setLang('en'); return false;">English</a></li>
           </ul>
         </div>
 
@@ -377,42 +375,6 @@
   </div>
 </div>
 
-<!-- ================= CHECKOUT MODAL - TASK 9 =================
-<div class="modal fade" id="checkoutModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">بيانات الطلب</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <form id="checkoutForm">
-          <div class="mb-3">
-            <label class="form-label">الاسم</label>
-            <input type="text" class="form-control" id="customerName" required>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">العنوان</label>
-            <textarea class="form-control" id="customerAddress" rows="3" required></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">رقم الهاتف</label>
-            <input type="tel" class="form-control" id="customerPhone" required>
-          </div>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-        <button type="button" class="btn btn-primary" onclick="sendOrderToWhatsApp()">إرسال عبر واتساب</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <!-- ================= CHECKOUT MODAL - TASK 11 ================= -->
 <div class="modal fade" id="checkoutModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -439,7 +401,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="full_name">الاسم الكامل</label>
               <input type="text" class="form-control" id="customerName" 
-                     placeholder="أدخل اسمك" data-key="full_name_placeholder" required>
+                     placeholder="أدخل اسمك" required>
               <small class="error-message" id="nameError"></small>
             </div>
 
@@ -447,7 +409,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="phone_number">رقم الهاتف</label>
               <input type="tel" class="form-control" id="customerPhone" 
-                     placeholder="01XXXXXXXXX" data-key="phone_placeholder" required>
+                     placeholder="01XXXXXXXXX" required>
               <small class="error-message" id="phoneError"></small>
             </div>
 
@@ -455,7 +417,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="delivery_address">عنوان التوصيل</label>
               <textarea class="form-control" id="customerAddress" rows="3" 
-                        placeholder="الشارع - المبنى - الشقة" data-key="address_placeholder" required></textarea>
+                        placeholder="الشارع - المبنى - الشقة" required></textarea>
               <small class="error-message" id="addressError"></small>
             </div>
 
@@ -463,7 +425,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="city_area">المدينة / المنطقة</label>
               <select class="form-select" id="customerCity" required>
-                <option value="" data-key="select_city">اختر المدينة</option>
+                <option value="">اختر المدينة</option>
                 <option value="cairo">القاهرة</option>
                 <option value="giza">الجيزة</option>
                 <option value="tanta">طنطا</option>
@@ -476,7 +438,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="special_notes">ملاحظات خاصة (اختياري)</label>
               <textarea class="form-control" id="customerNotes" rows="2" 
-                        placeholder="مثال: بدون بصل، زيادة جبنة" data-key="notes_placeholder"></textarea>
+                        placeholder="مثال: بدون بصل، زيادة جبنة"></textarea>
             </div>
           </div>
 
@@ -564,22 +526,58 @@
         </form>
       </div>
 
-      <!-- Footer -->
-      <div class="modal-footer checkout-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="cancel">إلغاء</button>
-        <button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn" data-key="confirm_order">
-          <span class="btn-text">تأكيد الطلب</span>
-          <span class="btn-loader" style="display: none;">
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            <span data-key="sending">جاري الإرسال...</span>
-          </span>
+     <!-- ================= CHECKOUT FOOTER - TASK 13 ================= -->
+<div class="modal-footer checkout-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="cancel">إلغاء</button>
+  
+  <!-- Invoice Actions -->
+  <button type="button" class="btn btn-outline-primary" id="previewInvoiceBtn" data-key="preview_invoice">
+    <i class="bi bi-eye"></i> معاينة الفاتورة
+  </button>
+  
+  <button type="button" class="btn btn-outline-success" id="downloadInvoiceBtn" data-key="download_invoice">
+    <i class="bi bi-download"></i> تحميل PDF
+  </button>
+  
+  <!-- Place Order Button -->
+  <button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn" data-key="confirm_order">
+    <span class="btn-text">تأكيد الطلب</span>
+    <span class="btn-loader" style="display: none;">
+      <span class="spinner-border spinner-border-sm me-2"></span>
+      <span data-key="sending">جاري الإرسال...</span>
+    </span>
+  </button>
+</div>
+    </div>
+  </div>
+</div>
+<!-- ================= INVOICE PREVIEW MODAL - TASK 13 ================= -->
+<div class="modal fade" id="invoicePreviewModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content invoice-modal">
+      <div class="modal-header">
+        <h5 class="modal-title">معاينة الفاتورة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="invoiceContent" class="invoice-container">
+          <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        <button type="button" class="btn btn-primary" id="printInvoiceBtn">
+          <i class="bi bi-printer"></i> طباعة
         </button>
       </div>
-
     </div>
   </div>
 </div>
 
+<!-- Hidden Invoice Template for PDF -->
+<div id="invoiceTemplate" style="display: none;">
+  <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
+</div>
 <!-- Scripts -->
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
