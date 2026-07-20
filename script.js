@@ -1,5 +1,4 @@
 
-
 /* ================= TRANSLATIONS ================= */
 
 const translations = {
@@ -59,7 +58,12 @@ const translations = {
     phone_required: "رقم الهاتف مطلوب",
     phone_invalid: "رقم الهاتف غير صحيح",
     address_required: "العنوان مطلوب",
-    free: "مجاني"
+    free: "مجاني",
+    added_to_cart: "تمت إضافة",
+    to_cart: "إلى السلة",
+    product_added: "تمت الإضافة إلى السلة",
+    preview_invoice: "معاينة الفاتورة",
+    download_invoice: "تحميل PDF"
   },
   en: {
     home: "Home",
@@ -117,7 +121,12 @@ const translations = {
     phone_required: "Phone number is required",
     phone_invalid: "Invalid phone number",
     address_required: "Address is required",
-    free: "Free"
+    free: "Free",
+    added_to_cart: "added to cart",
+    to_cart: "to cart",
+    product_added: "Product added to cart",
+    preview_invoice: "Preview Invoice",
+    download_invoice: "Download PDF"
   }
 };
 
@@ -143,6 +152,8 @@ function setLang(lang) {
     }
   });
 
+  // Re-render cart UI after language change
+  updateCartUI();
   resetCarousel();
 }
 
@@ -175,7 +186,7 @@ function renderProducts() {
     card.className = "food-card";
 
     card.innerHTML = `
-      <img src="${p.image}" class="food-img" alt="${p.name}">
+      <img src="${p.image}" class="food-img" alt="${p.name}" onerror="this.src='assets/images/placeholder.jpg'">
       <div class="food-body">
         <h5>${p.name}</h5>
         <p>${p.desc}</p>
@@ -353,7 +364,7 @@ function renderFloatingOffers() {
     offerItem.className = `offer-item ${index === 0 ? "active" : ""}`;
     offerItem.innerHTML = `
       <span class="offer-badge">${offer.tag}</span>
-      <img src="${offer.image}" class="offer-img" alt="${offer.name}">
+      <img src="${offer.image}" class="offer-img" alt="${offer.name}" onerror="this.src='assets/images/placeholder.jpg'">
       <h5 class="offer-name">${offer.name}</h5>
       <div class="offer-prices">
         <span class="offer-old-price">${offer.oldPrice} EGP</span>
@@ -408,11 +419,48 @@ closeOffersBtn?.addEventListener("click", () => {
   }
 });
 
+// ===== TASK 13.1: ربط Floating Offer بنظام السلة =====
 function orderFloatingOffer(offerId) {
   const offer = floatingOffersData.find(o => o.id === offerId);
-  if (offer) {
-    alert(`تم اختيار: ${offer.name}\nالسعر: ${offer.newPrice} EGP`);
+  if (!offer) return;
+
+  // إنشاء عنصر سلة مطابق للنظام الحالي
+  const cartItem = {
+    id: Date.now(),
+    productId: offer.id,
+    name: offer.name,
+    size: "م",
+    basePrice: offer.newPrice,
+    addons: [],
+    addonsPrice: 0,
+    totalPrice: offer.newPrice,
+    notes: "",
+    quantity: 1,
+    isOffer: true,
+    offerPrice: offer.newPrice,
+    originalPrice: offer.oldPrice
+  };
+
+  // البحث عن نفس المنتج في السلة (حسب الاسم والحجم)
+  const existingItem = cart.find(item => 
+    item.name === offer.name && 
+    item.size === "م"
+  );
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push(cartItem);
   }
+
+  saveCart();
+  updateCartUI();
+
+  // إظهار Toast بدل alert
+  const toastMessage = currentLang === 'ar'
+    ? `✓ تمت إضافة ${offer.name} إلى السلة`
+    : `✓ ${offer.name} added to cart`;
+  showToast(toastMessage, 'success');
 }
 
 window.addEventListener("scroll", () => {
@@ -567,7 +615,7 @@ function createOfferSectionCard(offer, isWeekly = false) {
 
   card.innerHTML = `
     <div class="offer-card-image">
-      <img src="${offer.image}" alt="${offer.name}">
+      <img src="${offer.image}" alt="${offer.name}" onerror="this.src='assets/images/placeholder.jpg'">
       <div class="discount-badge">${discountText}</div>
     </div>
     
@@ -619,13 +667,50 @@ function startOfferCountdowns() {
   }, 1000);
 }
 
+// ===== TASK 13.1: ربط عروض اليوم والأسبوع بنظام السلة =====
 function orderOfferSection(offerId) {
   const allOffers = [...dailyOffers, ...weeklyOffers];
   const offer = allOffers.find(o => o.id === offerId);
 
-  if (offer) {
-    alert(`تم اختيار: ${offer.name}\nالسعر: ${offer.newPrice} EGP`);
+  if (!offer) return;
+
+  // إنشاء عنصر سلة مطابق للنظام الحالي
+  const cartItem = {
+    id: Date.now(),
+    productId: offer.id,
+    name: offer.name,
+    size: offer.isWeekly ? "Bundle" : "م",
+    basePrice: offer.newPrice,
+    addons: [],
+    addonsPrice: 0,
+    totalPrice: offer.newPrice,
+    notes: "",
+    quantity: 1,
+    isOffer: true,
+    offerPrice: offer.newPrice,
+    originalPrice: offer.oldPrice
+  };
+
+  // البحث عن نفس المنتج في السلة (حسب الاسم والحجم)
+  const existingItem = cart.find(item => 
+    item.name === offer.name && 
+    item.size === cartItem.size
+  );
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push(cartItem);
   }
+
+  saveCart();
+  updateCartUI();
+
+  // إظهار Toast بدل alert
+  const toastMessage = currentLang === 'ar'
+    ? `✓ تمت إضافة ${offer.name} إلى السلة`
+    : `✓ ${offer.name} added to cart`;
+  showToast(toastMessage, 'success');
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -707,6 +792,12 @@ function addToCart(productId, buttonElement) {
     buttonElement.textContent = "🛒 أضف للسلة";
     buttonElement.style.background = "";
   }, 1500);
+
+  // إظهار Toast
+  const toastMessage = currentLang === 'ar'
+    ? `✓ تمت إضافة ${product.name} إلى السلة`
+    : `✓ ${product.name} added to cart`;
+  showToast(toastMessage, 'success');
 }
 
 function removeFromCart(itemId) {
@@ -754,7 +845,7 @@ function updateCartUI() {
 
   if (cartItemsContainer) {
     if (cart.length === 0) {
-      cartItemsContainer.innerHTML = '<p class="empty-cart-msg">السلة فارغة</p>';
+      cartItemsContainer.innerHTML = currentLang === 'ar' ? '<p class="empty-cart-msg">السلة فارغة</p>' : '<p class="empty-cart-msg">Cart is empty</p>';
     } else {
       cartItemsContainer.innerHTML = cart.map(item => `
         <div class="cart-item">
@@ -763,16 +854,17 @@ function updateCartUI() {
             <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
           </div>
           <div class="cart-item-details">
-            الحجم: ${item.size} | السعر الأساسي: ${item.basePrice} EGP
+            ${item.isOffer ? '' : 'الحجم: ' + item.size + ' | '}
+            ${item.isOffer ? (currentLang === 'ar' ? 'سعر العرض: ' : 'Offer Price: ') + item.basePrice + ' EGP' : (currentLang === 'ar' ? 'السعر الأساسي: ' : 'Base Price: ') + item.basePrice + ' EGP'}
           </div>
           ${item.addons.length > 0 ? `
             <div class="cart-item-addons">
-              إضافات: ${item.addons.map(a => `${a.name} (+${a.price} EGP)`).join(", ")}
+              ${currentLang === 'ar' ? 'إضافات: ' : 'Add-ons: '}${item.addons.map(a => a.name + ' (+' + a.price + ' EGP)').join(", ")}
             </div>
           ` : ""}
           ${item.notes ? `
             <div class="cart-item-notes">
-              ملاحظات: "${item.notes}"
+              ${currentLang === 'ar' ? 'ملاحظات: "' + item.notes + '"' : 'Notes: "' + item.notes + '"'}
             </div>
           ` : ""}
           <div class="cart-item-controls">
@@ -790,7 +882,7 @@ function updateCartUI() {
 
   const { subtotal, shipping, tax, total } = calculateTotals();
   if (subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + " EGP";
-  if (shippingEl) shippingEl.textContent = shipping === 0 ? "مجاني ✓" : shipping + " EGP";
+  if (shippingEl) shippingEl.textContent = shipping === 0 ? (currentLang === 'ar' ? "مجاني ✓" : "Free ✓") : shipping + " EGP";
   if (taxEl) taxEl.textContent = tax + " EGP";
   if (totalEl) totalEl.textContent = total.toFixed(2) + " EGP";
 
@@ -800,9 +892,11 @@ function updateCartUI() {
     shippingBar.style.width = Math.min(percentage, 100) + "%";
     
     if (remaining <= 0) {
-      shippingText.textContent = "مبروك! حصلت على شحن مجاني 🎉";
+      shippingText.textContent = currentLang === 'ar' ? "مبروك! حصلت على شحن مجاني 🎉" : "Congrats! You got free shipping 🎉";
     } else {
-      shippingText.textContent = `فاضلك ${remaining.toFixed(2)} جنيه للشحن المجاني`;
+      shippingText.textContent = currentLang === 'ar' 
+        ? `فاضلك ${remaining.toFixed(2)} جنيه للشحن المجاني`
+        : `Add ${remaining.toFixed(2)} EGP for free shipping`;
     }
   }
 
@@ -866,26 +960,26 @@ function validateCheckoutForm() {
 
   if (customerNameInput && !customerNameInput.value.trim()) {
     const nameError = document.getElementById('nameError');
-    if (nameError) nameError.textContent = 'الاسم مطلوب';
+    if (nameError) nameError.textContent = translations[currentLang].name_required;
     customerNameInput.classList.add('is-invalid');
     isValid = false;
   }
 
   if (customerPhoneInput && !customerPhoneInput.value.trim()) {
     const phoneError = document.getElementById('phoneError');
-    if (phoneError) phoneError.textContent = 'رقم الهاتف مطلوب';
+    if (phoneError) phoneError.textContent = translations[currentLang].phone_required;
     customerPhoneInput.classList.add('is-invalid');
     isValid = false;
   } else if (customerPhoneInput && !validatePhoneNumber(customerPhoneInput.value)) {
     const phoneError = document.getElementById('phoneError');
-    if (phoneError) phoneError.textContent = 'رقم الهاتف غير صحيح';
+    if (phoneError) phoneError.textContent = translations[currentLang].phone_invalid;
     customerPhoneInput.classList.add('is-invalid');
     isValid = false;
   }
 
   if (customerAddressInput && !customerAddressInput.value.trim()) {
     const addressError = document.getElementById('addressError');
-    if (addressError) addressError.textContent = 'العنوان مطلوب';
+    if (addressError) addressError.textContent = translations[currentLang].address_required;
     customerAddressInput.classList.add('is-invalid');
     isValid = false;
   }
@@ -932,7 +1026,7 @@ function updateCheckoutSummary() {
   const checkoutTotal = document.getElementById('checkoutTotal');
 
   if (checkoutSubtotal) checkoutSubtotal.textContent = `${subtotal.toFixed(2)} EGP`;
-  if (checkoutDeliveryFee) checkoutDeliveryFee.textContent = shipping === 0 ? 'مجاني' : `${shipping} EGP`;
+  if (checkoutDeliveryFee) checkoutDeliveryFee.textContent = shipping === 0 ? (currentLang === 'ar' ? 'مجاني' : 'Free') : `${shipping} EGP`;
   if (checkoutTax) checkoutTax.textContent = `${tax} EGP`;
   if (checkoutTotal) checkoutTotal.textContent = `${total.toFixed(2)} EGP`;
 
@@ -983,7 +1077,7 @@ if (confirmOrderBtn) {
       },
       delivery: {
         method: document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'delivery',
-        fee: shipping === 0 ? 'مجاني' : `${shipping} EGP`
+        fee: shipping === 0 ? (currentLang === 'ar' ? 'مجاني' : 'Free') : `${shipping} EGP`
       },
       payment: {
         method: document.querySelector('input[name="paymentMethod"]:checked')?.value || 'cash'
@@ -1084,7 +1178,7 @@ function buildArabicMessage(orderData) {
     const itemTotal = item.totalPrice * item.quantity;
     message += `${index + 1}️⃣ ${item.name}\n`;
     message += `   الكمية: ${item.quantity}\n`;
-    message += `   السعر: ${item.basePrice} EGP\n`;
+    message += `   السعر: ${item.totalPrice} EGP\n`;
     message += `   الإجمالي: ${itemTotal.toFixed(2)} EGP\n`;
     if (item.addons && item.addons.length > 0) {
       message += `   إضافات: ${item.addons.map(a => a.name).join(', ')}\n`;
@@ -1154,7 +1248,7 @@ function buildEnglishMessage(orderData) {
     const itemTotal = item.totalPrice * item.quantity;
     message += `${index + 1}️⃣ ${item.name}\n`;
     message += `   Qty: ${item.quantity}\n`;
-    message += `   Price: ${item.basePrice} EGP\n`;
+    message += `   Price: ${item.totalPrice} EGP\n`;
     message += `   Total: ${itemTotal.toFixed(2)} EGP\n`;
     if (item.addons && item.addons.length > 0) {
       message += `   Extras: ${item.addons.map(a => a.name).join(', ')}\n`;
@@ -1243,6 +1337,8 @@ function sendOrderToWhatsApp() {
   }, 1500);
 }
 
+/* ================= TOAST NOTIFICATION ================= */
+
 function showToast(message, type = 'info') {
   const toastId = 'toast-' + Date.now();
   const toastHTML = `
@@ -1272,7 +1368,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ================= INVOICE GENERATOR - TASK 13 =================
 
 // Generate unique Order ID
-function generateOrderId() {
+function generateInvoiceOrderId() {
   return Math.floor(100000 + Math.random() * 900000);
 }
 
@@ -1295,11 +1391,11 @@ function getCurrentDateTime() {
 // Generate Invoice HTML
 function generateInvoiceHTML(orderData) {
   const { date, time } = getCurrentDateTime();
-  const orderId = generateOrderId();
+  const orderId = generateInvoiceOrderId();
   
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const deliveryFee = subtotal >= 300 ? 0 : 40;
+  // استخدام السلة الحالية (kitchen_cart) بدلاً من localStorage.getItem('cart')
+  const subtotal = cart.reduce((sum, item) => sum + (item.totalPrice * item.quantity), 0);
+  const deliveryFee = subtotal >= 300 ? 0 : 50;
   const tax = Math.round(subtotal * 0.14);
   const grandTotal = subtotal + deliveryFee + tax;
   
@@ -1309,38 +1405,38 @@ function generateInvoiceHTML(orderData) {
       <div class="invoice-item">
         <div class="invoice-item-name">🍽️ ${item.name}</div>
         <div class="invoice-item-details">
-          <span>الكمية: ${item.quantity}</span>
-          <span>${item.price} EGP</span>
-          <span>الإجمالي: ${item.price * item.quantity} EGP</span>
+          <span>${currentLang === 'ar' ? 'الكمية: ' : 'Qty: '}${item.quantity}</span>
+          <span>${item.totalPrice} EGP</span>
+          <span>${currentLang === 'ar' ? 'الإجمالي: ' : 'Total: '}${(item.totalPrice * item.quantity).toFixed(2)} EGP</span>
         </div>
       </div>
     `;
   });
   
-  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? 'توصيل' : 'استلام من المطعم';
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? 'الدفع عند الاستلام' : 'الدفع أونلاين';
+  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
   
   return `
     <div class="invoice-container">
       <div class="invoice-header">
         <div class="invoice-logo">🍽️ MAMA NONA</div>
-        <div class="invoice-subtitle">مطعم الطعام المنزلي</div>
+        <div class="invoice-subtitle">${currentLang === 'ar' ? 'مطعم الطعام المنزلي' : 'Homemade Food Restaurant'}</div>
       </div>
       
       <div class="invoice-divider"></div>
       
       <div class="invoice-section">
-        <div class="invoice-section-title">الفاتورة</div>
+        <div class="invoice-section-title">${currentLang === 'ar' ? 'الفاتورة' : 'Invoice'}</div>
         <div class="invoice-row">
-          <span>رقم الطلب:</span>
+          <span>${currentLang === 'ar' ? 'رقم الطلب:' : 'Order ID:'}</span>
           <span>#${orderId}</span>
         </div>
         <div class="invoice-row">
-          <span>التاريخ:</span>
+          <span>${currentLang === 'ar' ? 'التاريخ:' : 'Date:'}</span>
           <span>${date}</span>
         </div>
         <div class="invoice-row">
-          <span>الوقت:</span>
+          <span>${currentLang === 'ar' ? 'الوقت:' : 'Time:'}</span>
           <span>${time}</span>
         </div>
       </div>
@@ -1348,21 +1444,21 @@ function generateInvoiceHTML(orderData) {
       <div class="invoice-divider"></div>
       
       <div class="invoice-section">
-        <div class="invoice-section-title">بيانات العميل</div>
+        <div class="invoice-section-title">${currentLang === 'ar' ? 'بيانات العميل' : 'Customer Information'}</div>
         <div class="invoice-row">
-          <span>الاسم:</span>
+          <span>${currentLang === 'ar' ? 'الاسم:' : 'Name:'}</span>
           <span>${orderData.name}</span>
         </div>
         <div class="invoice-row">
-          <span>الهاتف:</span>
+          <span>${currentLang === 'ar' ? 'الهاتف:' : 'Phone:'}</span>
           <span>${orderData.phone}</span>
         </div>
         <div class="invoice-row">
-          <span>المدينة:</span>
+          <span>${currentLang === 'ar' ? 'المدينة:' : 'City:'}</span>
           <span>${orderData.city}</span>
         </div>
         <div class="invoice-row">
-          <span>العنوان:</span>
+          <span>${currentLang === 'ar' ? 'العنوان:' : 'Address:'}</span>
           <span>${orderData.address}</span>
         </div>
       </div>
@@ -1370,7 +1466,7 @@ function generateInvoiceHTML(orderData) {
       <div class="invoice-divider"></div>
       
       <div class="invoice-section">
-        <div class="invoice-section-title">المنتجات</div>
+        <div class="invoice-section-title">${currentLang === 'ar' ? 'المنتجات' : 'Items'}</div>
         ${itemsHTML}
       </div>
       
@@ -1378,20 +1474,20 @@ function generateInvoiceHTML(orderData) {
       
       <div class="invoice-section">
         <div class="invoice-row">
-          <span>الإجمالي الفرعي:</span>
-          <span>${subtotal} EGP</span>
+          <span>${currentLang === 'ar' ? 'الإجمالي الفرعي:' : 'Subtotal:'}</span>
+          <span>${subtotal.toFixed(2)} EGP</span>
         </div>
         <div class="invoice-row">
-          <span>رسوم التوصيل:</span>
-          <span>${deliveryFee === 0 ? 'مجاني' : deliveryFee + ' EGP'}</span>
+          <span>${currentLang === 'ar' ? 'رسوم التوصيل:' : 'Delivery Fee:'}</span>
+          <span>${deliveryFee === 0 ? (currentLang === 'ar' ? 'مجاني' : 'Free') : deliveryFee + ' EGP'}</span>
         </div>
         <div class="invoice-row">
-          <span>الضريبة:</span>
+          <span>${currentLang === 'ar' ? 'الضريبة:' : 'Tax:'}</span>
           <span>${tax} EGP</span>
         </div>
         <div class="invoice-row total-row">
-          <span>الإجمالي النهائي:</span>
-          <span>${grandTotal} EGP</span>
+          <span>${currentLang === 'ar' ? 'الإجمالي النهائي:' : 'Grand Total:'}</span>
+          <span>${grandTotal.toFixed(2)} EGP</span>
         </div>
       </div>
       
@@ -1399,16 +1495,16 @@ function generateInvoiceHTML(orderData) {
       
       <div class="invoice-section">
         <div class="invoice-row">
-          <span>طريقة الدفع:</span>
+          <span>${currentLang === 'ar' ? 'طريقة الدفع:' : 'Payment:'}</span>
           <span>${paymentMethod}</span>
         </div>
         <div class="invoice-row">
-          <span>طريقة الاستلام:</span>
+          <span>${currentLang === 'ar' ? 'طريقة الاستلام:' : 'Delivery:'}</span>
           <span>${deliveryMethod}</span>
         </div>
         ${orderData.notes ? `
           <div class="invoice-row">
-            <span>ملاحظات:</span>
+            <span>${currentLang === 'ar' ? 'ملاحظات:' : 'Notes:'}</span>
             <span>${orderData.notes}</span>
           </div>
         ` : ''}
@@ -1417,7 +1513,7 @@ function generateInvoiceHTML(orderData) {
       <div class="invoice-divider"></div>
       
       <div class="invoice-footer">
-        <p>شكراً لك ❤️</p>
+        <p>${currentLang === 'ar' ? 'شكراً لك ❤️' : 'Thank You ❤️'}</p>
         <p>Mama Nona</p>
       </div>
     </div>
@@ -1464,11 +1560,11 @@ document.getElementById('downloadInvoiceBtn')?.addEventListener('click', functio
     jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
   };
   
-  // If html2pdf is not available, show alert
+  // If html2pdf is not available, show toast instead of alert
   if (typeof html2pdf !== 'undefined') {
     html2pdf().set(opt).from(element).save();
   } else {
-    alert('PDF library not loaded. Please add html2pdf to your project.');
+    showToast(currentLang === 'ar' ? 'مكتبة PDF غير متاحة. الرجاء تحديث الصفحة.' : 'PDF library not available. Please refresh the page.', 'error');
   }
 });
 
@@ -1480,21 +1576,20 @@ document.getElementById('printInvoiceBtn')?.addEventListener('click', function()
 // Generate WhatsApp Receipt Message
 function generateWhatsAppReceipt(orderData) {
   const { date, time } = getCurrentDateTime();
-  const orderId = generateOrderId();
+  const orderId = generateInvoiceOrderId();
   
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const deliveryFee = subtotal >= 300 ? 0 : 40;
+  const subtotal = cart.reduce((sum, item) => sum + (item.totalPrice * item.quantity), 0);
+  const deliveryFee = subtotal >= 300 ? 0 : 50;
   const tax = Math.round(subtotal * 0.14);
   const grandTotal = subtotal + deliveryFee + tax;
   
   let itemsText = '';
   cart.forEach(item => {
-    itemsText += `\n🍔 ${item.name}\nالكمية: ${item.quantity} | السعر: ${item.price} EGP\nالإجمالي: ${item.price * item.quantity} EGP\n`;
+    itemsText += `\n🍔 ${item.name}\n${currentLang === 'ar' ? 'الكمية: ' : 'Qty: '}${item.quantity} | ${currentLang === 'ar' ? 'السعر: ' : 'Price: '}${item.totalPrice} EGP\n${currentLang === 'ar' ? 'الإجمالي: ' : 'Total: '}${(item.totalPrice * item.quantity).toFixed(2)} EGP\n`;
   });
   
-  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? 'توصيل' : 'استلام من المطعم';
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? 'الدفع عند الاستلام' : 'الدفع أونلاين';
+  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
   
   const message = `
 ╔══════════════════════════════╗
@@ -1521,12 +1616,12 @@ ${itemsText}
 ──────────────────────────────
 💰 PRICING
 
-Subtotal: ${subtotal} EGP
+Subtotal: ${subtotal.toFixed(2)} EGP
 Delivery: ${deliveryFee === 0 ? 'FREE' : deliveryFee + ' EGP'}
 Tax: ${tax} EGP
 
 ══════════════════════════════
-💵 GRAND TOTAL: ${grandTotal} EGP
+💵 GRAND TOTAL: ${grandTotal.toFixed(2)} EGP
 ══════════════════════════════
 
 💳 Payment: ${paymentMethod}
