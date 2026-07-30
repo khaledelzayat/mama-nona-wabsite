@@ -160,16 +160,16 @@ function setLang(lang) {
 /* ================= PRODUCTS ================= */
 
 const products = [
-  { id: 1,  name: "كشري",           desc: "طبق مصري شعبي غني بالنكهات",     image: "assets/images/koshary.jpg",     sizes: { S: 40,  M: 55,  L: 70  } },
-  { id: 2,  name: "ملوخية",          desc: "ملوخية بيتية بطعم أصلي",          image: "assets/images/molokhia.jpg",    sizes: { S: 35,  M: 50,  L: 65  } },
-  { id: 3,  name: "فراخ مشوية",      desc: "دجاج مشوي بتتبيلة خاصة",          image: "assets/images/grilled.jpg",     sizes: { S: 90,  M: 120, L: 150 } },
-  { id: 4,  name: "مكرونة بشاميل",   desc: "مكرونة بصوص البشاميل الشهية",     image: "assets/images/pasta.jpg",       sizes: { S: 50,  M: 65,  L: 85  } },
-  { id: 5,  name: "كفتة مشوية",      desc: "كفتة مشوية بتتبيلة خاصة",         image: "assets/images/kofta.jpg",       sizes: { S: 60,  M: 80,  L: 100 } },
-  { id: 6,  name: "رز بلبن",         desc: "حلوى مصرية تقليدية",              image: "assets/images/ricepudding.jpg", sizes: { S: 25,  M: 35,  L: 45  } },
-  { id: 7,  name: "أم علي",          desc: "حلوى شرقية غنية بالمكسرات",       image: "assets/images/omali.jpg",       sizes: { S: 35,  M: 50,  L: 70  } },
-  { id: 8,  name: "محشي مشكل",       desc: "محشي ورق عنب وكوسة وباذنجان",     image: "assets/images/stuffed.jpg",     sizes: { S: 55,  M: 75,  L: 95  } },
-  { id: 9,  name: "شاورما فراخ",     desc: "شاورما بطعم عربي أصيل",           image: "assets/images/shawarma.jpg",    sizes: { S: 70,  M: 95,  L: 120 } },
-  { id: 10, name: "بيتزا ماما نونا", desc: "بيتزا بطابع منزلي مميز",          image: "assets/images/pizza.jpg",       sizes: { S: 80,  M: 110, L: 140 } }
+  { id: 1,  name: "كشري",           desc: "طبق مصري شعبي غني بالنكهات",     image: "assets/images/products/koshary.jpg",     sizes: { S: 40,  M: 55,  L: 70  } },
+  { id: 2,  name: "ملوخية",          desc: "ملوخية بيتية بطعم أصلي",          image: "assets/images/products/molokhia.jpg",    sizes: { S: 35,  M: 50,  L: 65  } },
+  { id: 3,  name: "فراخ مشوية",      desc: "دجاج مشوي بتتبيلة خاصة",          image: "assets/images/products/grilled-chicken.jpg",     sizes: { S: 90,  M: 120, L: 150 } },
+  { id: 4,  name: "مكرونة بشاميل",   desc: "مكرونة بصوص البشاميل الشهية",     image: "assets/images/products/bechamel-pasta.jpg",       sizes: { S: 50,  M: 65,  L: 85  } },
+  { id: 5,  name: "كفتة مشوية",      desc: "كفتة مشوية بتتبيلة خاصة",         image: "assets/images/products/grilled-kofta.jpg",       sizes: { S: 60,  M: 80,  L: 100 } },
+  { id: 6,  name: "رز بلبن",         desc: "حلوى مصرية تقليدية",              image: "assets/images/products/ricepudding.jpg", sizes: { S: 25,  M: 35,  L: 45  } },
+  { id: 7,  name: "أم علي",          desc: "حلوى شرقية غنية بالمكسرات",       image: "assets/images/products/omali.jpg",       sizes: { S: 35,  M: 50,  L: 70  } },
+  { id: 8,  name: "محشي مشكل",       desc: "محشي ورق عنب وكوسة وباذنجان",     image: "assets/images/products/stuffed.jpg",     sizes: { S: 55,  M: 75,  L: 95  } },
+  { id: 9,  name: "شاورما فراخ",     desc: "شاورما بطعم عربي أصيل",           image: "assets/images/products/shawarma.jpg",    sizes: { S: 70,  M: 95,  L: 120 } },
+  { id: 10, name: "بيتزا ماما نونا", desc: "بيتزا بطابع منزلي مميز",          image: "assets/images/products/pizza.jpg",       sizes: { S: 80,  M: 110, L: 140 } }
 ];
 
 /* ================= RENDER PRODUCTS ================= */
@@ -301,7 +301,7 @@ const floatingOffersData = [
   {
     id: 1,
     name: "كشري",
-    image: "assets/images/koshary.jpg",
+    image: "assets/images/offers/koshary-offer.jpg",
     oldPrice: 70,
     newPrice: 50,
     discount: 28,
@@ -310,7 +310,7 @@ const floatingOffersData = [
   {
     id: 2,
     name: "ملوخية",
-    image: "assets/images/molokhia.jpg",
+    image: "assets/images/offers/molokhia-offer.jpg",
     oldPrice: 65,
     newPrice: 45,
     discount: 30,
@@ -319,7 +319,7 @@ const floatingOffersData = [
   {
     id: 3,
     name: "فراخ مشوية",
-    image: "assets/images/grilled.jpg",
+    image: "assets/images/offers/grilled-chicken-offer.jpg",
     oldPrice: 150,
     newPrice: 120,
     discount: 20,
@@ -328,7 +328,7 @@ const floatingOffersData = [
   {
     id: 4,
     name: "مكرونة بشاميل",
-    image: "assets/images/pasta.jpg",
+    image: "assets/images/offers/bechamel-pasta.jpg",
     oldPrice: 85,
     newPrice: 65,
     discount: 23,
@@ -337,7 +337,7 @@ const floatingOffersData = [
   {
     id: 5,
     name: "شاورما فراخ",
-    image: "assets/images/shawarma.jpg",
+    image: "assets/images/offers/shawarma.jpg",
     oldPrice: 120,
     newPrice: 90,
     discount: 25,
@@ -521,7 +521,7 @@ const dailyOffers = [
     id: 1,
     name: "فراخ مشوية",
     desc: "دجاج مشوي بتتبيلة خاصة",
-    image: "assets/images/grilled.jpg",
+    image: "assets/images/offers/grilled-chicken-offer.jpg",
     oldPrice: 220,
     newPrice: 170,
     discount: 23,
@@ -531,7 +531,7 @@ const dailyOffers = [
     id: 2,
     name: "كشري",
     desc: "طبق مصري شعبي غني بالنكهات",
-    image: "assets/images/koshary.jpg",
+    image: "assets/images/offers/koshary-offer.jpg",
     oldPrice: 70,
     newPrice: 50,
     discount: 28,
@@ -541,7 +541,7 @@ const dailyOffers = [
     id: 3,
     name: "ملوخية",
     desc: "ملوخية بيتية بطعم أصلي",
-    image: "assets/images/molokhia.jpg",
+    image: "assets/images/offers/molokhia-offer.jpg",
     oldPrice: 65,
     newPrice: 45,
     discount: 30,
@@ -554,7 +554,7 @@ const weeklyOffers = [
     id: 101,
     name: "Family Meal",
     desc: "4 وجبات رئيسية + 4 مشروبات + 2 حلو",
-    image: "assets/images/family-meal.jpg",
+    image: "assets/images/offers/family-meal.jpg",
     oldPrice: 850,
     newPrice: 649,
     discount: 23,
@@ -565,7 +565,7 @@ const weeklyOffers = [
     id: 102,
     name: "Couple Special",
     desc: "وجبتان رئيسيتان + 2 مشروب + حلو",
-    image: "assets/images/couple-meal.jpg",
+    image: "assets/images/offers/couple-meal.jpg",
     oldPrice: 450,
     newPrice: 329,
     discount: 26,
@@ -576,7 +576,7 @@ const weeklyOffers = [
     id: 103,
     name: "Party Pack",
     desc: "6 وجبات متنوعة + 6 مشروبات + 3 حلو",
-    image: "assets/images/party-pack.jpg",
+    image: "assets/images/offers/party-pack.jpg",
     oldPrice: 1200,
     newPrice: 849,
     discount: 29,
