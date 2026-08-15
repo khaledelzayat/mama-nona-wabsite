@@ -31,10 +31,10 @@
 
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
         <img src="assets/images/Asset 3.png" alt="Mama Nona" height="50">
-        <img src="assets/images/Asset 4.png" alt="Mama Nona" height="20">
+       
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler .btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -51,24 +51,49 @@
 
         <!-- Cart Badge -->
         <div class="cart-badge-container">
-          <button class="cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+          <button class="nav-btn hero-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
             <i class="bi bi-cart3"></i>
             <span class="cart-count" id="cartCount">0</span>
           </button>
         </div>
 
-        <a class="btn hero-btn" href="#menu" data-key="order">Order Now</a>
+        <a class=" hero-btn   .btn" href="#menu" data-key="order">Order Now</a>
 
-        <div class="dropdown">
-          <button class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-1"
-                  type="button" data-bs-toggle="dropdown">
-            <span id="currentFlag">🇸🇦</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#" onclick="setLang('ar'); return false;">عربي</a></li>
-            <li><a class="dropdown-item" href="#" onclick="setLang('en'); return false;">English</a></li>
-          </ul>
-        </div>
+       <div class="dropdown language-dropdown">
+  <button
+    class="btn btn-outline-light btn-sm dropdown-toggle d-flex align-items-center gap-1"
+    id="languageToggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    data-bs-display="static"
+    aria-expanded="false"
+    aria-label="Choose language"
+  >
+    <img id="currentFlag"
+         src="https://flagcdn.com/w20/sa.png"
+         alt="Arabic"
+         width="20"
+         height="14">
+  </button>
+
+  <ul class="dropdown-menu language-dropdown-menu" aria-labelledby="languageToggle">
+    <li>
+      <a class="dropdown-item"
+         href="#"
+         onclick="setLang('ar'); return false;">
+        🇸🇦 عربي
+      </a>
+    </li>
+
+    <li>
+      <a class="dropdown-item"
+         href="#"
+         onclick="setLang('en'); return false;">
+        🇬🇧 English
+      </a>
+    </li>
+  </ul>
+</div>
 
       </div>
     </div>
@@ -90,7 +115,7 @@
         <div class="hero-content">
           <h1 data-key="hero_title">أكل لذيذ معمول بحب 🍽️</h1>
           <p data-key="hero_desc">استمتع بأفضل طعم مع ماما نونا</p>
-          <a class="btn hero-btn mt-3" href="#menu" data-key="hero_btn">اطلب الآن</a>
+          <a class="nav-btn hero-btn mt-3" href="#menu" data-key="hero_btn">اطلب الآن</a>
         </div>
       </div>
 
@@ -98,9 +123,9 @@
         <img src="assets/images/hero2.jpeg" class="d-block w-100 hero-img" alt="food 2">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>Delicious &amp; Fresh Meals</h1>
-          <p>Authentic homemade recipes</p>
-          <a class="btn hero-btn mt-3" href="#menu">Order Now</a>
+          <h1 data-key="hero_slide2_title">Delicious &amp; Fresh Meals</h1>
+          <p data-key="hero_slide2_desc">Authentic homemade recipes</p>
+          <a class="btn hero-btn mt-3" href="#menu" data-key="hero_btn">Order Now</a>
         </div>
       </div>
 
@@ -108,9 +133,9 @@
         <img src="assets/images/hero3.jpeg" class="d-block w-100 hero-img" alt="food 3">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>Mama Nona Special Taste</h1>
-          <p>Cooked with love for you</p>
-          <a class="btn hero-btn mt-3" href="#menu">Order Now</a>
+          <h1 data-key="hero_slide3_title">Mama Nona Special Taste</h1>
+          <p data-key="hero_slide3_desc">Cooked with love for you</p>
+          <a class="btn hero-btn mt-3" href="#menu" data-key="hero_btn">Order Now</a>
         </div>
       </div>
 
@@ -174,43 +199,43 @@
       <!-- Card 1 -->
       <div class="why-card">
         <div class="why-card-icon">🍅</div>
-        <h5 class="why-card-title">Fresh Ingredients</h5>
-        <p class="why-card-desc">مكونات طازجة يوميًا من أفضل المصادر</p>
+        <h5 class="why-card-title" data-key="why_fresh_title">Fresh Ingredients</h5>
+        <p class="why-card-desc" data-key="why_fresh_desc">مكونات طازجة يوميًا من أفضل المصادر</p>
       </div>
       
       <!-- Card 2 -->
       <div class="why-card">
         <div class="why-card-icon">👩‍🍳</div>
-        <h5 class="why-card-title">Homemade Taste</h5>
-        <p class="why-card-desc">وصفات بيتية أصلية معدة بحب</p>
+        <h5 class="why-card-title" data-key="why_home_title">Homemade Taste</h5>
+        <p class="why-card-desc" data-key="why_home_desc">وصفات بيتية أصلية معدة بحب</p>
       </div>
       
       <!-- Card 3 -->
       <div class="why-card">
         <div class="why-card-icon">🚚</div>
-        <h5 class="why-card-title">Fast Delivery</h5>
-        <p class="why-card-desc">توصيل سريع وآمن إلى باب منزلك</p>
+        <h5 class="why-card-title" data-key="why_delivery_title">Fast Delivery</h5>
+        <p class="why-card-desc" data-key="why_delivery_desc">توصيل سريع وآمن إلى باب منزلك</p>
       </div>
       
       <!-- Card 4 -->
       <div class="why-card">
         <div class="why-card-icon">⭐</div>
-        <h5 class="why-card-title">Quality Control</h5>
-        <p class="why-card-desc">جودة مطاعم محترفة في كل طبق</p>
+        <h5 class="why-card-title" data-key="why_quality_title">Quality Control</h5>
+        <p class="why-card-desc" data-key="why_quality_desc">جودة مطاعم محترفة في كل طبق</p>
       </div>
       
       <!-- Card 5 -->
       <div class="why-card">
         <div class="why-card-icon">💰</div>
-        <h5 class="why-card-title">Affordable Prices</h5>
-        <p class="why-card-desc">أسعار مناسبة للجميع بدون تنازل عن الجودة</p>
+        <h5 class="why-card-title" data-key="why_prices_title">Affordable Prices</h5>
+        <p class="why-card-desc" data-key="why_prices_desc">أسعار مناسبة للجميع بدون تنازل عن الجودة</p>
       </div>
       
       <!-- Card 6 -->
       <div class="why-card">
         <div class="why-card-icon">❤️</div>
-        <h5 class="why-card-title">Customer First</h5>
-        <p class="why-card-desc">رضا العملاء هو أولويتنا الأولى</p>
+        <h5 class="why-card-title" data-key="why_customer_title">Customer Satisfaction</h5>
+        <p class="why-card-desc" data-key="why_customer_desc">رضا العملاء هو أولويتنا الأولى</p>
       </div>
       
     </div>
@@ -278,8 +303,8 @@
         <div class="footer-info">
           <span class="footer-icon">📍</span>
           <div>
-            <p>Al Mahalla Al Kubra</p>
-            <p>Al Gharbiyah, Egypt</p>
+            <p data-key="address_line1">Al Mahalla Al Kubra</p>
+            <p data-key="address_line2">Egypt</p>
           </div>
         </div>
         <a href="https://maps.google.com" target="_blank" class="footer-link" data-key="view_map">View on Map</a>
@@ -328,7 +353,7 @@
 <!-- ================= SHOPPING CART OFFCANVAS ================= -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">سلتك 🛒</h5>
+    <h5 class="offcanvas-title" data-key="cart_title">سلتك 🛒</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
 
@@ -338,36 +363,36 @@
       <div class="progress" style="height: 8px;">
         <div class="progress-bar" id="shippingBar" role="progressbar" style="width: 0%"></div>
       </div>
-      <p class="shipping-text" id="shippingText">فاضلك 300 جنيه للشحن المجاني</p>
+      <p class="shipping-text" id="shippingText" data-key="free_shipping_remaining">فاضلك 300 جنيه للشحن المجاني</p>
     </div>
 
     <!-- Cart Items Container -->
     <div class="cart-items-container" id="cartItemsContainer">
-      <p class="empty-cart-msg">السلة فارغة</p>
+      <p class="empty-cart-msg" data-key="empty_cart">السلة فارغة</p>
     </div>
 
     <!-- Cart Summary -->
     <div class="cart-summary">
       <div class="summary-row">
-        <span>الإجمالي الفرعي:</span>
+        <span data-key="subtotal">الإجمالي الفرعي:</span>
         <span id="subtotal">0 EGP</span>
       </div>
       <div class="summary-row">
-        <span>الشحن:</span>
+        <span data-key="shipping_label">الشحن:</span>
         <span id="shipping">مجاني</span>
       </div>
       <div class="summary-row total">
-        <span>الإجمالي:</span>
+        <span data-key="total">الإجمالي:</span>
         <span id="total">0 EGP</span>
       </div>
 
       <!-- Minimum Order Warning -->
       <div class="minimum-order-warning" id="minimumOrderWarning" style="display: none;">
-        <p>⚠️ الحد الأدنى للطلب 100 جنيه</p>
+        <p data-key="minimum_order_warning">⚠️ الحد الأدنى للطلب 100 جنيه</p>
       </div>
 
       <!-- Checkout Button -->
-      <button class="checkout-btn" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled>
+      <button class="checkout-btn" id="checkoutBtn" data-bs-toggle="modal" data-bs-target="#checkoutModal" disabled data-key="confirm_order">
         تأكيد الطلب
       </button>
     </div>
@@ -400,7 +425,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="full_name">الاسم الكامل</label>
               <input type="text" class="form-control" id="customerName" 
-                     placeholder="أدخل اسمك" required>
+                     placeholder="أدخل اسمك" data-placeholder-key="full_name_placeholder" required>
               <small class="error-message" id="nameError"></small>
             </div>
 
@@ -408,7 +433,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="phone_number">رقم الهاتف</label>
               <input type="tel" class="form-control" id="customerPhone" 
-                     placeholder="01XXXXXXXXX" required>
+                     placeholder="01XXXXXXXXX" data-placeholder-key="phone_placeholder" required>
               <small class="error-message" id="phoneError"></small>
             </div>
 
@@ -416,7 +441,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="delivery_address">عنوان التوصيل</label>
               <textarea class="form-control" id="customerAddress" rows="3" 
-                        placeholder="الشارع - المبنى - الشقة" required></textarea>
+                        placeholder="الشارع - المبنى - الشقة" data-placeholder-key="address_placeholder" required></textarea>
               <small class="error-message" id="addressError"></small>
             </div>
 
@@ -424,12 +449,12 @@
             <div class="mb-3">
               <label class="form-label" data-key="city_area">المدينة / المنطقة</label>
               <select class="form-select" id="customerCity" required>
-                <option value="">اختر المدينة</option>
-                <option value="cairo">القاهرة</option>
-                <option value="giza">الجيزة</option>
-                <option value="tanta">طنطا</option>
-                <option value="mahalla">المحلة</option>
-                <option value="other">أخرى</option>
+                <option value="" data-option-key="select_city">اختر المدينة</option>
+                <option value="cairo" data-option-key="cairo">القاهرة</option>
+                <option value="giza" data-option-key="giza">الجيزة</option>
+                <option value="tanta" data-option-key="tanta">طنطا</option>
+                <option value="mahalla" data-option-key="mahalla">المحلة</option>
+                <option value="other" data-option-key="other">أخرى</option>
               </select>
             </div>
 
@@ -437,7 +462,7 @@
             <div class="mb-3">
               <label class="form-label" data-key="special_notes">ملاحظات خاصة (اختياري)</label>
               <textarea class="form-control" id="customerNotes" rows="2" 
-                        placeholder="مثال: بدون بصل، زيادة جبنة"></textarea>
+                        placeholder="مثال: بدون بصل، زيادة جبنة" data-placeholder-key="notes_placeholder"></textarea>
             </div>
           </div>
 
@@ -530,17 +555,17 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="cancel">إلغاء</button>
         
         <!-- Invoice Actions -->
-        <button type="button" class="btn btn-outline-primary" id="previewInvoiceBtn" data-key="preview_invoice">
-          <i class="bi bi-eye"></i> معاينة الفاتورة
+        <button type="button" class="btn btn-outline-primary" id="previewInvoiceBtn">
+          <i class="bi bi-eye"></i> <span data-key="preview_invoice">معاينة الفاتورة</span>
         </button>
         
-        <button type="button" class="btn btn-outline-success" id="downloadInvoiceBtn" data-key="download_invoice">
-          <i class="bi bi-download"></i> تحميل PDF
+        <button type="button" class="btn btn-outline-success" id="downloadInvoiceBtn">
+          <i class="bi bi-download"></i> <span data-key="download_invoice">تحميل PDF</span>
         </button>
         
         <!-- Place Order Button -->
-        <button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn" data-key="confirm_order">
-          <span class="btn-text">تأكيد الطلب</span>
+<button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn">
+          <span class="btn-text" data-key="review_invoice">مراجعة الفاتورة</span>
           <span class="btn-loader" style="display: none;">
             <span class="spinner-border spinner-border-sm me-2"></span>
             <span data-key="sending">جاري الإرسال...</span>
@@ -556,18 +581,26 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content invoice-modal">
       <div class="modal-header">
-        <h5 class="modal-title">معاينة الفاتورة</h5>
+        <h5 class="modal-title" data-key="preview_invoice">معاينة الفاتورة</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
+        <div class="invoice-confirm-note" role="status">
+          <i class="bi bi-info-circle"></i>
+          <span data-key="invoice_confirm_note">الطلب لا يُعتبر مؤكداً إلا بعد إرساله عبر واتساب.</span>
+        </div>
         <div id="invoiceContent" class="invoice-container">
           <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
-        <button type="button" class="btn btn-primary" id="printInvoiceBtn">
-          <i class="bi bi-printer"></i> طباعة
+      <div class="modal-footer invoice-preview-actions">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><span data-key="close">إغلاق</span></button>
+        <button type="button" class="btn btn-outline-primary" id="printInvoiceBtn">
+          <i class="bi bi-printer"></i> <span data-key="print_invoice">طباعة / حفظ PDF</span>
+        </button>
+        <button type="button" class="btn btn-success" id="confirmInvoiceWhatsAppBtn">
+          <i class="bi bi-whatsapp"></i>
+          <span data-key="invoice_whatsapp_label">تأكيد الطلب عبر واتساب</span>
         </button>
       </div>
     </div>
@@ -580,6 +613,8 @@
 </div>
 
 <!-- Scripts -->
+<!-- Required by the invoice PDF download handler -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -1,5 +1,3 @@
-
-
 /* ================= VARIABLES ================= */
 :root {
     --primary-dark: #600100;
@@ -23,6 +21,13 @@ body {
 .navbar {
     background-color: var(--primary-dark) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border: 1px solid color-mix(in srgb, var(--bg-light) 40%, transparent);
+    max-height: 55px;
 }
 
 .navbar-brand {
@@ -41,40 +46,76 @@ body {
 }
 
 /* ================= BUTTONS ================= */
+
 .hero-btn {
-    background-color: var(--primary-orange);
+    background: linear-gradient(
+        135deg,
+        var(--primary-orange) 0%,
+        #df7620 55%,
+        var(--primary-dark) 100%
+    );
     color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid color-mix(in srgb, var(--bg-light) 40%, transparent);
     font-weight: bold;
     text-decoration: none;
     transition: 0.3s;
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    min-height: 28px;
 }
 
 .hero-btn:hover {
-    background-color: var(--primary-red);
+    background-color: var(--primary-dark);
     transform: scale(1.05);
-    color: white;
+    color: var(--bg-light);
+    border: 1px solid color-mix(in srgb, var(--bg-light) 40%, transparent);
+}
+
+.navbar .dropdown > button {
+    height: 28px;
+    min-height: 28px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 1px solid color-mix(in srgb, var(--bg-light) 40%, transparent);
 }
 
 /* ================= HERO ================= */
+
 .hero-slider {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.5);
+    border: 1px solid color-mix(in srgb, var(--bg-light) 40%, transparent);
 }
 
 .hero-img {
     width: 100%;
     height: 100vh;
     object-fit: cover;
+    background-attachment: fixed;
+}
+
+/* ================= HERO PARALLAX ================= */
+
+.hero-img {
+    transform: translateY(0);
+    transition: transform 0.05s linear;
+    will-change: transform;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(96,1,0,0.7), rgba(234,138,42,0.3));
+    background: linear-gradient(
+        135deg,
+        rgba(96,1,0,0.7),
+        rgba(255, 128, 2, 0.3)
+    );
     z-index: 1;
 }
 
@@ -83,7 +124,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: var(--bg-light);
     text-align: center;
     z-index: 2;
     width: 90%;
@@ -101,6 +142,7 @@ body {
 }
 
 /* ================= MENU SECTION ================= */
+
 .menu-section {
     padding: 80px 0;
     background: var(--bg-light);
@@ -115,6 +157,7 @@ body {
 }
 
 /* ================= MENU CONTROLS ================= */
+
 .menu-wrapper {
     position: relative;
 }
@@ -146,12 +189,14 @@ body {
 }
 
 /* ================= MENU VIEWPORT ================= */
+
 .menu-viewport {
     overflow: hidden;
     width: 100%;
 }
 
 /* ================= MENU TRACK ================= */
+
 .menu-track {
     display: flex;
     gap: 20px;
@@ -160,6 +205,7 @@ body {
 }
 
 /* ================= FOOD CARD ================= */
+
 .food-card {
     flex: 0 0 280px;
     max-width: 200px;
@@ -178,6 +224,7 @@ body {
 }
 
 /* ================= FOOD IMAGE ================= */
+
 .food-img {
     width: 100%;
     height: 180px;
@@ -186,6 +233,7 @@ body {
 }
 
 /* ================= FOOD BODY ================= */
+
 .food-body {
     padding: 15px;
 }
@@ -203,6 +251,7 @@ body {
 }
 
 /* ================= SIZES ================= */
+
 .sizes {
     display: flex;
     gap: 8px;
@@ -233,6 +282,7 @@ body {
 }
 
 /* ================= PRICE ================= */
+
 .price {
     font-weight: bold;
     color: var(--primary-dark);
@@ -241,6 +291,7 @@ body {
 }
 
 /* ================= ADD TO CART BUTTON ================= */
+
 .btn-add-cart {
     width: 100%;
     background: var(--primary-orange);
@@ -254,20 +305,18 @@ body {
     margin-top: 5px;
 }
 
-
 .btn-add-cart:hover {
     background: var(--primary-dark);
 }
 
 /* ================= RESPONSIVE ================= */
+
 @media (max-width: 768px) {
     .food-card {
         flex: 0 0 100%;
         min-width: 100%;
     }
 }
-
-
 
 /* ================= ABOUT SECTION ================= */
 
@@ -283,14 +332,13 @@ body {
     align-items: center;
 }
 
-
 /* ================= FLOATING OFFERS WIDGET ================= */
 
 .offers-widget {
     position: fixed;
     left: 20px;
-    top: 150px;
-    width: 300px;
+    top: 120px;
+    width: 200px;
     background: rgba(96, 1, 0, 0.50);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(234, 138, 42, 0.3);
@@ -300,6 +348,7 @@ body {
     z-index: 999;
     animation: slideInLeft 0.5s ease-out;
     transition: all 0.3s ease;
+    max-height: 70%;
 }
 
 @keyframes slideInLeft {
@@ -307,6 +356,7 @@ body {
         transform: translateX(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -348,40 +398,38 @@ body {
 .offers-content {
     text-align: center;
     padding-top: 8px;
-    
 }
 
 .offer-item {
     display: none;
     animation: fadeIn 0.4s ease;
-    
 }
 
 .offer-item.active {
     display: block;
-    
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
-/* ---- Offer Image ---- */
+/* ================= OFFER IMAGE ================= */
 
 .offer-img {
-    width: 100%;
-    height: 160px;
+    width: 80%;
+    height: 80px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 9px;
     margin-bottom: 12px;
 }
 
-/* ---- Offer Badge ---- */
+/* ================= OFFER BADGE ================= */
 
 .offer-badge {
     display: inline-block;
@@ -394,30 +442,31 @@ body {
     margin-bottom: 8px;
 }
 
-/* ---- Offer Name ---- */
+/* ================= OFFER NAME ================= */
 
 .offer-name {
-    font-size: 1rem;
+    font-size: .8rem;
     font-weight: 700;
-    color:var(--bg-light);
+    color: var(--bg-light);
     margin-bottom: 8px;
 }
 
-/* ---- Offer Price ---- */
+/* ================= OFFER PRICE ================= */
 
 .offer-prices {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     background: rgba(255, 255, 255, 0.336);
     border-radius: 8px;
     margin-bottom: 12px;
-    
+    height: 45px;
+    padding: 4px 8px;
 }
 
 .offer-old-price {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #ffffff;
     border-radius: 4px;
     font-weight: bold;
@@ -427,32 +476,41 @@ body {
 }
 
 .offer-new-price {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #ffffff;
-
 }
 
 .offer-discount {
     font-size: 0.75rem;
-    background: #ea8a2a;
+    background: linear-gradient(
+        135deg,
+        var(--primary-orange) 0%,
+        var(--primary-orange) 60%,
+        var(--primary-dark) 100%
+    );
     color: white;
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: bold;
 }
 
-/* ---- Order Button ---- */
+/* ================= OFFER BUTTON ================= */
 
 .offer-btn {
     width: 100%;
-    background: linear-gradient(135deg, #ea8a2a, #600100);
+    background: linear-gradient(
+        135deg,
+        var(--primary-orange) 0%,
+        var(--primary-orange) 80%,
+        var(--primary-dark) 90%
+    );
     color: white;
     border: none;
     padding: 10px;
     border-radius: 10px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     cursor: pointer;
     transition: 0.3s;
     margin-top: 8px;
@@ -487,10 +545,44 @@ body {
     border-radius: 3px;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE OFFERS + NAVBAR ================= */
 
 @media (max-width: 768px) {
+
+    /* Navbar remains fixed */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 75px;
+        max-height: 75px;
+        z-index: 2000;
+    }
+
+    /* Dropdown stays attached to language button */
+    .navbar .dropdown {
+        position: relative;
+    }
+
+    .navbar .dropdown-menu {
+        position: absolute !important;
+        top: calc(100% + 6px) !important;
+        right: 0 !important;
+        left: auto !important;
+        margin: 0 !important;
+        z-index: 2100 !important;
+    }
+
+    /* LTR */
+    html[dir="ltr"] .navbar .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    /* Offers stays below navbar */
     .offers-widget {
+        z-index: 1000;
         left: 10px;
         right: 10px;
         width: auto;
@@ -510,7 +602,19 @@ body {
     }
 }
 
+/* ================= SMALL MOBILE ================= */
+
 @media (max-width: 480px) {
+
+    .navbar {
+        height: 75px;
+        max-height: 75px;
+    }
+
+    .navbar .dropdown-menu {
+        top: calc(100% + 6px) !important;
+    }
+
     .offers-widget {
         left: 8px;
         right: 8px;
@@ -566,6 +670,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -623,6 +728,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -837,17 +943,6 @@ body {
 .offer-card:nth-child(5) { animation-delay: 0.5s; }
 .offer-card:nth-child(6) { animation-delay: 0.6s; }
 
-@keyframes slideUpCard {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .offer-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(234, 138, 42, 0.2);
@@ -895,16 +990,12 @@ body {
     padding: 20px;
 }
 
-/* ---- Title ---- */
-
 .offer-card-title {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-dark);
     margin-bottom: 8px;
 }
-
-/* ---- Description ---- */
 
 .offer-card-desc {
     font-size: 0.9rem;
@@ -913,7 +1004,7 @@ body {
     line-height: 1.5;
 }
 
-/* ---- Prices ---- */
+/* ================= PRICES ================= */
 
 .offer-card-content .offer-prices {
     display: flex;
@@ -934,7 +1025,7 @@ body {
     color: var(--primary-red);
 }
 
-/* ---- Countdown Timer ---- */
+/* ================= COUNTDOWN ================= */
 
 .offer-countdown {
     background: rgba(96, 1, 0, 0.05);
@@ -957,7 +1048,11 @@ body {
 
 .offer-btn {
     width: 100%;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-orange),
+        var(--primary-dark)
+    );
     color: white;
     border: none;
     padding: 12px;
@@ -978,11 +1073,15 @@ body {
     transform: scale(0.98);
 }
 
-/* ================= WEEKLY OFFER SPECIAL ================= */
+/* ================= WEEKLY OFFER ================= */
 
 .offer-card.weekly-offer {
     grid-column: span 1;
-    background: linear-gradient(135deg, rgba(234, 138, 42, 0.05), rgba(96, 1, 0, 0.05));
+    background: linear-gradient(
+        135deg,
+        rgba(234, 138, 42, 0.05),
+        rgba(96, 1, 0, 0.05)
+    );
     border: 2px solid var(--primary-orange);
 }
 
@@ -991,7 +1090,11 @@ body {
 }
 
 .weekly-offer .discount-badge {
-    background: linear-gradient(135deg, #ffd700, var(--primary-orange));
+    background: linear-gradient(
+        135deg,
+        #ffd700,
+        var(--primary-orange)
+    );
 }
 
 /* ================= RESPONSIVE ================= */
@@ -1124,7 +1227,11 @@ body {
 /* ================= CTA BEFORE FOOTER ================= */
 
 .cta-before-footer {
-    background: linear-gradient(135deg, var(--primary-dark ), var(--primary-orange));
+    background: linear-gradient(
+        135deg,
+        var(--primary-dark),
+        var(--primary-orange)
+    );
     padding: 60px 0;
     text-align: center;
     color: white;
@@ -1194,6 +1301,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1386,7 +1494,6 @@ body {
 
     .footer-column h4 {
         font-size: 0.95rem;
-       
     }
 
     .footer-logo h3 {
@@ -1409,6 +1516,7 @@ body {
 /* ================= SHOPPING CART STYLES ================= */
 
 /* Cart Badge */
+
 .cart-badge-container {
     position: relative;
 }
@@ -1447,6 +1555,7 @@ body {
 }
 
 /* Customization Section */
+
 .customization-section {
     margin: 12px 0;
     padding: 12px;
@@ -1470,6 +1579,7 @@ body {
 }
 
 /* Notes Section */
+
 .notes-section {
     margin: 12px 0;
 }
@@ -1489,6 +1599,7 @@ body {
 }
 
 /* Offcanvas Styles */
+
 .offcanvas {
     width: 100% !important;
     max-width: 400px;
@@ -1508,6 +1619,7 @@ body {
 }
 
 /* Shipping Progress Section */
+
 .shipping-progress-section {
     margin-bottom: 24px;
     padding: 16px;
@@ -1522,7 +1634,11 @@ body {
 }
 
 .progress-bar {
-    background: linear-gradient(90deg, var(--primary-orange), var(--primary-red));
+    background: linear-gradient(
+        90deg,
+        var(--primary-orange),
+        var(--primary-red)
+    );
     transition: width 0.3s ease;
 }
 
@@ -1534,6 +1650,7 @@ body {
 }
 
 /* Cart Items Container */
+
 .cart-items-container {
     max-height: 400px;
     overflow-y: auto;
@@ -1547,6 +1664,7 @@ body {
 }
 
 /* Cart Item */
+
 .cart-item {
     background: white;
     border: 1px solid var(--border);
@@ -1561,6 +1679,7 @@ body {
         transform: translateX(-20px);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -1653,6 +1772,7 @@ body {
 }
 
 /* Cart Summary */
+
 .cart-summary {
     border-top: 2px solid var(--border);
     padding-top: 16px;
@@ -1674,6 +1794,7 @@ body {
 }
 
 /* Minimum Order Warning */
+
 .minimum-order-warning {
     background: rgba(225, 25, 41, 0.1);
     border: 1px solid var(--primary-red);
@@ -1690,9 +1811,14 @@ body {
 }
 
 /* Checkout Button */
+
 .checkout-btn {
     width: 100%;
-    background: linear-gradient(135deg, var(--primary-orange), var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-orange),
+        var(--primary-dark)
+    );
     color: white;
     border: none;
     padding: 12px;
@@ -1715,6 +1841,7 @@ body {
 }
 
 /* Modal Styles */
+
 .modal-content {
     border-radius: 12px;
     border: 1px solid var(--border);
@@ -1743,6 +1870,7 @@ body {
 }
 
 /* Responsive */
+
 @media (max-width: 768px) {
     .offcanvas {
         max-width: 100% !important;
@@ -1761,419 +1889,519 @@ body {
     }
 }
 
-
 /* ================= TASK 11: CHECKOUT FORM ================= */
 
 /* Modal Styling */
+
 .checkout-modal {
-  border-radius: 20px;
-  border: none;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .checkout-header {
-  background: linear-gradient(135deg, #600100 0%, #ea8a2a 100%);
-  color: white;
-  border: none;
-  border-radius: 20px 20px 0 0;
-  padding: 20px;
+    background: linear-gradient(
+        135deg,
+        #600100 0%,
+        #ea8a2a 100%
+    );
+    color: white;
+    border: none;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
 }
 
 .checkout-header .modal-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .checkout-body {
-  padding: 30px;
-  max-height: 70vh;
-  overflow-y: auto;
+    padding: 30px;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
 .checkout-footer {
-  border-top: 1px solid #f0f0f0;
-  padding: 20px 30px;
-  background-color: #fafafa;
-  border-radius: 0 0 20px 20px;
-  gap: 10px;
+    border-top: 1px solid #f0f0f0;
+    padding: 20px 30px;
+    background-color: #fafafa;
+    border-radius: 0 0 20px 20px;
+    gap: 10px;
 }
 
 /* Form Sections */
+
 .form-section {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .form-section:last-of-type {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .section-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #600100;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #600100;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Form Controls */
-.form-control, .form-select {
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 12px 15px;
-  font-size: 14px;
-  transition: all 0.3s ease;
+
+.form-control,
+.form-select {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
-.form-control:focus, .form-select:focus {
-  border-color: #ea8a2a;
-  box-shadow: 0 0 0 3px rgba(234, 138, 42, 0.1);
+.form-control:focus,
+.form-select:focus {
+    border-color: #ea8a2a;
+    box-shadow: 0 0 0 3px rgba(234, 138, 42, 0.1);
 }
 
-.form-control.is-invalid, .form-select.is-invalid {
-  border-color: #e11929;
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #e11929;
 }
 
-.form-control.is-invalid:focus, .form-select.is-invalid:focus {
-  box-shadow: 0 0 0 3px rgba(225, 25, 41, 0.1);
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(225, 25, 41, 0.1);
 }
 
 /* Error Messages */
+
 .error-message {
-  color: #e11929;
-  font-size: 12px;
-  margin-top: 5px;
-  display: block;
+    color: #e11929;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
 }
 
 /* Delivery Options */
-.delivery-options, .payment-options {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+
+.delivery-options,
+.payment-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .form-check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .form-check-input {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #e0e0e0;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .form-check-input:checked {
-  background-color: #ea8a2a;
-  border-color: #ea8a2a;
+    background-color: #ea8a2a;
+    border-color: #ea8a2a;
 }
 
 .form-check-label {
-  cursor: pointer;
-  font-size: 14px;
-  margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0;
 }
 
 /* Order Summary */
+
 .order-summary-section {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #f0f0f0;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
 }
 
 .order-items {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .order-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 13px;
 }
 
 .order-item-name {
-  color: #333;
-  font-weight: 500;
+    color: #333;
+    font-weight: 500;
 }
 
 .order-item-qty {
-  color: #999;
-  font-size: 12px;
-  margin: 0 5px;
+    color: #999;
+    font-size: 12px;
+    margin: 0 5px;
 }
 
 .order-item-price {
-  color: #600100;
-  font-weight: 600;
+    color: #600100;
+    font-weight: 600;
 }
 
 .summary-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #ddd, transparent);
-  margin: 15px 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ddd,
+        transparent
+    );
+    margin: 15px 0;
 }
 
 .summary-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  padding: 8px 0;
-  color: #666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 8px 0;
+    color: #666;
 }
 
 .summary-row.total-row {
-  font-size: 16px;
-  font-weight: 700;
-  color: #600100;
-  padding: 12px 0;
-  border-top: 2px solid #f0f0f0;
-  border-bottom: 2px solid #f0f0f0;
-  margin: 10px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #600100;
+    padding: 12px 0;
+    border-top: 2px solid #f0f0f0;
+    border-bottom: 2px solid #f0f0f0;
+    margin: 10px 0;
 }
 
 /* Alerts */
+
 .minimum-order-alert {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: #fff3cd;
-  color: #856404;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-top: 15px;
 }
 
 .minimum-order-alert i {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 /* Buttons */
+
 .checkout-confirm-btn {
-  background: linear-gradient(135deg, #ea8a2a 0%, #d67a1a 100%);
-  border: none;
-  border-radius: 10px;
-  padding: 12px 30px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  min-width: 150px;
+    background: linear-gradient(
+        135deg,
+        #ea8a2a 0%,
+        #d67a1a 100%
+    );
+    border: none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-width: 150px;
 }
 
 .checkout-confirm-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(234, 138, 42, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(234, 138, 42, 0.3);
 }
 
 .checkout-confirm-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .btn-loader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Responsive */
+
 @media (max-width: 576px) {
-  .modal-dialog {
-    margin: 10px;
-  }
+    .modal-dialog {
+        margin: 10px;
+    }
 
-  .checkout-body {
-    padding: 20px;
-    max-height: 80vh;
-  }
+    .checkout-body {
+        padding: 20px;
+        max-height: 80vh;
+    }
 
-  .checkout-footer {
-    padding: 15px 20px;
-    flex-direction: column;
-  }
+    .checkout-footer {
+        padding: 15px 20px;
+        flex-direction: column;
+    }
 
-  .checkout-footer .btn {
-    width: 100%;
-  }
+    .checkout-footer .btn {
+        width: 100%;
+    }
 
-  .delivery-options, .payment-options {
-    flex-direction: column;
-    gap: 12px;
-  }
+    .delivery-options,
+    .payment-options {
+        flex-direction: column;
+        gap: 12px;
+    }
 
-  .summary-row {
-    font-size: 12px;
-  }
+    .summary-row {
+        font-size: 12px;
+    }
 
-  .summary-row.total-row {
-    font-size: 14px;
-  }
+    .summary-row.total-row {
+        font-size: 14px;
+    }
 }
 
 /* RTL Support */
+
 [dir="rtl"] .form-check {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 [dir="rtl"] .order-item {
-  direction: rtl;
+    direction: rtl;
 }
 
 [dir="rtl"] .minimum-order-alert {
-  direction: rtl;
+    direction: rtl;
 }
 
 /* ================= INVOICE STYLES - TASK 13 ================= */
 
 .invoice-container {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  font-family: 'Cairo', sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .invoice-header {
-  text-align: center;
-  border-bottom: 3px solid #600100;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 3px solid #600100;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .invoice-logo {
-  font-size: 32px;
-  font-weight: bold;
-  color: #600100;
-  margin-bottom: 5px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #600100;
+    margin-bottom: 5px;
 }
 
 .invoice-subtitle {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .invoice-divider {
-  border: none;
-  border-top: 2px solid #ddd;
-  margin: 15px 0;
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 15px 0;
 }
 
 .invoice-section {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .invoice-section-title {
-  font-weight: bold;
-  color: #600100;
-  margin-bottom: 10px;
-  font-size: 14px;
+    font-weight: bold;
+    color: #600100;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .invoice-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  font-size: 14px;
-  border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .invoice-row.total-row {
-  font-weight: bold;
-  font-size: 16px;
-  color: #600100;
-  border-bottom: 2px solid #600100;
-  padding: 12px 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #600100;
+    border-bottom: 2px solid #600100;
+    padding: 12px 0;
 }
 
 .invoice-row.grand-total {
-  background: #f9f9f9;
-  padding: 15px;
-  border-radius: 4px;
-  margin: 10px 0;
-  font-size: 18px;
-  font-weight: bold;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .invoice-item {
-  padding: 10px 0;
-  border-bottom: 1px solid #f0f0f0;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .invoice-item-name {
-  font-weight: 600;
-  color: #222;
+    font-weight: 600;
+    color: #222;
 }
 
 .invoice-item-details {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: #666;
-  margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
 }
 
 .invoice-footer {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
-  font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
 }
 
 .invoice-modal .modal-body {
-  max-height: 70vh;
-  overflow-y: auto;
+    max-height: 70vh;
+    overflow-y: auto;
 }
 
-/* Print Styles */
+/* Print Styles — Invoice Only */
 @media print {
-  body * {
-    visibility: hidden;
-  }
-  
-  .invoice-container,
-  .invoice-container * {
-    visibility: visible;
-  }
-  
-  .invoice-container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-  }
-  
-  .modal-header,
-  .modal-footer {
-    display: none !important;
-  }
+    @page {
+        size: A4 portrait;
+        margin: 12mm;
+    }
+
+    html,
+    body {
+        width: 100%;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    #invoicePreviewModal,
+    #invoicePreviewModal.show,
+    #invoicePreviewModal .modal-dialog,
+    #invoicePreviewModal .modal-content,
+    #invoicePreviewModal .modal-body,
+    #invoiceContent,
+    #invoiceContent .invoice-container,
+    #invoiceContent .invoice-container * {
+        visibility: visible !important;
+    }
+
+    #invoicePreviewModal,
+    #invoicePreviewModal.show {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        background: #fff !important;
+    }
+
+    #invoicePreviewModal .modal-dialog,
+    #invoicePreviewModal .modal-content,
+    #invoicePreviewModal .modal-body {
+        position: static !important;
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        background: #fff !important;
+    }
+
+    #invoiceContent {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    #invoiceContent > .invoice-container {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #111 !important;
+        background: #fff !important;
+        overflow: visible !important;
+    }
+
+    #invoicePreviewModal .modal-header,
+    #invoicePreviewModal .modal-footer,
+    #invoiceTemplate,
+    .modal-backdrop {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    #invoiceContent .invoice-item,
+    #invoiceContent .invoice-section,
+    #invoiceContent .invoice-row,
+    #invoiceContent .invoice-footer,
+    #invoiceContent .invoice-divider {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
 }
 
 /* Responsive */
+
 @media (max-width: 768px) {
-  .invoice-container {
-    padding: 20px;
-  }
-  
-  .invoice-row {
-    font-size: 13px;
-  }
+    .invoice-container {
+        padding: 20px;
+    }
+
+    .invoice-row {
+        font-size: 13px;
+    }
 }
 
 /* ================= TOAST NOTIFICATION - TASK 13.1 ================= */
@@ -2194,6 +2422,7 @@ body {
 }
 
 /* LTR support */
+
 html[dir="ltr"] .toast-notification {
     right: auto;
     left: 20px;
@@ -2207,13 +2436,21 @@ html[dir="ltr"] .toast-notification {
 }
 
 .toast-notification.toast-error {
-    background: linear-gradient(135deg, var(--primary-red), #e57373);
+    background: linear-gradient(
+        135deg,
+        var(--primary-red),
+        #e57373
+    );
     color: white;
     border: 1px solid #c62828;
 }
 
 .toast-notification.toast-info {
-    background: linear-gradient(135deg, #2196f3, #64b5f6);
+    background: linear-gradient(
+        135deg,
+        #2196f3,
+        #64b5f6
+    );
     color: white;
     border: 1px solid #1565c0;
 }
@@ -2240,6 +2477,7 @@ html[dir="ltr"] .toast-notification {
         transform: translateX(100px);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -2251,6 +2489,7 @@ html[dir="ltr"] .toast-notification {
         transform: translateX(-100px);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -2258,6 +2497,7 @@ html[dir="ltr"] .toast-notification {
 }
 
 /* Responsive Toast */
+
 @media (max-width: 576px) {
     .toast-notification {
         right: 10px;
@@ -2271,4 +2511,539 @@ html[dir="ltr"] .toast-notification {
         right: 10px;
         left: 10px;
     }
+}
+
+
+/* =========================================================
+   NAVBAR LANGUAGE DROPDOWN — ISOLATED RESPONSIVE FIX ONLY
+   ========================================================= */
+
+/* Keep the Navbar and its dropdown above the Floating Offers widget. */
+header,
+.navbar,
+.navbar .container,
+.navbar-collapse,
+.language-dropdown {
+    position: relative;
+    overflow: visible !important;
+}
+
+header {
+    z-index: 2200;
+}
+
+.navbar {
+    z-index: 2200;
+}
+
+.language-dropdown {
+    z-index: 2300;
+}
+
+/* Keep the menu attached to the language button. */
+.language-dropdown-menu {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    bottom: auto !important;
+    transform: none !important;
+    z-index: 2310 !important;
+    min-width: 132px;
+    margin: 0 !important;
+    padding: 6px;
+    border: 1px solid rgba(234, 138, 42, 0.55);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* RTL: align the dropdown to the right edge of its button. */
+html[dir="rtl"] .language-dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: 0 !important;
+    text-align: right;
+}
+
+/* LTR: align the dropdown to the left edge of its button. */
+html[dir="ltr"] .language-dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
+    inset-inline-start: 0 !important;
+    inset-inline-end: auto !important;
+    text-align: left;
+}
+
+.language-dropdown-menu .dropdown-item {
+    width: 100%;
+    border-radius: 7px;
+    white-space: nowrap;
+}
+
+.language-dropdown.show,
+.language-dropdown.show .language-dropdown-menu {
+    z-index: 2310 !important;
+}
+
+/* Keep the dropdown below the button at all requested responsive widths. */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        position: relative;
+        z-index: 2205;
+    }
+
+    .language-dropdown-menu {
+        top: calc(100% + 8px) !important;
+        max-width: calc(100vw - 24px);
+    }
+}
+
+@media (max-width: 767.98px) {
+    .language-dropdown-menu {
+        min-width: 128px;
+        font-size: 0.92rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .language-dropdown-menu {
+        min-width: 122px;
+        padding: 5px;
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 479.98px) {
+    .language-dropdown-menu {
+        min-width: 116px;
+        top: calc(100% + 6px) !important;
+    }
+}
+
+@media (max-width: 359.98px) {
+    .language-dropdown-menu {
+        min-width: 108px;
+        font-size: 0.82rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .language-dropdown-menu {
+        transition: none !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL LANGUAGE DROPDOWN OVERRIDE — BUTTON-ANCHORED GLASS STYLE
+   ========================================================= */
+
+.language-dropdown {
+    position: relative !important;
+    display: inline-block !important;
+    align-self: flex-start;
+}
+
+.language-dropdown > .language-dropdown-menu {
+    position: absolute !important;
+    inset: auto !important;
+    top: calc(100% + 8px) !important;
+    transform: translateY(0) !important;
+    margin: 0 !important;
+    z-index: 2310 !important;
+    min-width: 132px;
+    padding: 6px;
+    overflow: hidden;
+    background: rgba(96, 1, 0, 0.88) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(234, 138, 42, 0.72) !important;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+html[dir="rtl"] .language-dropdown > .language-dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: 0 !important;
+    text-align: right;
+}
+
+html[dir="ltr"] .language-dropdown > .language-dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
+    inset-inline-start: 0 !important;
+    inset-inline-end: auto !important;
+    text-align: left;
+}
+
+.language-dropdown > .language-dropdown-menu .dropdown-item {
+    color: #fff !important;
+    background: transparent !important;
+    border-radius: 7px;
+    white-space: nowrap;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.language-dropdown > .language-dropdown-menu .dropdown-item:hover,
+.language-dropdown > .language-dropdown-menu .dropdown-item:focus {
+    color: #fff !important;
+    background: rgba(234, 138, 42, 0.82) !important;
+}
+
+@media (max-width: 991.98px) {
+    .language-dropdown > .language-dropdown-menu {
+        top: calc(100% + 8px) !important;
+        max-width: calc(100vw - 24px);
+    }
+}
+
+@media (max-width: 479.98px) {
+    .language-dropdown > .language-dropdown-menu {
+        top: calc(100% + 6px) !important;
+        min-width: 116px;
+    }
+}
+
+@media (max-width: 359.98px) {
+    .language-dropdown > .language-dropdown-menu {
+        min-width: 108px;
+    }
+}
+
+
+/* =========================================================
+   FINAL MOBILE NAVBAR REPAIR — PRESERVE MENU SLIDER
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+    header {
+        position: relative !important;
+        z-index: 2600 !important;
+    }
+
+    .navbar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto !important;
+        min-height: 75px;
+        max-height: none !important;
+        z-index: 2600 !important;
+    }
+
+    .navbar > .container {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        overflow: visible !important;
+    }
+
+    .navbar-collapse {
+        flex-basis: 100%;
+        width: 100%;
+        position: relative !important;
+        z-index: 2605 !important;
+        margin-top: 8px;
+        padding: 8px 0 12px;
+        background: var(--primary-dark);
+        border-top: 1px solid rgba(234, 138, 42, 0.35);
+    }
+
+    .navbar-collapse.show {
+        overflow: visible !important;
+        max-height: none !important;
+    }
+
+    .navbar-collapse > .d-flex {
+        position: relative;
+        z-index: 2610;
+        flex-wrap: wrap;
+    }
+
+    .language-dropdown {
+        position: relative !important;
+        z-index: 2620 !important;
+    }
+
+    .language-dropdown > .language-dropdown-menu {
+        position: absolute !important;
+        top: calc(100% + 6px) !important;
+        transform: translateY(0) !important;
+        z-index: 2630 !important;
+    }
+
+    /* Keep Floating Offers below the expanded Navbar only. */
+    .offers-widget {
+        z-index: 900 !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-collapse {
+        padding-inline: 8px;
+    }
+}
+
+
+/* ================= INVOICE PDF EXPORT FIX ================= */
+.invoice-pdf-export {
+    direction: ltr;
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+.invoice-pdf-export .invoice-container {
+    direction: inherit;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-sizing: border-box;
+    overflow: visible !important;
+}
+
+.invoice-pdf-export .invoice-row,
+.invoice-pdf-export .invoice-item-details {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    min-width: 0;
+    flex-wrap: wrap;
+    overflow: visible !important;
+}
+
+.invoice-pdf-export .invoice-row > span,
+.invoice-pdf-export .invoice-item-details > span {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    white-space: normal;
+}
+
+.invoice-pdf-export[dir="rtl"],
+.invoice-pdf-export[dir="rtl"] .invoice-container {
+    direction: rtl;
+    text-align: right;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row,
+.invoice-pdf-export[dir="rtl"] .invoice-item-details {
+    direction: rtl;
+}
+
+.invoice-pdf-export .invoice-section {
+    break-inside: auto;
+    page-break-inside: auto;
+}
+
+.invoice-pdf-export .invoice-item,
+.invoice-pdf-export .invoice-row,
+.invoice-pdf-export .invoice-footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.invoice-pdf-export .invoice-divider {
+    break-after: avoid;
+    page-break-after: avoid;
+}
+
+@media print {
+    /* Hidden elements still occupy layout space; remove the rest of the page. */
+    body > *:not(#invoicePreviewModal) {
+        display: none !important;
+    }
+}
+
+@media screen {
+    #invoiceTemplate.invoice-pdf-export {
+        pointer-events: none;
+    }
+}
+
+
+/* ================= FINAL RTL PDF ROW ALIGNMENT ================= */
+.invoice-pdf-export[dir="rtl"] {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.invoice-pdf-export[dir="ltr"] {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+.invoice-pdf-export .invoice-container {
+    overflow: visible !important;
+    contain: none !important;
+}
+
+.invoice-pdf-export .invoice-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 42%) !important;
+    align-items: start !important;
+    column-gap: 14px !important;
+    row-gap: 4px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+}
+
+.invoice-pdf-export .invoice-row > span {
+    display: block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    line-height: 1.55 !important;
+    color: #222 !important;
+    visibility: visible !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row > span:first-child {
+    text-align: right !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row > span:last-child {
+    text-align: left !important;
+    direction: auto !important;
+}
+
+.invoice-pdf-export[dir="ltr"] .invoice-row > span:first-child {
+    text-align: left !important;
+}
+
+.invoice-pdf-export[dir="ltr"] .invoice-row > span:last-child {
+    text-align: right !important;
+}
+
+.invoice-pdf-export .invoice-item-details {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+}
+
+.invoice-pdf-export .invoice-item-details > span {
+    display: block !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+    color: #555 !important;
+    visibility: visible !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-item-details > span {
+    text-align: right !important;
+}
+
+.invoice-pdf-export .invoice-header,
+.invoice-pdf-export .invoice-section,
+.invoice-pdf-export .invoice-item,
+.invoice-pdf-export .invoice-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+
+/* ================= FINAL DATA VISIBILITY FIX ================= */
+.invoice-pdf-export .invoice-row {
+    display: table !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    direction: ltr !important;
+    width: 100% !important;
+    min-height: 28px !important;
+    overflow: visible !important;
+}
+
+.invoice-pdf-export .invoice-row > span {
+    display: table-cell !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    min-width: 0 !important;
+    padding: 7px 0 !important;
+    vertical-align: top !important;
+    position: static !important;
+    transform: none !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #222 !important;
+    line-height: 1.55 !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row {
+    direction: rtl !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row > span:first-child {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-row > span:last-child {
+    text-align: left !important;
+    direction: ltr !important;
+    unicode-bidi: plaintext !important;
+}
+
+.invoice-pdf-export[dir="ltr"] .invoice-row > span:first-child {
+    text-align: left !important;
+    direction: ltr !important;
+}
+
+.invoice-pdf-export[dir="ltr"] .invoice-row > span:last-child {
+    text-align: right !important;
+    direction: ltr !important;
+}
+
+.invoice-pdf-export .invoice-item-details {
+    display: table !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+    direction: ltr !important;
+}
+
+.invoice-pdf-export .invoice-item-details > span {
+    display: table-cell !important;
+    width: 33.333% !important;
+    max-width: 33.333% !important;
+    min-width: 0 !important;
+    padding: 5px 3px !important;
+    vertical-align: top !important;
+    text-align: left !important;
+    direction: ltr !important;
+    overflow: visible !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.invoice-pdf-export[dir="rtl"] .invoice-item-details > span {
+    direction: rtl !important;
+    text-align: right !important;
 }

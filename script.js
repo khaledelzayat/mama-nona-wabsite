@@ -12,6 +12,10 @@ const translations = {
     hero_title: "أكل لذيذ معمول بحب 🍽️",
     hero_desc: "استمتع بأفضل طعم مع ماما نونا",
     hero_btn: "اطلب الآن",
+    hero_slide2_title: "وجبات لذيذة وطازجة",
+    hero_slide2_desc: "وصفات منزلية أصيلة",
+    hero_slide3_title: "طعم ماما نونا المميز",
+    hero_slide3_desc: "مطهو بحب من أجلك",
     footer: "© 2026 ماما نونا. جميع الحقوق محفوظة",
     why_badge: "لماذا اختيارنا",
     why_title: "لماذا تختار ماما نونا؟",
@@ -20,12 +24,31 @@ const translations = {
     offers_subtitle: "اكتشف أحدث الخصومات والعروض الحصرية.",
     daily_offers: "عروض اليوم",
     weekly_offers: "عروض الأسبوع",
+    why_fresh_title: "مكونات طازجة",
+    why_fresh_desc: "مكونات طازجة يوميًا من أفضل المصادر",
+    why_home_title: "طعم منزلي",
+    why_home_desc: "وصفات بيتية أصلية معدة بحب",
+    why_delivery_title: "توصيل سريع",
+    why_delivery_desc: "توصيل سريع وآمن إلى باب منزلك",
+    why_quality_title: "جودة مضمونة",
+    why_quality_desc: "جودة مطاعم محترفة في كل طبق",
+    why_prices_title: "أسعار مناسبة",
+    why_prices_desc: "أسعار مناسبة للجميع بدون تنازل عن الجودة",
+    why_customer_title: "رضا العملاء",
+    why_customer_desc: "رضا العملاء هو أولويتنا الأولى",
     hungry_title: "جوعانة؟",
     hungry_desc: "اطلب وجبتك المفضلة الآن!",
     location: "الموقع",
     contact_us: "تواصل معنا",
     follow_us: "تابعنا",
     view_map: "عرض على الخريطة",
+    address_line1: "مدينة 15 مايو",
+    address_line2: "مصر",
+    cairo: "القاهرة",
+    giza: "الجيزة",
+    tanta: "طنطا",
+    mahalla: "المحلة",
+    other: "أخرى",
     footer_desc: "طعام منزلي معمول بحب وطعم أصيل.",
     checkout_title: "تأكيد الطلب",
     customer_info: "بيانات العميل",
@@ -63,7 +86,28 @@ const translations = {
     to_cart: "إلى السلة",
     product_added: "تمت الإضافة إلى السلة",
     preview_invoice: "معاينة الفاتورة",
-    download_invoice: "تحميل PDF"
+    download_invoice: "تحميل PDF",
+    print_invoice: "طباعة / حفظ PDF",
+    close: "إغلاق",
+    invoice_confirm_note: "الطلب لا يُعتبر مؤكداً إلا بعد إرساله عبر واتساب.",
+    invoice_whatsapp_label: "تأكيد الطلب عبر واتساب",
+    cart_title: "سلتك 🛒",
+    shipping_label: "الشحن:",
+    empty_cart: "السلة فارغة",
+    free_shipping_remaining: "فاضلك {amount} جنيه للشحن المجاني",
+    free_shipping_success: "مبروك! حصلت على شحن مجاني 🎉",
+    offer_ends_in: "ينتهي العرض خلال",
+    order_now: "اطلب الآن",
+    best_offer: "أفضل عرض",
+    missing_fields: "الرجاء ملء جميع البيانات المطلوبة",
+    opening_whatsapp: "جاري فتح واتساب...",
+    add_to_cart: "🛒 أضف للسلة",
+    review_invoice: "مراجعة الفاتورة",
+    size_label: "الحجم",
+    offer_price_label: "سعر العرض",
+    base_price_label: "السعر الأساسي",
+    addons_label: "إضافات",
+    notes_label: "ملاحظات"
   },
   en: {
     home: "Home",
@@ -75,6 +119,10 @@ const translations = {
     hero_title: "Delicious Food Made With Love 🍽️",
     hero_desc: "Experience the best taste with Mama Nona",
     hero_btn: "Order Now",
+    hero_slide2_title: "Delicious & Fresh Meals",
+    hero_slide2_desc: "Authentic homemade recipes",
+    hero_slide3_title: "Mama Nona Special Taste",
+    hero_slide3_desc: "Cooked with love for you",
     footer: "© 2026 Mama Nona. All Rights Reserved",
     why_badge: "WHY CHOOSE US",
     why_title: "Why Choose Mama Nona?",
@@ -83,12 +131,31 @@ const translations = {
     offers_subtitle: "Discover our latest discounts and exclusive deals.",
     daily_offers: "Daily Offers",
     weekly_offers: "Weekly Offers",
+    why_fresh_title: "Fresh Ingredients",
+    why_fresh_desc: "Fresh ingredients every day from trusted sources",
+    why_home_title: "Homemade Taste",
+    why_home_desc: "Original homemade recipes prepared with care",
+    why_delivery_title: "Fast Delivery",
+    why_delivery_desc: "Fast and safe delivery to your door",
+    why_quality_title: "Guaranteed Quality",
+    why_quality_desc: "Restaurant-quality standards in every dish",
+    why_prices_title: "Affordable Prices",
+    why_prices_desc: "Fair prices for everyone without compromising quality",
+    why_customer_title: "Customer Satisfaction",
+    why_customer_desc: "Our customers' satisfaction comes first",
     hungry_title: "Hungry?",
     hungry_desc: "Order your favorite meal now!",
     location: "Location",
     contact_us: "Contact Us",
     follow_us: "Follow Us",
     view_map: "View on Map",
+    address_line1: "15 May City",
+    address_line2: "Cairo, Egypt",
+    cairo: "Cairo",
+    giza: "Giza",
+    tanta: "Tanta",
+    mahalla: "El Mahalla",
+    other: "Other",
     footer_desc: "Homemade food crafted with love and authentic flavors.",
     checkout_title: "Confirm Order",
     customer_info: "Customer Information",
@@ -126,24 +193,53 @@ const translations = {
     to_cart: "to cart",
     product_added: "Product added to cart",
     preview_invoice: "Preview Invoice",
-    download_invoice: "Download PDF"
+    download_invoice: "Download PDF",
+    print_invoice: "Print / Save PDF",
+    close: "Close",
+    invoice_confirm_note: "Your order is not confirmed until it is sent through WhatsApp.",
+    invoice_whatsapp_label: "Confirm Order via WhatsApp",
+    cart_title: "Your Cart 🛒",
+    shipping_label: "Shipping:",
+    empty_cart: "Cart is empty",
+    free_shipping_remaining: "Add {amount} EGP for free shipping",
+    free_shipping_success: "Congrats! You got free shipping 🎉",
+    offer_ends_in: "Offer Ends In",
+    order_now: "Order Now",
+    best_offer: "BEST OFFER",
+    missing_fields: "Please fill in all required fields",
+    opening_whatsapp: "Opening WhatsApp...",
+    add_to_cart: "🛒 Add to Cart",
+    review_invoice: "Review Invoice",
+    size_label: "Size",
+    offer_price_label: "Offer Price",
+    base_price_label: "Base Price",
+    addons_label: "Add-ons",
+    notes_label: "Notes"
   }
 };
 
 /* ================= LANGUAGE ================= */
 
-let currentLang = 'ar';
+let currentLang = "ar";
 
 function setLang(lang) {
   currentLang = lang;
+
   const flag = document.getElementById("currentFlag");
 
   document.documentElement.lang = lang;
   document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
 
   if (flag) {
-    flag.innerText = (lang === "ar") ? "🇸🇦" : "🇺🇸";
+    flag.src = (lang === "ar")
+      ? "https://flagcdn.com/w20/sa.png"
+      : "https://flagcdn.com/w20/gb.png";
+
+    flag.alt = (lang === "ar") ? "Arabic" : "English";
   }
+
+  // باقي كود تغيير اللغة الموجود عندك هنا
+
 
   document.querySelectorAll("[data-key]").forEach(el => {
     const key = el.getAttribute("data-key");
@@ -152,24 +248,57 @@ function setLang(lang) {
     }
   });
 
+  const placeholderKeys = {
+    customerName: "full_name_placeholder",
+    customerPhone: "phone_placeholder",
+    customerAddress: "address_placeholder",
+    customerNotes: "notes_placeholder"
+  };
+  Object.entries(placeholderKeys).forEach(([id, key]) => {
+    const field = document.getElementById(id);
+    if (field && translations[lang]?.[key]) field.placeholder = translations[lang][key];
+  });
+
+  document.querySelectorAll("[data-option-key]").forEach(option => {
+    const key = option.getAttribute("data-option-key");
+    if (translations[lang]?.[key]) option.textContent = translations[lang][key];
+  });
+
+  const languageToggle = document.getElementById("languageToggle");
+  if (languageToggle) languageToggle.setAttribute("aria-label", lang === "ar" ? "اختر اللغة" : "Choose language");
+
+  if (typeof renderProducts === "function") renderProducts();
+  if (typeof renderFloatingOffers === "function") renderFloatingOffers();
+  if (typeof renderOffersSection === "function") renderOffersSection();
+
   // Re-render cart UI after language change
   updateCartUI();
   resetCarousel();
 }
 
+function getLocalizedCity(city) {
+  const cityKeys = { cairo: "cairo", giza: "giza", tanta: "tanta", mahalla: "mahalla", other: "other" };
+  return translations[currentLang]?.[cityKeys[city]] || city || "";
+}
+
+function getLocalizedItemName(item) {
+  if (currentLang === "en" && item.nameEn) return item.nameEn;
+  return item.name || "";
+}
+
 /* ================= PRODUCTS ================= */
 
 const products = [
-  { id: 1,  name: "كشري",           desc: "طبق مصري شعبي غني بالنكهات",     image: "assets/images/products/koshary.jpg",     sizes: { S: 40,  M: 55,  L: 70  } },
-  { id: 2,  name: "ملوخية",          desc: "ملوخية بيتية بطعم أصلي",          image: "assets/images/products/molokhia.jpg",    sizes: { S: 35,  M: 50,  L: 65  } },
-  { id: 3,  name: "فراخ مشوية",      desc: "دجاج مشوي بتتبيلة خاصة",          image: "assets/images/products/grilled-chicken.jpg",     sizes: { S: 90,  M: 120, L: 150 } },
-  { id: 4,  name: "مكرونة بشاميل",   desc: "مكرونة بصوص البشاميل الشهية",     image: "assets/images/products/bechamel-pasta.jpg",       sizes: { S: 50,  M: 65,  L: 85  } },
-  { id: 5,  name: "كفتة مشوية",      desc: "كفتة مشوية بتتبيلة خاصة",         image: "assets/images/products/grilled-kofta.jpg",       sizes: { S: 60,  M: 80,  L: 100 } },
-  { id: 6,  name: "رز بلبن",         desc: "حلوى مصرية تقليدية",              image: "assets/images/products/ricepudding.jpg", sizes: { S: 25,  M: 35,  L: 45  } },
-  { id: 7,  name: "أم علي",          desc: "حلوى شرقية غنية بالمكسرات",       image: "assets/images/products/omali.jpg",       sizes: { S: 35,  M: 50,  L: 70  } },
-  { id: 8,  name: "محشي مشكل",       desc: "محشي ورق عنب وكوسة وباذنجان",     image: "assets/images/products/stuffed.jpg",     sizes: { S: 55,  M: 75,  L: 95  } },
-  { id: 9,  name: "شاورما فراخ",     desc: "شاورما بطعم عربي أصيل",           image: "assets/images/products/shawarma.jpg",    sizes: { S: 70,  M: 95,  L: 120 } },
-  { id: 10, name: "بيتزا ماما نونا", desc: "بيتزا بطابع منزلي مميز",          image: "assets/images/products/pizza.jpg",       sizes: { S: 80,  M: 110, L: 140 } }
+  { id: 1,  name: "كشري", nameEn: "Koshary",           desc: "طبق مصري شعبي غني بالنكهات", descEn: "A flavorful Egyptian classic dish",     image: "assets/images/products/koshary.jpg",     sizes: { S: 40,  M: 55,  L: 70  } },
+  { id: 2,  name: "ملوخية", nameEn: "Molokhia",          desc: "ملوخية بيتية بطعم أصلي", descEn: "Homemade molokhia with authentic flavor",          image: "assets/images/products/molokhia.jpg",    sizes: { S: 35,  M: 50,  L: 65  } },
+  { id: 3,  name: "فراخ مشوية", nameEn: "Grilled Chicken",      desc: "دجاج مشوي بتتبيلة خاصة", descEn: "Grilled chicken with a special marinade",          image: "assets/images/products/grilled-chicken.jpg",     sizes: { S: 90,  M: 120, L: 150 } },
+  { id: 4,  name: "مكرونة بشاميل", nameEn: "Bechamel Pasta",   desc: "مكرونة بصوص البشاميل الشهية", descEn: "Delicious pasta with creamy bechamel sauce",     image: "assets/images/products/bechamel-pasta.jpg",       sizes: { S: 50,  M: 65,  L: 85  } },
+  { id: 5,  name: "كفتة مشوية", nameEn: "Grilled Kofta",      desc: "كفتة مشوية بتتبيلة خاصة", descEn: "Grilled kofta with a special marinade",         image: "assets/images/products/grilled-kofta.jpg",       sizes: { S: 60,  M: 80,  L: 100 } },
+  { id: 6,  name: "رز بلبن", nameEn: "Rice Pudding",         desc: "حلوى مصرية تقليدية", descEn: "Traditional Egyptian dessert",              image: "assets/images/products/ricepudding.jpg", sizes: { S: 25,  M: 35,  L: 45  } },
+  { id: 7,  name: "أم علي", nameEn: "Om Ali",          desc: "حلوى شرقية غنية بالمكسرات", descEn: "A rich oriental dessert with nuts",       image: "assets/images/products/omali.jpg",       sizes: { S: 35,  M: 50,  L: 70  } },
+  { id: 8,  name: "محشي مشكل", nameEn: "Mixed Stuffed Vegetables",       desc: "محشي ورق عنب وكوسة وباذنجان", descEn: "Stuffed grape leaves, zucchini, and eggplant",     image: "assets/images/products/stuffed.jpg",     sizes: { S: 55,  M: 75,  L: 95  } },
+  { id: 9,  name: "شاورما فراخ", nameEn: "Chicken Shawarma",     desc: "شاورما بطعم عربي أصيل", descEn: "Chicken shawarma with authentic Arabic flavor",           image: "assets/images/products/shawarma.jpg",    sizes: { S: 70,  M: 95,  L: 120 } },
+  { id: 10, name: "بيتزا ماما نونا", nameEn: "Mama Nona Pizza", desc: "بيتزا بطابع منزلي مميز", descEn: "Homestyle pizza with a special touch",          image: "assets/images/products/pizza.jpg",       sizes: { S: 80,  M: 110, L: 140 } }
 ];
 
 /* ================= RENDER PRODUCTS ================= */
@@ -184,19 +313,21 @@ function renderProducts() {
   products.forEach(p => {
     const card = document.createElement("div");
     card.className = "food-card";
+    const productName = currentLang === "ar" ? p.name : p.nameEn;
+    const productDescription = currentLang === "ar" ? p.desc : p.descEn;
 
     card.innerHTML = `
-      <img src="${p.image}" class="food-img" alt="${p.name}" onerror="this.src='assets/images/placeholder.jpg'">
+      <img src="${p.image}" class="food-img" alt="${productName}" onerror="this.src='assets/images/placeholder.jpg'">
       <div class="food-body">
-        <h5>${p.name}</h5>
-        <p>${p.desc}</p>
+        <h5>${productName}</h5>
+        <p>${productDescription}</p>
         <div class="sizes">
           <button class="size active" data-price="${p.sizes.S}">S</button>
           <button class="size"        data-price="${p.sizes.M}">M</button>
           <button class="size"        data-price="${p.sizes.L}">L</button>
         </div>
         <div class="price">${p.sizes.S} EGP</div>
-        <button class="btn-add-cart" onclick="addToCart(${p.id}, this)">🛒 أضف للسلة</button>
+        <button class="offer-btn" onclick="addToCart(${p.id}, this)">${translations[currentLang].add_to_cart}</button>
       </div>
     `;
 
@@ -300,48 +431,48 @@ document.addEventListener("DOMContentLoaded", function() {
 const floatingOffersData = [
   {
     id: 1,
-    name: "كشري",
+    name: "كشري", nameEn: "Koshary",
     image: "assets/images/offers/koshary-offer.jpg",
     oldPrice: 70,
     newPrice: 50,
     discount: 28,
-    tag: "Today Offer"
+    tagAr: "عرض اليوم", tagEn: "Today Offer"
   },
   {
     id: 2,
-    name: "ملوخية",
+    name: "ملوخية", nameEn: "Molokhia",
     image: "assets/images/offers/molokhia-offer.jpg",
     oldPrice: 65,
     newPrice: 45,
     discount: 30,
-    tag: "Weekly Deal"
+    tagAr: "عرض الأسبوع", tagEn: "Weekly Deal"
   },
   {
     id: 3,
-    name: "فراخ مشوية",
+    name: "فراخ مشوية", nameEn: "Grilled Chicken",
     image: "assets/images/offers/grilled-chicken-offer.jpg",
     oldPrice: 150,
     newPrice: 120,
     discount: 20,
-    tag: "Limited Offer"
+    tagAr: "عرض محدود", tagEn: "Limited Offer"
   },
   {
     id: 4,
-    name: "مكرونة بشاميل",
+    name: "مكرونة بشاميل", nameEn: "Bechamel Pasta",
     image: "assets/images/offers/bechamel-pasta.jpg",
     oldPrice: 85,
     newPrice: 65,
     discount: 23,
-    tag: "Flash Sale"
+    tagAr: "عرض خاطف", tagEn: "Flash Sale"
   },
   {
     id: 5,
-    name: "شاورما فراخ",
+    name: "شاورما فراخ", nameEn: "Chicken Shawarma",
     image: "assets/images/offers/shawarma.jpg",
     oldPrice: 120,
     newPrice: 90,
     discount: 25,
-    tag: "Today Offer"
+    tagAr: "عرض اليوم", tagEn: "Today Offer"
   }
 ];
 
@@ -361,17 +492,19 @@ function renderFloatingOffers() {
 
   floatingOffersData.forEach((offer, index) => {
     const offerItem = document.createElement("div");
+    const offerName = currentLang === "ar" ? offer.name : (offer.nameEn || offer.name);
+    const offerTag = currentLang === "ar" ? (offer.tagAr || offer.tag) : (offer.tagEn || offer.tag);
     offerItem.className = `offer-item ${index === 0 ? "active" : ""}`;
     offerItem.innerHTML = `
-      <span class="offer-badge">${offer.tag}</span>
-      <img src="${offer.image}" class="offer-img" alt="${offer.name}" onerror="this.src='assets/images/placeholder.jpg'">
-      <h5 class="offer-name">${offer.name}</h5>
+      <span class="offer-badge">${offerTag}</span>
+      <img src="${offer.image}" class="offer-img" alt="${offerName}" onerror="this.src='assets/images/placeholder.jpg'">
+      <h5 class="offer-name">${offerName}</h5>
       <div class="offer-prices">
         <span class="offer-old-price">${offer.oldPrice} EGP</span>
         <span class="offer-new-price">${offer.newPrice} EGP</span>
         <span class="offer-discount">-${offer.discount}%</span>
       </div>
-      <button class="offer-btn" onclick="orderFloatingOffer(${offer.id})">Order Now</button>
+      <button class="offer-btn" onclick="orderFloatingOffer(${offer.id})">${translations[currentLang].order_now}</button>
     `;
     offersContent.appendChild(offerItem);
 
@@ -429,6 +562,7 @@ function orderFloatingOffer(offerId) {
     id: Date.now(),
     productId: offer.id,
     name: offer.name,
+    nameEn: offer.nameEn || offer.name,
     size: "م",
     basePrice: offer.newPrice,
     addons: [],
@@ -519,8 +653,8 @@ document.querySelectorAll(".why-card").forEach(card => {
 const dailyOffers = [
   {
     id: 1,
-    name: "فراخ مشوية",
-    desc: "دجاج مشوي بتتبيلة خاصة",
+    name: "فراخ مشوية", nameEn: "Grilled Chicken",
+    desc: "دجاج مشوي بتتبيلة خاصة", descEn: "Grilled chicken with a special marinade",
     image: "assets/images/offers/grilled-chicken-offer.jpg",
     oldPrice: 220,
     newPrice: 170,
@@ -529,8 +663,8 @@ const dailyOffers = [
   },
   {
     id: 2,
-    name: "كشري",
-    desc: "طبق مصري شعبي غني بالنكهات",
+    name: "كشري", nameEn: "Koshary",
+    desc: "طبق مصري شعبي غني بالنكهات", descEn: "A flavorful Egyptian classic dish",
     image: "assets/images/offers/koshary-offer.jpg",
     oldPrice: 70,
     newPrice: 50,
@@ -539,8 +673,8 @@ const dailyOffers = [
   },
   {
     id: 3,
-    name: "ملوخية",
-    desc: "ملوخية بيتية بطعم أصلي",
+    name: "ملوخية", nameEn: "Molokhia",
+    desc: "ملوخية بيتية بطعم أصلي", descEn: "Homemade molokhia with authentic flavor",
     image: "assets/images/offers/molokhia-offer.jpg",
     oldPrice: 65,
     newPrice: 45,
@@ -552,8 +686,10 @@ const dailyOffers = [
 const weeklyOffers = [
   {
     id: 101,
-    name: "Family Meal",
+    name: "وجبة عائلية",
+    nameEn: "Family Meal",
     desc: "4 وجبات رئيسية + 4 مشروبات + 2 حلو",
+    descEn: "4 main dishes + 4 drinks + 2 desserts",
     image: "assets/images/offers/family-meal.jpg",
     oldPrice: 850,
     newPrice: 649,
@@ -563,8 +699,10 @@ const weeklyOffers = [
   },
   {
     id: 102,
-    name: "Couple Special",
+    name: "عرض الزوجين",
+    nameEn: "Couple Special",
     desc: "وجبتان رئيسيتان + 2 مشروب + حلو",
+    descEn: "2 main dishes + 2 drinks + dessert",
     image: "assets/images/offers/couple-meal.jpg",
     oldPrice: 450,
     newPrice: 329,
@@ -574,8 +712,10 @@ const weeklyOffers = [
   },
   {
     id: 103,
-    name: "Party Pack",
+    name: "باقة الحفلات",
+    nameEn: "Party Pack",
     desc: "6 وجبات متنوعة + 6 مشروبات + 3 حلو",
+    descEn: "6 assorted meals + 6 drinks + 3 desserts",
     image: "assets/images/offers/party-pack.jpg",
     oldPrice: 1200,
     newPrice: 849,
@@ -611,17 +751,19 @@ function createOfferSectionCard(offer, isWeekly = false) {
   card.className = `offer-card ${isWeekly ? "weekly-offer" : ""}`;
   card.id = `offer-${offer.id}`;
 
-  const discountText = isWeekly ? "BEST OFFER" : `-${offer.discount}%`;
+  const offerName = currentLang === "ar" ? offer.name : (offer.nameEn || offer.name);
+  const offerDescription = currentLang === "ar" ? offer.desc : (offer.descEn || offer.desc);
+  const discountText = isWeekly ? translations[currentLang].best_offer : `-${offer.discount}%`;
 
   card.innerHTML = `
     <div class="offer-card-image">
-      <img src="${offer.image}" alt="${offer.name}" onerror="this.src='assets/images/placeholder.jpg'">
+      <img src="${offer.image}" alt="${offerName}" onerror="this.src='assets/images/placeholder.jpg'">
       <div class="discount-badge">${discountText}</div>
     </div>
     
     <div class="offer-card-content">
-      <h5 class="offer-card-title">${offer.name}</h5>
-      <p class="offer-card-desc">${offer.desc}</p>
+      <h5 class="offer-card-title">${offerName}</h5>
+      <p class="offer-card-desc">${offerDescription}</p>
       
       <div class="offer-prices">
         <span class="offer-old-price">${offer.oldPrice} EGP</span>
@@ -629,12 +771,12 @@ function createOfferSectionCard(offer, isWeekly = false) {
       </div>
       
       <div class="offer-countdown">
-        <div style="font-size: 0.8rem; margin-bottom: 4px;">Offer Ends In</div>
+        <div style="font-size: 0.8rem; margin-bottom: 4px;">${translations[currentLang].offer_ends_in}</div>
         <div class="countdown-timer" data-offer-id="${offer.id}">00:00:00</div>
       </div>
       
       <button class="offer-btn" onclick="orderOfferSection(${offer.id})">
-        Order Now
+        ${translations[currentLang].order_now}
       </button>
     </div>
   `;
@@ -642,10 +784,13 @@ function createOfferSectionCard(offer, isWeekly = false) {
   return card;
 }
 
-function startOfferCountdowns() {
-  const allOffers = [...dailyOffers, ...weeklyOffers];
+let offerCountdownTimer = null;
 
-  setInterval(() => {
+function startOfferCountdowns() {
+  if (offerCountdownTimer) return;
+  const allOffers = [...dailyOffers, ...weeklyOffers];
+  
+  offerCountdownTimer = setInterval(() => {
     allOffers.forEach(offer => {
       const timerEl = document.querySelector(`.countdown-timer[data-offer-id="${offer.id}"]`);
       if (!timerEl) return;
@@ -679,6 +824,7 @@ function orderOfferSection(offerId) {
     id: Date.now(),
     productId: offer.id,
     name: offer.name,
+    nameEn: offer.nameEn || offer.name,
     size: offer.isWeekly ? "Bundle" : "م",
     basePrice: offer.newPrice,
     addons: [],
@@ -761,6 +907,7 @@ function addToCart(productId, buttonElement) {
     id: Date.now(),
     productId: product.id,
     name: product.name,
+    nameEn: product.nameEn || product.name,
     size: selectedSize,
     basePrice: basePrice,
     addons: addons,
@@ -786,10 +933,10 @@ function addToCart(productId, buttonElement) {
   saveCart();
   updateCartUI();
 
-  buttonElement.textContent = "✓ تمت الإضافة";
+  buttonElement.textContent = `✓ ${translations[currentLang].product_added}`;
   buttonElement.style.background = "var(--primary-green, #4caf50)";
   setTimeout(() => {
-    buttonElement.textContent = "🛒 أضف للسلة";
+    buttonElement.textContent = translations[currentLang].add_to_cart;
     buttonElement.style.background = "";
   }, 1500);
 
@@ -845,26 +992,26 @@ function updateCartUI() {
 
   if (cartItemsContainer) {
     if (cart.length === 0) {
-      cartItemsContainer.innerHTML = currentLang === 'ar' ? '<p class="empty-cart-msg">السلة فارغة</p>' : '<p class="empty-cart-msg">Cart is empty</p>';
+      cartItemsContainer.innerHTML =  `<p class="empty-cart-msg">${translations[currentLang].empty_cart}</p>` ;
     } else {
       cartItemsContainer.innerHTML = cart.map(item => `
         <div class="cart-item">
           <div class="cart-item-header">
-            <span class="cart-item-name">${item.name}</span>
+            <span class="cart-item-name">${getLocalizedItemName(item)}</span>
             <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
           </div>
           <div class="cart-item-details">
-            ${item.isOffer ? '' : 'الحجم: ' + item.size + ' | '}
-            ${item.isOffer ? (currentLang === 'ar' ? 'سعر العرض: ' : 'Offer Price: ') + item.basePrice + ' EGP' : (currentLang === 'ar' ? 'السعر الأساسي: ' : 'Base Price: ') + item.basePrice + ' EGP'}
+            ${item.isOffer ? '' : translations[currentLang].size_label + ': ' + item.size + ' | '}
+            ${item.isOffer ? translations[currentLang].offer_price_label + ': ' + item.basePrice + ' EGP' : translations[currentLang].base_price_label + ': ' + item.basePrice + ' EGP'}
           </div>
           ${item.addons.length > 0 ? `
             <div class="cart-item-addons">
-              ${currentLang === 'ar' ? 'إضافات: ' : 'Add-ons: '}${item.addons.map(a => a.name + ' (+' + a.price + ' EGP)').join(", ")}
+              ${translations[currentLang].addons_label}: ${item.addons.map(a => a.name + ' (+' + a.price + ' EGP)').join(", ")}
             </div>
           ` : ""}
           ${item.notes ? `
             <div class="cart-item-notes">
-              ${currentLang === 'ar' ? 'ملاحظات: "' + item.notes + '"' : 'Notes: "' + item.notes + '"'}
+              ${translations[currentLang].notes_label}: "${item.notes}"
             </div>
           ` : ""}
           <div class="cart-item-controls">
@@ -882,7 +1029,7 @@ function updateCartUI() {
 
   const { subtotal, shipping, tax, total } = calculateTotals();
   if (subtotalEl) subtotalEl.textContent = subtotal.toFixed(2) + " EGP";
-  if (shippingEl) shippingEl.textContent = shipping === 0 ? (currentLang === 'ar' ? "مجاني ✓" : "Free ✓") : shipping + " EGP";
+  if (shippingEl) shippingEl.textContent = shipping === 0 ? (translations[currentLang].free + " ✓") : shipping + " EGP";
   if (taxEl) taxEl.textContent = tax + " EGP";
   if (totalEl) totalEl.textContent = total.toFixed(2) + " EGP";
 
@@ -892,11 +1039,9 @@ function updateCartUI() {
     shippingBar.style.width = Math.min(percentage, 100) + "%";
     
     if (remaining <= 0) {
-      shippingText.textContent = currentLang === 'ar' ? "مبروك! حصلت على شحن مجاني 🎉" : "Congrats! You got free shipping 🎉";
+      shippingText.textContent = translations[currentLang].free_shipping_success;
     } else {
-      shippingText.textContent = currentLang === 'ar' 
-        ? `فاضلك ${remaining.toFixed(2)} جنيه للشحن المجاني`
-        : `Add ${remaining.toFixed(2)} EGP for free shipping`;
+      shippingText.textContent = translations[currentLang].free_shipping_remaining.replace("{amount}", remaining.toFixed(2));
     }
   }
 
@@ -1164,7 +1309,7 @@ function buildArabicMessage(orderData) {
 
   if (orderData.delivery.method === 'delivery') {
     message += `📍 العنوان: ${orderData.customer.address}\n`;
-    message += `المنطقة: ${orderData.customer.city}\n`;
+    message += `المنطقة: ${getLocalizedCity(orderData.customer.city)}\n`;
   } else {
     message += `📍 الاستلام من المطعم\n`;
   }
@@ -1176,7 +1321,7 @@ function buildArabicMessage(orderData) {
 
   orderData.items.forEach((item, index) => {
     const itemTotal = item.totalPrice * item.quantity;
-    message += `${index + 1}️⃣ ${item.name}\n`;
+    message += `${index + 1}️⃣ ${getLocalizedItemName(item)}\n`;
     message += `   الكمية: ${item.quantity}\n`;
     message += `   السعر: ${item.totalPrice} EGP\n`;
     message += `   الإجمالي: ${itemTotal.toFixed(2)} EGP\n`;
@@ -1234,7 +1379,7 @@ function buildEnglishMessage(orderData) {
 
   if (orderData.delivery.method === 'delivery') {
     message += `📍 Address: ${orderData.customer.address}\n`;
-    message += `Area: ${orderData.customer.city}\n`;
+    message += `Area: ${getLocalizedCity(orderData.customer.city)}\n`;
   } else {
     message += `📍 Pick Up from Restaurant\n`;
   }
@@ -1246,7 +1391,7 @@ function buildEnglishMessage(orderData) {
 
   orderData.items.forEach((item, index) => {
     const itemTotal = item.totalPrice * item.quantity;
-    message += `${index + 1}️⃣ ${item.name}\n`;
+    message += `${index + 1}️⃣ ${getLocalizedItemName(item)}\n`;
     message += `   Qty: ${item.quantity}\n`;
     message += `   Price: ${item.totalPrice} EGP\n`;
     message += `   Total: ${itemTotal.toFixed(2)} EGP\n`;
@@ -1287,12 +1432,12 @@ function sendOrderToWhatsApp() {
   const orderData = JSON.parse(localStorage.getItem('orderData'));
 
   if (!orderData || !orderData.customer.name || !orderData.customer.phone) {
-    showToast('الرجاء ملء جميع البيانات المطلوبة', 'error');
+    showToast(translations[currentLang].missing_fields, 'error');
     return;
   }
 
   if (cart.length === 0) {
-    showToast('السلة فارغة', 'error');
+    showToast(translations[currentLang].empty_cart, 'error');
     return;
   }
 
@@ -1306,7 +1451,7 @@ function sendOrderToWhatsApp() {
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${RESTAURANT_PHONE}?text=${encodedMessage}`;
 
-  showToast(currentLang === 'ar' ? 'جاري فتح واتساب...' : 'Opening WhatsApp...', 'success');
+  showToast(translations[currentLang].opening_whatsapp, 'success');
 
   const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
   orderHistory.push({
@@ -1375,12 +1520,13 @@ function generateInvoiceOrderId() {
 // Get current date and time
 function getCurrentDateTime() {
   const now = new Date();
-  const date = now.toLocaleDateString('ar-EG', {
+  const locale = currentLang === 'ar' ? 'ar-EG' : 'en-US';
+  const date = now.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
-  const time = now.toLocaleTimeString('ar-EG', {
+  const time = now.toLocaleTimeString(locale, {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true
@@ -1403,7 +1549,7 @@ function generateInvoiceHTML(orderData) {
   cart.forEach(item => {
     itemsHTML += `
       <div class="invoice-item">
-        <div class="invoice-item-name">🍽️ ${item.name}</div>
+        <div class="invoice-item-name">🍽️ ${getLocalizedItemName(item)}</div>
         <div class="invoice-item-details">
           <span>${currentLang === 'ar' ? 'الكمية: ' : 'Qty: '}${item.quantity}</span>
           <span>${item.totalPrice} EGP</span>
@@ -1413,8 +1559,10 @@ function generateInvoiceHTML(orderData) {
     `;
   });
   
-  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
+  const deliveryValue = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'delivery';
+  const deliveryMethod = deliveryValue === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
+  const paymentValue = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'cash';
+  const paymentMethod = paymentValue === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
   
   return `
     <div class="invoice-container">
@@ -1455,7 +1603,7 @@ function generateInvoiceHTML(orderData) {
         </div>
         <div class="invoice-row">
           <span>${currentLang === 'ar' ? 'المدينة:' : 'City:'}</span>
-          <span>${orderData.city}</span>
+          <span>${getLocalizedCity(orderData.city)}</span>
         </div>
         <div class="invoice-row">
           <span>${currentLang === 'ar' ? 'العنوان:' : 'Address:'}</span>
@@ -1518,60 +1666,144 @@ function generateInvoiceHTML(orderData) {
       </div>
     </div>
   `;
+}// Read the current checkout fields safely for preview, print, and PDF.
+function getInvoiceFormData() {
+  const read = (id) => document.getElementById(id)?.value?.trim() || '';
+
+  return {
+    name: read('customerName'),
+    phone: read('customerPhone'),
+    address: read('customerAddress'),
+    city: read('customerCity'),
+    notes: read('customerNotes')
+  };
 }
 
 // Preview Invoice
 document.getElementById('previewInvoiceBtn')?.addEventListener('click', function() {
-  const orderData = {
-    name: document.getElementById('customerName').value,
-    phone: document.getElementById('customerPhone').value,
-    address: document.getElementById('customerAddress').value,
-    city: document.getElementById('customerCity').value,
-    notes: document.getElementById('customerNotes').value
-  };
-  
-  const invoiceHTML = generateInvoiceHTML(orderData);
-  document.getElementById('invoiceContent').innerHTML = invoiceHTML;
-  
-  const modal = new bootstrap.Modal(document.getElementById('invoicePreviewModal'));
-  modal.show();
-});
+  const invoiceContent = document.getElementById('invoiceContent');
+  if (!invoiceContent) return;
 
-// Download Invoice as PDF
-document.getElementById('downloadInvoiceBtn')?.addEventListener('click', function() {
-  const orderData = {
-    name: document.getElementById('customerName').value,
-    phone: document.getElementById('customerPhone').value,
-    address: document.getElementById('customerAddress').value,
-    city: document.getElementById('customerCity').value,
-    notes: document.getElementById('customerNotes').value
-  };
-  
-  const invoiceHTML = generateInvoiceHTML(orderData);
-  const element = document.createElement('div');
-  element.innerHTML = invoiceHTML;
-  
-  // Using html2pdf library
-  const opt = {
-    margin: 10,
-    filename: `MamaNona_Order_${Date.now()}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-  };
-  
-  // If html2pdf is not available, show toast instead of alert
-  if (typeof html2pdf !== 'undefined') {
-    html2pdf().set(opt).from(element).save();
-  } else {
-    showToast(currentLang === 'ar' ? 'مكتبة PDF غير متاحة. الرجاء تحديث الصفحة.' : 'PDF library not available. Please refresh the page.', 'error');
+  invoiceContent.innerHTML = generateInvoiceHTML(getInvoiceFormData());
+
+  const modalElement = document.getElementById('invoicePreviewModal');
+  if (modalElement && typeof bootstrap !== 'undefined') {
+    bootstrap.Modal.getOrCreateInstance(modalElement).show();
   }
 });
 
-// Print Invoice
-document.getElementById('printInvoiceBtn')?.addEventListener('click', function() {
+// Prepare the same invoice element used by the visible preview.
+// Exporting the populated preview avoids the clipping caused by a hidden clone.
+async function prepareVisibleInvoiceExport(orderData) {
+  const invoiceContent = document.getElementById('invoiceContent');
+  const modalElement = document.getElementById('invoicePreviewModal');
+
+  if (!invoiceContent || !modalElement || typeof bootstrap === 'undefined') {
+    return null;
+  }
+
+  const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+  const modalWasOpen = modalElement.classList.contains('show');
+
+  invoiceContent.innerHTML = generateInvoiceHTML(orderData);
+  invoiceContent.classList.add('invoice-pdf-export');
+  invoiceContent.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+  invoiceContent.style.visibility = 'visible';
+  invoiceContent.style.display = 'block';
+  invoiceContent.style.overflow = 'visible';
+
+  const invoice = invoiceContent.querySelector('.invoice-container');
+  if (invoice) {
+    invoice.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+    invoice.setAttribute('lang', currentLang === 'ar' ? 'ar' : 'en');
+  }
+
+  if (!modalWasOpen) {
+    await new Promise(resolve => {
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        modalElement.removeEventListener('shown.bs.modal', finish);
+        resolve();
+      };
+      modalElement.addEventListener('shown.bs.modal', finish, { once: true });
+      modalInstance.show();
+      setTimeout(finish, 600);
+    });
+  } else {
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  }
+
+  return { invoiceContent, invoice, modalInstance, modalWasOpen };
+}
+
+// Download Invoice as PDF through the browser's native print dialog.
+// The browser print engine preserves the exact layout that already works in preview.
+document.getElementById('downloadInvoiceBtn')?.addEventListener('click', async function() {
+  const invoiceContent = document.getElementById('invoiceContent');
+  const modalElement = document.getElementById('invoicePreviewModal');
+
+  if (!invoiceContent || !modalElement || typeof bootstrap === 'undefined') {
+    showToast(currentLang === 'ar' ? translations[currentLang].preview_invoice : 'The invoice preview could not be opened.', 'error');
+    return;
+  }
+
+  const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+  const modalWasOpen = modalElement.classList.contains('show');
+  const button = this;
+  const originalHTML = button.innerHTML;
+  let cleanedUp = false;
+
+  const cleanupAfterPrint = () => {
+    if (cleanedUp) return;
+    cleanedUp = true;
+    window.removeEventListener('afterprint', cleanupAfterPrint);
+    if (!modalWasOpen) modalInstance.hide();
+    button.disabled = false;
+    button.innerHTML = originalHTML;
+  };
+
+  button.disabled = true;
+  button.innerHTML = currentLang === 'ar' ? 'جاري فتح الطباعة...' : 'Opening print...';
+  invoiceContent.innerHTML = generateInvoiceHTML(getInvoiceFormData());
+  invoiceContent.removeAttribute('dir');
+  invoiceContent.classList.remove('invoice-pdf-export');
+
+  window.addEventListener('afterprint', cleanupAfterPrint, { once: true });
+
+  if (!modalWasOpen) {
+    await new Promise(resolve => {
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        modalElement.removeEventListener('shown.bs.modal', finish);
+        resolve();
+      };
+      modalElement.addEventListener('shown.bs.modal', finish, { once: true });
+      modalInstance.show();
+      setTimeout(finish, 600);
+    });
+  } else {
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  }
+
   window.print();
 });
+
+// Print Invoice: the print CSS exposes only #invoiceContent.
+document.getElementById('printInvoiceBtn')?.addEventListener('click', function() {
+  const invoiceContent = document.getElementById('invoiceContent');
+  if (!invoiceContent?.querySelector('.invoice-container')) {
+    showToast(currentLang === 'ar' ? 'افتح معاينة الفاتورة أولاً.' : 'Open the invoice preview first.', 'error');
+    return;
+  }
+
+  window.print();
+});
+
+;
 
 // Generate WhatsApp Receipt Message
 function generateWhatsAppReceipt(orderData) {
@@ -1585,11 +1817,13 @@ function generateWhatsAppReceipt(orderData) {
   
   let itemsText = '';
   cart.forEach(item => {
-    itemsText += `\n🍔 ${item.name}\n${currentLang === 'ar' ? 'الكمية: ' : 'Qty: '}${item.quantity} | ${currentLang === 'ar' ? 'السعر: ' : 'Price: '}${item.totalPrice} EGP\n${currentLang === 'ar' ? 'الإجمالي: ' : 'Total: '}${(item.totalPrice * item.quantity).toFixed(2)} EGP\n`;
+    itemsText += `\n🍔 ${getLocalizedItemName(item)}\n${currentLang === 'ar' ? 'الكمية: ' : 'Qty: '}${item.quantity} | ${currentLang === 'ar' ? 'السعر: ' : 'Price: '}${item.totalPrice} EGP\n${currentLang === 'ar' ? 'الإجمالي: ' : 'Total: '}${(item.totalPrice * item.quantity).toFixed(2)} EGP\n`;
   });
   
-  const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
+  const deliveryValue = document.querySelector('input[name="deliveryMethod"]:checked')?.value || 'delivery';
+  const deliveryMethod = deliveryValue === 'delivery' ? (currentLang === 'ar' ? 'توصيل' : 'Delivery') : (currentLang === 'ar' ? 'استلام من المطعم' : 'Pick Up');
+  const paymentValue = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'cash';
+  const paymentMethod = paymentValue === 'cash' ? (currentLang === 'ar' ? 'الدفع عند الاستلام' : 'Cash on Delivery') : (currentLang === 'ar' ? 'الدفع أونلاين' : 'Online Payment');
   
   const message = `
 ╔══════════════════════════════╗
@@ -1637,3 +1871,17 @@ Mama Nona
   
   return message;
 }
+
+/* ================= HERO PARALLAX ================= */
+window.addEventListener("scroll", () => {
+    const hero = document.querySelector(".hero-slider");
+    const heroImg = document.querySelector(".hero-img");
+
+    if (!hero || !heroImg) return;
+
+    const scrollY = window.scrollY;
+
+    if (scrollY <= hero.offsetHeight) {
+        heroImg.style.transform = `translateY(${scrollY * 0.25}px)`;
+    }
+});
