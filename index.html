@@ -1,11 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mama Nona</title>
+    <title>مطعم ماما نونا | أكل بيتي مصري أصيل وتوصيل سريع</title>
+    <meta name="description" content="استمتع بأشهى الأطباق المصرية المنزلية الأصيلة من مطعم ماما نونا في مدينة 15 مايو. مكونات طازجة، وصفات بيتية، وطلب سهل عبر الواتساب مع توصيل سريع.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mamanona.manus.space/">
+    <link rel="alternate" hreflang="ar" href="https://mamanona.manus.space/?lang=ar">
+    <link rel="alternate" hreflang="en" href="https://mamanona.manus.space/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://mamanona.manus.space/">
 
     <!-- Bootstrap RTL -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -19,22 +24,69 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 
-    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Mama Nona",
+      "alternateName": "مطعـم ماما نونا",
+      "image": "https://mamanona.manus.space/assets/images/Asset%203.png",
+      "@id": "https://mamanona.manus.space/#restaurant",
+      "url": "https://mamanona.manus.space/",
+      "telephone": "+201001234567",
+      "email": "info@mamanona.com",
+      "priceRange": "EGP",
+      "servesCuisine": "Egyptian, Homemade, Middle Eastern",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "15 May City",
+        "addressLocality": "Cairo",
+        "addressRegion": "Cairo Governorate",
+        "addressCountry": "EG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 29.8965,
+        "longitude": 31.3323
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "23:59"
+        }
+      ],
+      "sameAs": [
+        "https://facebook.com",
+        "https://instagram.com",
+        "https://tiktok.com"
+      ]
+    }
+    </script>
 </head>
 
 <body>
 
 <!-- ================= NAVBAR ================= -->
 <header>
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main Navigation">
   <div class="container">
 
     <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <img src="assets/images/Asset 3.png" alt="Mama Nona" height="50">
-       
+        <img src="assets/images/Asset 3.png" alt="Mama Nona Logo" height="50">
     </a>
 
-    <button class="navbar-toggler btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -51,13 +103,13 @@
 
         <!-- Cart Badge -->
         <div class="cart-badge-container">
-          <button class="nav-btn hero-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
-            <i class="bi bi-cart3"></i>
+          <button class="nav-btn hero-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Shopping Cart">
+            <i class="bi bi-cart3" aria-hidden="true"></i>
             <span class="cart-count" id="cartCount">0</span>
           </button>
         </div>
 
-        <a class=" hero-btn btn" href="#menu" data-key="order">Order Now</a>
+        <a class="hero-btn btn" href="#menu" data-key="order">Order Now</a>
 
        <div class="dropdown language-dropdown">
   <button
@@ -71,7 +123,7 @@
   >
     <img id="currentFlag"
          src="https://flagcdn.com/w20/sa.png"
-         alt="Arabic"
+         alt="Arabic Language Flag"
          width="20"
          height="14">
   </button>
@@ -105,12 +157,12 @@
 <main>
 
 <!-- ================= HERO ================= -->
-<section id="hero" class="hero-slider">
+<section id="hero" class="hero-slider" aria-label="Hero Carousel">
   <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-inner">
 
       <div class="carousel-item active">
-        <img src="assets/images/hero/hero-1.jpg" class="d-block w-100 hero-img" alt="food 1">
+        <img src="assets/images/hero/hero-1.jpg" class="d-block w-100 hero-img" alt="Delicious Egyptian Homemade Meal by Mama Nona">
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1 data-key="hero_title">أكل لذيذ معمول بحب 🍽️</h1>
@@ -120,7 +172,7 @@
       </div>
 
       <div class="carousel-item">
-        <img src="assets/images/hero2.jpeg" class="d-block w-100 hero-img" alt="food 2">
+        <img src="assets/images/hero2.jpeg" class="d-block w-100 hero-img" alt="Fresh and Authentic Homemade Dishes">
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1 data-key="hero_slide2_title">Delicious &amp; Fresh Meals</h1>
@@ -130,7 +182,7 @@
       </div>
 
       <div class="carousel-item">
-        <img src="assets/images/hero3.jpeg" class="d-block w-100 hero-img" alt="food 3">
+        <img src="assets/images/hero3.jpeg" class="d-block w-100 hero-img" alt="Special Mama Nona Signature Dishes">
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1 data-key="hero_slide3_title">Mama Nona Special Taste</h1>
@@ -144,7 +196,7 @@
 </section>
 
 <!-- ================= MENU ================= -->
-<section id="menu" class="menu-section">
+<section id="menu" class="menu-section" aria-label="Our Menu">
   <div class="container">
 
     <h2 class="h2-menu" data-key="menu_section">قائمة الطعام</h2>
@@ -152,8 +204,8 @@
     <div class="menu-wrapper">
 
       <div class="menu-controls">
-        <button id="prevBtn">‹</button>
-        <button id="nextBtn">›</button>
+        <button id="prevBtn" aria-label="Previous Products">‹</button>
+        <button id="nextBtn" aria-label="Next Products">›</button>
       </div>
 
       <div class="menu-viewport">
@@ -168,8 +220,8 @@
 </main>
 
   <!-- ================= FLOATING OFFERS WIDGET ================= -->
-<div id="offersWidget" class="offers-widget">
-  <button class="offers-close-btn" id="closeOffersBtn">✕</button>
+<div id="offersWidget" class="offers-widget" aria-label="Floating Offers Widget">
+  <button class="offers-close-btn" id="closeOffersBtn" aria-label="Close Offers Widget">✕</button>
   
   <div class="offers-content">
     <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
@@ -181,7 +233,7 @@
 </div>
 
 <!-- ================= WHY CHOOSE US ================= -->
-<section id="why-choose-us" class="why-choose-section">
+<section id="why-choose-us" class="why-choose-section" aria-label="Why Choose Us">
   <div class="container">
     
     <!-- Badge -->
@@ -198,43 +250,43 @@
       
       <!-- Card 1 -->
       <div class="why-card">
-        <div class="why-card-icon">🍅</div>
-        <h5 class="why-card-title" data-key="why_fresh_title">Fresh Ingredients</h5>
+        <div class="why-card-icon" aria-hidden="true">🍅</div>
+        <h3 class="why-card-title" data-key="why_fresh_title">Fresh Ingredients</h3>
         <p class="why-card-desc" data-key="why_fresh_desc">مكونات طازجة يوميًا من أفضل المصادر</p>
       </div>
       
       <!-- Card 2 -->
       <div class="why-card">
-        <div class="why-card-icon">👩‍🍳</div>
-        <h5 class="why-card-title" data-key="why_home_title">Homemade Taste</h5>
+        <div class="why-card-icon" aria-hidden="true">👩‍🍳</div>
+        <h3 class="why-card-title" data-key="why_home_title">Homemade Taste</h3>
         <p class="why-card-desc" data-key="why_home_desc">وصفات بيتية أصلية معدة بحب</p>
       </div>
       
       <!-- Card 3 -->
       <div class="why-card">
-        <div class="why-card-icon">🚚</div>
-        <h5 class="why-card-title" data-key="why_delivery_title">Fast Delivery</h5>
+        <div class="why-card-icon" aria-hidden="true">🚚</div>
+        <h3 class="why-card-title" data-key="why_delivery_title">Fast Delivery</h3>
         <p class="why-card-desc" data-key="why_delivery_desc">توصيل سريع وآمن إلى باب منزلك</p>
       </div>
       
       <!-- Card 4 -->
       <div class="why-card">
-        <div class="why-card-icon">⭐</div>
-        <h5 class="why-card-title" data-key="why_quality_title">Quality Control</h5>
+        <div class="why-card-icon" aria-hidden="true">⭐</div>
+        <h3 class="why-card-title" data-key="why_quality_title">Quality Control</h3>
         <p class="why-card-desc" data-key="why_quality_desc">جودة مطاعم محترفة في كل طبق</p>
       </div>
       
       <!-- Card 5 -->
       <div class="why-card">
-        <div class="why-card-icon">💰</div>
-        <h5 class="why-card-title" data-key="why_prices_title">Affordable Prices</h5>
+        <div class="why-card-icon" aria-hidden="true">💰</div>
+        <h3 class="why-card-title" data-key="why_prices_title">Affordable Prices</h3>
         <p class="why-card-desc" data-key="why_prices_desc">أسعار مناسبة للجميع بدون تنازل عن الجودة</p>
       </div>
       
       <!-- Card 6 -->
       <div class="why-card">
-        <div class="why-card-icon">❤️</div>
-        <h5 class="why-card-title" data-key="why_customer_title">Customer Satisfaction</h5>
+        <div class="why-card-icon" aria-hidden="true">❤️</div>
+        <h3 class="why-card-title" data-key="why_customer_title">Customer Satisfaction</h3>
         <p class="why-card-desc" data-key="why_customer_desc">رضا العملاء هو أولويتنا الأولى</p>
       </div>
       
@@ -244,7 +296,7 @@
 </section>
 
 <!-- ================= OFFERS SECTION ================= -->
-<section id="offers" class="offers-section">
+<section id="offers" class="offers-section" aria-label="Special Offers">
   <div class="container">
     
     <!-- Header -->
@@ -276,7 +328,7 @@
 
   
 <!-- ================= CTA BEFORE FOOTER ================= -->
-<section class="cta-before-footer">
+<section class="cta-before-footer" aria-label="Call to Action">
   <div class="container">
     <h2 data-key="hungry_title">Hungry?</h2>
     <p data-key="hungry_desc">Order your favorite meal now!</p>
@@ -295,31 +347,30 @@
           <h3>Mama Nona</h3>
         </div>
         <p class="footer-desc" data-key="footer_desc">Homemade food crafted with love and authentic flavors.</p>
-      <img src="assets/images/Asset 3.png" alt="Mama Nona Logo" class="footer-logo-img" height="50">
+      <img src="assets/images/Asset 3.png" alt="Mama Nona Restaurant Logo" class="footer-logo-img" height="50">
       </div>
 
       <!-- Column 2: Location -->
       <div class="footer-column">
         <h4 data-key="location">Location</h4>
         <div class="footer-info">
-          <span class="footer-icon">📍</span>
+          <span class="footer-icon" aria-hidden="true">📍</span>
           <div>
             <p data-key="address_line1">15 May City ,Cairo, Egypt</p>
-            
           </div>
         </div>
-        <a href="https://maps.google.com" target="_blank" class="footer-link" data-key="view_map">View on Map</a>
+        <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="footer-link" data-key="view_map">View on Map</a>
       </div>
 
       <!-- Column 3: Contact -->
       <div class="footer-column">
         <h4 data-key="contact">Contact</h4>
         <div class="footer-info">
-          <span class="footer-icon">📞</span>
+          <span class="footer-icon" aria-hidden="true">📞</span>
           <a href="tel:+201001234567" class="footer-link">+20 100 123 4567</a>
         </div>
         <div class="footer-info">
-          <span class="footer-icon">📧</span>
+          <span class="footer-icon" aria-hidden="true">📧</span>
           <a href="mailto:info@mamanona.com" class="footer-link">info@mamanona.com</a>
         </div>
       </div>
@@ -328,17 +379,17 @@
       <div class="footer-column">
         <h4 data-key="follow_us">Follow Us</h4>
         <div class="social-links">
-          <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
-            <i class="bi bi-facebook"></i>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook" aria-label="Facebook">
+            <i class="bi bi-facebook" aria-hidden="true"></i>
           </a>
-          <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">
-            <i class="bi bi-instagram"></i>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram" aria-label="Instagram">
+            <i class="bi bi-instagram" aria-hidden="true"></i>
           </a>
-          <a href="https://tiktok.com" target="_blank" class="social-link" title="TikTok">
-            <i class="bi bi-tiktok"></i>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link" title="TikTok" aria-label="TikTok">
+            <i class="bi bi-tiktok" aria-hidden="true"></i>
           </a>
-          <a href="https://wa.me/201001234567" target="_blank" class="social-link" title="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
+          <a href="https://wa.me/201001234567" target="_blank" rel="noopener noreferrer" class="social-link" title="WhatsApp" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -352,17 +403,17 @@
 </footer>
 
 <!-- ================= SHOPPING CART OFFCANVAS ================= -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" data-key="cart_title">سلتك 🛒</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    <h5 class="offcanvas-title" id="cartOffcanvasLabel" data-key="cart_title">سلتك 🛒</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
   <div class="offcanvas-body">
     <!-- Free Shipping Progress Bar -->
     <div class="shipping-progress-section">
       <div class="progress" style="height: 8px;">
-        <div class="progress-bar" id="shippingBar" role="progressbar" style="width: 0%"></div>
+        <div class="progress-bar" id="shippingBar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <p class="shipping-text" id="shippingText" data-key="free_shipping_remaining">فاضلك 300 جنيه للشحن المجاني</p>
     </div>
@@ -401,222 +452,77 @@
 </div>
 
 <!-- ================= CHECKOUT MODAL ================= -->
-<div class="modal fade" id="checkoutModal" tabindex="-1">
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content checkout-modal">
-      
-      <!-- Header -->
-      <div class="modal-header checkout-header">
-        <h5 class="modal-title">
-          <i class="bi bi-bag-check"></i>
-          <span data-key="checkout_title">تأكيد الطلب</span>
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutModalLabel" data-key="checkout_title">تأكيد الطلب</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-      <!-- Body -->
-      <div class="modal-body checkout-body">
+      <div class="modal-body">
         <form id="checkoutForm">
-          
-          <!-- Customer Information Section -->
-          <div class="form-section">
-            <h6 class="section-title" data-key="customer_info">بيانات العميل</h6>
-            
-            <!-- Full Name -->
-            <div class="mb-3">
-              <label class="form-label" data-key="full_name">الاسم الكامل</label>
-              <input type="text" class="form-control" id="customerName" 
-                     placeholder="أدخل اسمك" data-placeholder-key="full_name_placeholder" required>
-              <small class="error-message" id="nameError"></small>
-            </div>
-
-            <!-- Phone Number -->
-            <div class="mb-3">
-              <label class="form-label" data-key="phone_number">رقم الهاتف</label>
-              <input type="tel" class="form-control" id="customerPhone" 
-                     placeholder="01XXXXXXXXX" data-placeholder-key="phone_placeholder" required>
-              <small class="error-message" id="phoneError"></small>
-            </div>
-
-            <!-- Delivery Address -->
-            <div class="mb-3">
-              <label class="form-label" data-key="delivery_address">عنوان التوصيل</label>
-              <textarea class="form-control" id="customerAddress" rows="3" 
-                        placeholder="الشارع - المبنى - الشقة" data-placeholder-key="address_placeholder" required></textarea>
-              <small class="error-message" id="addressError"></small>
-            </div>
-
-            <!-- City/Area -->
-            <div class="mb-3">
-              <label class="form-label" data-key="city_area">المدينة / المنطقة</label>
-              <select class="form-select" id="customerCity" required>
-                <option value="" data-option-key="select_city">اختر المدينة</option>
-                <option value="cairo" data-option-key="cairo">القاهرة</option>
-                <option value="giza" data-option-key="giza">الجيزة</option>
-                <option value="tanta" data-option-key="tanta">طنطا</option>
-                <option value="mahalla" data-option-key="mahalla">المحلة</option>
-                <option value="other" data-option-key="other">أخرى</option>
-              </select>
-            </div>
-
-            <!-- Notes -->
-            <div class="mb-3">
-              <label class="form-label" data-key="special_notes">ملاحظات خاصة (اختياري)</label>
-              <textarea class="form-control" id="customerNotes" rows="2" 
-                        placeholder="مثال: بدون بصل، زيادة جبنة" data-placeholder-key="notes_placeholder"></textarea>
-            </div>
+          <div class="mb-3">
+            <label for="customerName" class="form-label" data-key="full_name">الاسم الكامل</label>
+            <input type="text" class="form-control" id="customerName" placeholder="أدخل اسمك" required>
           </div>
-
-          <!-- Delivery Method Section -->
-          <div class="form-section">
-            <h6 class="section-title" data-key="delivery_method">طريقة الاستلام</h6>
-            
-            <div class="delivery-options">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryMethod" 
-                       id="delivery" value="delivery" checked>
-                <label class="form-check-label" for="delivery" data-key="delivery">
-                  التوصيل
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="deliveryMethod" 
-                       id="pickup" value="pickup">
-                <label class="form-check-label" for="pickup" data-key="pickup">
-                  الاستلام من المطعم
-                </label>
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="customerPhone" class="form-label" data-key="phone_number">رقم الهاتف</label>
+            <input type="tel" class="form-control" id="customerPhone" placeholder="01XXXXXXXXX" required>
           </div>
-
-          <!-- Payment Method Section -->
-          <div class="form-section">
-            <h6 class="section-title" data-key="payment_method">طريقة الدفع</h6>
-            
-            <div class="payment-options">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" 
-                       id="cash" value="cash" checked>
-                <label class="form-check-label" for="cash" data-key="cash_on_delivery">
-                  الدفع عند الاستلام
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="paymentMethod" 
-                       id="online" value="online" disabled>
-                <label class="form-check-label" for="online" data-key="online_payment">
-                  الدفع أونلاين (قريباً)
-                </label>
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="customerAddress" class="form-label" data-key="delivery_address">عنوان التوصيل</label>
+            <input type="text" class="form-control" id="customerAddress" placeholder="الشارع - المبنى - الشقة" required>
           </div>
-
-          <!-- Order Summary Section -->
-          <div class="form-section order-summary-section">
-            <h6 class="section-title" data-key="order_summary">ملخص الطلب</h6>
-            
-            <div id="orderSummaryItems" class="order-items">
-              <!-- Filled by JavaScript -->
-            </div>
-
-            <div class="summary-divider"></div>
-
-            <div class="summary-row">
-              <span data-key="subtotal">الإجمالي الفرعي:</span>
-              <span id="checkoutSubtotal">0 EGP</span>
-            </div>
-
-            <div class="summary-row">
-              <span data-key="delivery_fee">رسوم التوصيل:</span>
-              <span id="checkoutDeliveryFee">مجاني</span>
-            </div>
-
-            <div class="summary-row">
-              <span data-key="tax">الضريبة:</span>
-              <span id="checkoutTax">0 EGP</span>
-            </div>
-
-            <div class="summary-row total-row">
-              <span data-key="total">الإجمالي النهائي:</span>
-              <span id="checkoutTotal">0 EGP</span>
-            </div>
-
-            <!-- Minimum Order Warning -->
-            <div class="minimum-order-alert" id="minimumOrderAlert" style="display: none;">
-              <i class="bi bi-exclamation-circle"></i>
-              <span data-key="minimum_order_warning">الحد الأدنى للطلب 100 جنيه</span>
-            </div>
+          <div class="mb-3">
+            <label for="customerCity" class="form-label" data-key="city_area">المدينة / المنطقة</label>
+            <select class="form-select" id="customerCity" required>
+              <option value="" disabled selected data-key="select_city">اختر المدينة</option>
+              <option value="cairo" data-key="cairo" data-option-key="cairo">القاهرة</option>
+              <option value="giza" data-key="giza" data-option-key="giza">الجيزة</option>
+              <option value="tanta" data-key="tanta" data-option-key="tanta">طنطا</option>
+              <option value="mahalla" data-key="mahalla" data-option-key="mahalla">المحلة</option>
+              <option value="other" data-key="other" data-option-key="other">أخرى</option>
+            </select>
           </div>
-
+          <div class="mb-3">
+            <label for="customerNotes" class="form-label" data-key="special_notes">ملاحظات خاصة (اختياري)</label>
+            <textarea class="form-control" id="customerNotes" rows="2" placeholder="مثال: بدون بصل، زيادة جبنة"></textarea>
+          </div>
         </form>
       </div>
-
-      <!-- ================= CHECKOUT FOOTER ================= -->
-      <div  class="modal-footer checkout-footer">
+      <div class="modal-footer checkout-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="cancel">إلغاء</button>
-        
-        <!-- Invoice Actions -->
-        <button type="button" class="btn btn-outline-primary" id="previewInvoiceBtn">
-          <i class="bi bi-eye"></i> <span data-key="preview_invoice">معاينة الفاتورة</span>
-        </button>
-        
-        <button type="button" class="btn btn-outline-success" id="downloadInvoiceBtn">
-          <i class="bi bi-download"></i> <span data-key="download_invoice">تحميل PDF</span>
-        </button>
-        
-        <!-- Place Order Button -->
-<button type="button" class="btn btn-primary checkout-confirm-btn" id="confirmOrderBtn">
-          <span class="btn-text" data-key="review_invoice">مراجعة الفاتورة</span>
-          <span class="btn-loader" style="display: none;">
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            <span data-key="sending">جاري الإرسال...</span>
-          </span>
-        </button>
+        <button type="button" class="btn btn-primary" id="submitOrderBtn" onclick="handleCheckoutSubmission()" data-key="confirm_order">تأكيد الطلب</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ================= INVOICE PREVIEW MODAL ================= -->
-<div class="modal fade" id="invoicePreviewModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content invoice-modal">
+<div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content invoice-modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" data-key="preview_invoice">معاينة الفاتورة</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <h5 class="modal-title" id="invoiceModalLabel" data-key="preview_invoice">معاينة الفاتورة</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div class="invoice-confirm-note" role="status">
-          <i class="bi bi-info-circle"></i>
-          <span data-key="invoice_confirm_note">الطلب لا يُعتبر مؤكداً إلا بعد إرساله عبر واتساب.</span>
-        </div>
-        <div id="invoiceContent" class="invoice-container">
-          <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
-        </div>
+      <div class="modal-body invoice-body-container" id="invoicePrintArea">
+        <!-- يتم توليد محتوى الفاتورة ديناميكياً هنا -->
       </div>
       <div class="modal-footer invoice-preview-actions">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><span data-key="close">إغلاق</span></button>
-        <button type="button" class="btn btn-outline-primary" id="printInvoiceBtn">
-          <i class="bi bi-printer"></i> <span data-key="print_invoice">طباعة / حفظ PDF</span>
-        </button>
-        <button type="button" class="btn btn-success" id="confirmInvoiceWhatsAppBtn">
-          <i class="bi bi-whatsapp"></i>
-          <span data-key="invoice_whatsapp_label">تأكيد الطلب عبر واتساب</span>
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-key="close">إلغاء</button>
+        <button type="button" class="btn btn-success" id="downloadPdfBtn" onclick="downloadInvoicePDF()" data-key="download_invoice">تحميل PDF</button>
+        <button type="button" class="btn btn-primary" id="printInvoiceBtn" onclick="printInvoice()" data-key="print_invoice">طباعة / حفظ PDF</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Hidden Invoice Template for PDF -->
-<div id="invoiceTemplate" style="display: none;">
-  <!-- يتم ملء هذا الجزء تلقائياً من JavaScript -->
-</div>
-
-<!-- Scripts -->
-<!-- Required by the invoice PDF download handler -->
+<!-- HTML2PDF CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- Main JavaScript -->
 <script src="script.js"></script>
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
