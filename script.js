@@ -522,7 +522,6 @@ function orderFloatingOffer(offerId) {
     isOffer: true
   };
 
-  let cart = JSON.parse(localStorage.getItem('kitchen_cart')) || [];
   const existingIndex = cart.findIndex(item => item.id === cartItem.id);
 
   if (existingIndex > -1) {
@@ -712,7 +711,6 @@ function orderOfferSection(offerId) {
     isOffer: true
   };
 
-  let cart = JSON.parse(localStorage.getItem('kitchen_cart')) || [];
   const existingIndex = cart.findIndex(item => item.id === cartItem.id);
 
   if (existingIndex > -1) {
